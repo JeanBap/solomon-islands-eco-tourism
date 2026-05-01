@@ -28,6 +28,7 @@ hello@solomonislandseco.example
 
 ## Site map
 - Home: https://jeanbap.github.io/solomon-islands-eco-tourism/
+- Blog index: https://jeanbap.github.io/solomon-islands-eco-tourism/blog/
 - Marine biodiversity background: https://jeanbap.github.io/solomon-islands-eco-tourism/marine-biodiversity
 - Impact calculator: https://jeanbap.github.io/solomon-islands-eco-tourism/impact-calculator
 - Project: Tetepare Descendants Association: https://jeanbap.github.io/solomon-islands-eco-tourism/projects/tetepare-descendants-association
