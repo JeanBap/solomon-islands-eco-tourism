@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Your impact per booking | Solomon Islands Eco Tourism</title>
+<meta name="description" content="See where your money goes when you book a Solomon Islands eco-journey. Platform / hotel / project split plus planning estimates of what your conservation share could fund.">
+<meta name="theme-color" content="#0b3d3a">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="/impact-calculator">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Your impact per booking">
+<meta property="og:description" content="See where your money goes when you book a Solomon Islands eco-journey. Transparent breakdown plus planning estimates.">
+<meta property="og:image" content="https://picsum.photos/seed/impact-og/1200/630">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Solomon Islands Eco Tourism: Impact Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "description": "Interactive calculator showing the platform/hotel/project split for a Solomon Islands eco-tourism booking, plus planning estimates of conservation outputs."
+}
+</script>
+
+<style>
+  :root { --ink:#0b3d3a; --ink-deep:#07262a; --ink-soft:#2a4f4c; --sand:#f5efe6; --sand-warm:#ece2d0; --gold:#b9905a; --gold-deep:#8a6a3f; --coral:#e26d5c; --paper:#fbfaf6; --line:#d8d2c5; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink-deep);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--gold-deep)}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+  header.page{background:var(--ink-deep);color:var(--paper);padding:96px 0 64px;text-align:center}
+  header.page .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  header.page h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(34px,4.6vw,56px);line-height:1.1;letter-spacing:-0.01em;margin-bottom:14px}
+  header.page p.lede{font-size:17px;color:rgba(251,250,246,0.85);font-weight:300;max-width:640px;margin:0 auto}
+  main{padding:56px 0 72px}
+  .layout{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:32px}
+  .card h2{font-family:'Playfair Display',serif;font-weight:500;font-size:24px;margin:0 0 18px}
+  label{display:block;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);margin:18px 0 6px}
+  input[type=number]{width:100%;padding:14px 16px;border:1px solid var(--line);border-radius:8px;font-size:18px;font-family:inherit;color:var(--ink-deep);background:#fff}
+  input[type=number]:focus{outline:none;border-color:var(--gold)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  select{width:100%;padding:14px 16px;border:1px solid var(--line);border-radius:8px;font-size:16px;font-family:inherit;color:var(--ink-deep);background:#fff}
+  .small{font-size:12px;color:var(--ink-soft);margin-top:6px}
+
+  .breakdown{background:var(--ink-deep);color:var(--paper);border-radius:10px;padding:32px;border:1px solid var(--ink)}
+  .breakdown h2{color:var(--paper);font-family:'Playfair Display',serif;font-weight:500;font-size:24px;margin:0 0 18px}
+  .breakdown-bar{display:flex;height:14px;border-radius:7px;overflow:hidden;margin-bottom:24px;background:rgba(255,255,255,0.08)}
+  .breakdown-bar span{display:block;height:100%}
+  .row-line{display:grid;grid-template-columns:1fr auto;gap:18px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.08)}
+  .row-line:last-child{border-bottom:0}
+  .row-line .label{display:flex;align-items:center;gap:10px}
+  .swatch{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+  .row-line .name{font-size:14px}
+  .row-line .sub{font-size:12px;color:rgba(251,250,246,0.55);margin-top:2px}
+  .row-line .amt{font-family:'Playfair Display',serif;font-size:18px;color:var(--gold);text-align:right}
+  .row-line .pct{font-size:11px;color:rgba(251,250,246,0.5);letter-spacing:.12em;display:block}
+
+  .impact{margin-top:36px}
+  .impact h2{font-family:'Playfair Display',serif;font-weight:500;font-size:24px;margin:0 0 8px;color:var(--ink-deep)}
+  .impact p.muted{color:var(--ink-soft);font-size:14px;margin-bottom:24px}
+  .impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .impact-card{background:var(--sand);border:1px solid var(--line);border-radius:8px;padding:22px}
+  .impact-card h3{font-family:'Playfair Display',serif;font-weight:500;font-size:18px;margin:0 0 6px;color:var(--ink-deep)}
+  .impact-card .range{font-family:'Playfair Display',serif;font-weight:500;font-size:32px;line-height:1;color:var(--gold-deep);margin:6px 0}
+  .impact-card .unit{font-size:13px;color:var(--ink-soft);margin-bottom:8px}
+  .impact-card .src{font-size:11px;color:var(--ink-soft);font-style:italic}
+
+  .disclaimer{background:#fff3e6;border:1px solid #f5d4a8;border-radius:8px;padding:18px 22px;font-size:13px;color:#5a3a18;margin-top:36px}
+  .disclaimer strong{color:#5a3a18}
+
+  .sources{background:#f9f6ed;border:1px solid var(--line);border-radius:6px;padding:24px;margin-top:36px;font-size:14px}
+  .sources h3{margin:0 0 10px;font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+  .sources ol{padding-left:20px}
+  .sources li{font-size:13px;margin-bottom:6px;color:var(--ink-soft)}
+
+  footer{background:var(--ink-deep);color:rgba(251,250,246,0.7);padding:32px 0;text-align:center;font-size:13px;margin-top:48px}
+  .nav-back{display:inline-block;margin:24px 0 0;font-size:14px;color:var(--gold-deep)}
+  @media(max-width:820px){
+    .layout{grid-template-columns:1fr;gap:24px}
+    .impact-grid{grid-template-columns:1fr}
+    header.page{padding:72px 0 48px}
+    main{padding:40px 0 56px}
+    .card,.breakdown{padding:24px}
+  }
+</style>
+</head>
+<body>
+
+<header class="page">
+  <div class="wrap">
+    <div class="eyebrow">Calculator</div>
+    <h1>Your impact per booking.</h1>
+    <p class="lede">See exactly where your money goes, and what your conservation share could fund.</p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+  <div class="layout">
+
+    <section class="card">
+      <h2>Your booking</h2>
+
+      <label for="total">Package total (USD)</label>
+      <input id="total" type="number" min="500" max="20000" step="100" value="2500" inputmode="numeric">
+
+      <div class="row">
+        <div>
+          <label for="acc">Accommodation portion</label>
+          <input id="acc" type="number" min="0" step="50" value="1200" inputmode="numeric">
+          <div class="small">Lodge rate at cost. Default ~48% of package.</div>
+        </div>
+        <div>
+          <label for="trans">Transport portion</label>
+          <input id="trans" type="number" min="0" step="10" value="50" inputmode="numeric">
+          <div class="small">Inter-island transfers at cost.</div>
+        </div>
+      </div>
+
+      <label for="focus">Conservation focus area</label>
+      <select id="focus">
+        <option value="reef">Reef survey + coral restoration</option>
+        <option value="mangrove">Mangrove planting</option>
+        <option value="turtle">Turtle nesting monitoring</option>
+        <option value="debris">Marine debris removal</option>
+      </select>
+
+      <p class="small" style="margin-top:18px;">All inputs update the breakdown in real time. The economics use the standard platform model: 30% platform fee, 12% hotel margin, 20% of experience fees to the conservation project, with accommodation and transport at cost.</p>
+    </section>
+
+    <section class="breakdown" aria-live="polite">
+      <h2>Where your money goes</h2>
+
+      <div class="breakdown-bar" id="bar" aria-hidden="true">
+        <span id="b-acc" style="background:#b9905a"></span>
+        <span id="b-plat" style="background:#0f8a82"></span>
+        <span id="b-hotel" style="background:#e26d5c"></span>
+        <span id="b-proj" style="background:#f5efe6"></span>
+        <span id="b-trans" style="background:rgba(255,255,255,0.4)"></span>
+      </div>
+
+      <div class="row-line">
+        <div class="label">
+          <span class="swatch" style="background:#b9905a"></span>
+          <div>
+            <div class="name">Accommodation</div>
+            <div class="sub">Pass-through to the partner lodge at cost</div>
+          </div>
+        </div>
+        <div class="amt"><span id="o-acc">$1,200</span><span class="pct" id="p-acc">48%</span></div>
+      </div>
+
+      <div class="row-line">
+        <div class="label">
+          <span class="swatch" style="background:#0f8a82"></span>
+          <div>
+            <div class="name">Platform fee (30%)</div>
+            <div class="sub">Booking, payments, customer support, curation</div>
+          </div>
+        </div>
+        <div class="amt"><span id="o-plat">$750</span><span class="pct" id="p-plat">30%</span></div>
+      </div>
+
+      <div class="row-line">
+        <div class="label">
+          <span class="swatch" style="background:#e26d5c"></span>
+          <div>
+            <div class="name">Hotel margin (12%)</div>
+            <div class="sub">Premium on top of accommodation</div>
+          </div>
+        </div>
+        <div class="amt"><span id="o-hotel">$300</span><span class="pct" id="p-hotel">12%</span></div>
+      </div>
+
+      <div class="row-line">
+        <div class="label">
+          <span class="swatch" style="background:#f5efe6"></span>
+          <div>
+            <div class="name">Conservation project share</div>
+            <div class="sub">20% of experience fees, paid direct to project</div>
+          </div>
+        </div>
+        <div class="amt"><span id="o-proj">$500</span><span class="pct" id="p-proj">20% of fees</span></div>
+      </div>
+
+      <div class="row-line">
+        <div class="label">
+          <span class="swatch" style="background:rgba(255,255,255,0.4)"></span>
+          <div>
+            <div class="name">Inter-island transport</div>
+            <div class="sub">Boat and ground transfers at cost</div>
+          </div>
+        </div>
+        <div class="amt"><span id="o-trans">$50</span><span class="pct" id="p-trans">2%</span></div>
+      </div>
+    </section>
+
+  </div>
+
+  <section class="impact">
+    <h2>What your conservation share could fund</h2>
+    <p class="muted">Planning estimates only. Real outputs vary by site, season, and partner. Every figure below is a mid-point taken from publicly available reef-restoration and conservation programme budgets [1, 2, 3, 4]. Use as a guide, not a guarantee.</p>
+
+    <div class="impact-grid" id="impact-grid">
+      <!-- filled by JS -->
+    </div>
+  </section>
+
+  <div class="disclaimer">
+    <strong>About these estimates.</strong> Per-output costs in conservation programmes vary by an order of magnitude depending on site logistics, partner overhead, and what work is in season. The numbers shown are mid-point planning estimates from publicly available reef-restoration and community-conservation programme budgets. Each booking confirmation will list the specific partner, the specific work that took place during your visit, and the actual contribution recorded. We do not promise specific outputs in advance.
+  </div>
+
+  <div class="sources">
+    <h3>Sources for the planning estimates</h3>
+    <ol>
+      <li>Coral nursery and outplanting cost ranges, drawn from the published methodology of organisations such as SECORE International, Coral Vita, and Reef-World Foundation (typical published range: USD 5 to 25 per coral fragment grown and outplanted, varying widely by species, site, and method).</li>
+      <li>Mangrove seedling cost ranges, drawn from Eden Reforestation Projects, Mangrove Action Project, and ICUN-cited community programme budgets (typical published range: USD 0.30 to 2.00 per planted seedling, including community labour and aftercare).</li>
+      <li>Sea-turtle nesting monitoring cost is a function of ranger-day cost in remote field stations rather than per-nest. Typical published Pacific community-ranger costs run roughly USD 25 to 100 per ranger-day, including transport and consumables.</li>
+      <li>Marine debris removal cost ranges, drawn from coastal cleanup programmes published by Ocean Conservancy and similar organisations (typical published range: USD 3 to 12 per kilogram removed, including disposal and transport).</li>
+    </ol>
+    <p style="margin-top:12px;color:var(--ink-soft);font-size:12px;">Each of these ranges is intentionally wide. They reflect the genuine variability in conservation programme costs across geographies, and they should not be quoted as project-specific figures without a primary-source check on the particular partner.</p>
+  </div>
+
+  <a class="nav-back" href="/">Back to home</a>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Solomon Islands Eco Tourism. Work. Learn. Restore.</div>
+</footer>
+
+<script>
+(function() {
+  const $ = id => document.getElementById(id);
+  const fmt = n => '$' + Math.round(n).toLocaleString();
+  const pct = (a, total) => total > 0 ? Math.round((a / total) * 100) + '%' : '0%';
+  const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+
+  // Mid-point planning estimates (USD per output unit)
+  const FACTORS = {
+    reef: [
+      { name: 'Coral fragments outplanted', unitMid: 12, unit: 'fragments', src: '$5 to $25 each, mid-point $12 [1]' },
+      { name: 'Reef survey transects logged', unitMid: 80, unit: 'transects', src: 'Includes equipment + lead time, mid-point $80 [3]' },
+      { name: 'Square metres of reef monitored', unitMid: 4, unit: 'm² covered', src: 'Estimated programme cost per m² monitored [3]' }
+    ],
+    mangrove: [
+      { name: 'Mangrove seedlings planted', unitMid: 1, unit: 'seedlings', src: '$0.30 to $2.00 each, mid-point $1.00 [2]' },
+      { name: 'Square metres replanted', unitMid: 3, unit: 'm² replanted', src: 'At ~3 seedlings/m² standard density [2]' },
+      { name: 'Community ranger-days funded', unitMid: 60, unit: 'days', src: 'Mid-point $60/day [3]' }
+    ],
+    turtle: [
+      { name: 'Ranger-days funded', unitMid: 60, unit: 'days', src: 'Pacific community-ranger mid-point [3]' },
+      { name: 'Nights of beach patrol coverage', unitMid: 60, unit: 'nights', src: 'Equivalent to ranger-day cost' },
+      { name: 'Seasons of monitoring supported (per-share)', unitMid: 12000, unit: 'seasons', src: 'Approx season cost, share is partial [3]' }
+    ],
+    debris: [
+      { name: 'Kilograms of marine debris removed', unitMid: 7.5, unit: 'kg', src: '$3 to $12 per kg, mid-point $7.50 [4]' },
+      { name: 'Beach kilometres surveyed', unitMid: 200, unit: 'km surveyed', src: 'Programme mid-point estimate [4]' },
+      { name: 'Community ranger-days funded', unitMid: 60, unit: 'days', src: 'Mid-point $60/day [3]' }
+    ]
+  };
+
+  function recalc() {
+    let total = clamp(parseFloat($('total').value) || 0, 0, 100000);
+    let acc   = clamp(parseFloat($('acc').value)   || 0, 0, total);
+    let trans = clamp(parseFloat($('trans').value) || 0, 0, total - acc);
+
+    const platform = total * 0.30;
+    const hotel    = total * 0.12;
+    const expFees  = Math.max(total - acc - trans, 0);
+    const project  = expFees * 0.20;
+
+    $('o-acc').textContent   = fmt(acc);
+    $('o-plat').textContent  = fmt(platform);
+    $('o-hotel').textContent = fmt(hotel);
+    $('o-proj').textContent  = fmt(project);
+    $('o-trans').textContent = fmt(trans);
+
+    $('p-acc').textContent   = pct(acc, total);
+    $('p-plat').textContent  = pct(platform, total);
+    $('p-hotel').textContent = pct(hotel, total);
+    $('p-trans').textContent = pct(trans, total);
+
+    // breakdown bar widths
+    const barTotal = Math.max(acc + platform + hotel + project + trans, 1);
+    $('b-acc').style.width   = (acc / barTotal * 100) + '%';
+    $('b-plat').style.width  = (platform / barTotal * 100) + '%';
+    $('b-hotel').style.width = (hotel / barTotal * 100) + '%';
+    $('b-proj').style.width  = (project / barTotal * 100) + '%';
+    $('b-trans').style.width = (trans / barTotal * 100) + '%';
+
+    // impact cards
+    const focus = $('focus').value;
+    const cards = FACTORS[focus] || [];
+    const grid = $('impact-grid');
+    grid.innerHTML = '';
+    cards.forEach(c => {
+      const lo  = Math.floor(project / (c.unitMid * 1.5));
+      const hi  = Math.ceil(project  / (c.unitMid * 0.6));
+      const mid = Math.round(project / c.unitMid);
+      const range = (lo === hi) ? mid.toLocaleString() : (lo.toLocaleString() + ' to ' + hi.toLocaleString());
+      const div = document.createElement('div');
+      div.className = 'impact-card';
+      div.innerHTML =
+        '<h3>' + c.name + '</h3>' +
+        '<div class="range">' + range + '</div>' +
+        '<div class="unit">' + c.unit + ' (planning estimate)</div>' +
+        '<div class="src">' + c.src + '</div>';
+      grid.appendChild(div);
+    });
+  }
+
+  ['total','acc','trans'].forEach(id => $(id).addEventListener('input', recalc));
+  $('focus').addEventListener('change', recalc);
+  recalc();
+})();
+</script>
+
+</body>
+</html>
