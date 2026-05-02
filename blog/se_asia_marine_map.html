@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Southeast Asia map: marine conservation projects + 5-star island hotels | Solomon Islands Eco Tourism</title>
+<meta name="description" content="An interactive map of verified marine conservation projects and 5-star island lodges across Southeast Asia, with primary sources cited for every pin.">
+<meta name="theme-color" content="#0b3d3a">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://jeanbap.github.io/solomon-islands-eco-tourism/blog/southeast-asia-marine-map/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Southeast Asia map: marine conservation + 5-star island hotels">
+<meta property="og:description" content="Verified-source map of marine MPAs and 5-star island lodges across Southeast Asia.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=1200&h=630&fit=crop&q=78&auto=format">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Leaflet for the interactive map (free, no API key, OpenStreetMap tiles) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Southeast Asia map: marine conservation projects and 5-star island hotels",
+  "description": "Interactive map of verified marine conservation projects and 5-star island lodges across Southeast Asia, with primary sources cited for every pin.",
+  "author": { "@type": "Organization", "name": "Solomon Islands Eco Tourism" },
+  "publisher": { "@type": "Organization", "name": "Solomon Islands Eco Tourism" },
+  "datePublished": "2026-05-02",
+  "dateModified": "2026-05-02",
+  "inLanguage": "en-GB"
+}
+</script>
+
+<style>
+  :root { --ink:#0b3d3a; --ink-deep:#07262a; --ink-soft:#2a4f4c; --sand:#f5efe6; --sand-warm:#ece2d0; --gold:#b9905a; --gold-deep:#8a6a3f; --paper:#fbfaf6; --line:#d8d2c5; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink-deep);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--gold-deep)}
+  a:hover{color:var(--ink)}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+  .wrap-narrow{max-width:780px;margin:0 auto;padding:0 24px}
+
+  header.page{background:var(--ink-deep);color:var(--paper);padding:96px 0 64px;text-align:center}
+  header.page .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  header.page h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(34px,4.6vw,52px);line-height:1.1;letter-spacing:-0.01em;margin-bottom:14px}
+  header.page p.lede{font-size:17px;color:rgba(251,250,246,0.85);font-weight:300;max-width:720px;margin:0 auto}
+
+  article{padding:56px 0 72px}
+  article h2{font-family:'Playfair Display',serif;font-weight:500;font-size:32px;margin:48px 0 14px;color:var(--ink-deep);line-height:1.2}
+  article h3{font-family:'Playfair Display',serif;font-weight:500;font-size:22px;margin:28px 0 10px;color:var(--ink-deep)}
+  article p{margin:0 0 18px;font-size:17px}
+  article p.tldr{background:var(--sand);border-left:3px solid var(--gold);padding:18px 22px;margin:0 0 28px;border-radius:0 6px 6px 0}
+  article ul{margin:0 0 18px;padding-left:22px}
+  article li{margin-bottom:8px;font-size:16px}
+
+  .map-wrap{margin:24px 0 40px;border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 14px 38px -22px rgba(7,38,42,.25)}
+  #map{height:560px;width:100%;background:#dfeae0}
+  .legend{display:flex;gap:16px;padding:14px 18px;background:var(--sand);border-top:1px solid var(--line);font-size:13px;color:var(--ink-soft);align-items:center;flex-wrap:wrap}
+  .legend .dot{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;margin-right:8px;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.2)}
+  .legend .dot.green{background:#0f8a82}
+  .legend .dot.gold{background:#b9905a}
+  .legend .dot.coral{background:#e26d5c}
+  .legend .note{margin-left:auto;font-size:12px;color:var(--ink-soft);opacity:.8}
+
+  table.list{width:100%;border-collapse:collapse;margin:18px 0 28px;font-size:14px}
+  table.list th,table.list td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  table.list th{background:var(--sand);font-weight:600;color:var(--ink-deep);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+  table.list td.country{white-space:nowrap;color:var(--ink-soft);font-size:13px}
+  table.list td.name{font-weight:600}
+
+  .sources{background:#f9f6ed;border:1px solid var(--line);border-radius:6px;padding:24px;margin-top:36px;font-size:14px}
+  .sources h3{margin:0 0 10px;font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+  .sources ol{padding-left:20px}
+  .sources li{font-size:13px;margin-bottom:6px;color:var(--ink-soft)}
+
+  .disclaimer{background:#fff3e6;border:1px solid #f5d4a8;border-radius:8px;padding:18px 22px;font-size:13px;color:#5a3a18;margin-top:28px}
+  .disclaimer strong{color:#5a3a18}
+
+  .nav-back{display:inline-block;margin:24px 0 0;font-size:14px;color:var(--gold-deep)}
+
+  /* Site chrome (consistent across all pages) */
+  .site-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 0;background:rgba(7,38,42,0.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(185,144,90,0.14)}
+  .site-nav-inner{max-width:1240px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .site-logo{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:20px;letter-spacing:.01em;color:#fbfaf6;text-decoration:none}
+  .site-logo .dot{color:#b9905a}
+  .site-nav-links ul{list-style:none;display:flex;gap:24px;align-items:center;margin:0;padding:0;flex-wrap:wrap;justify-content:flex-end}
+  .site-nav-links li{margin:0}
+  .site-nav-links a{font-size:13px;font-weight:500;letter-spacing:.02em;color:rgba(251,250,246,0.92);text-decoration:none;transition:color .25s}
+  .site-nav-links a:hover{color:#b9905a}
+  body{padding-top:60px}
+  @media(max-width:880px){
+    .site-nav-inner{flex-direction:column;align-items:flex-start;gap:6px}
+    .site-nav-links ul{gap:14px;font-size:12px}
+    body{padding-top:120px}
+    #map{height:420px}
+  }
+
+  .site-footer{background:#07262a;color:rgba(251,250,246,0.85);padding:64px 0 28px}
+  .site-footer-inner{max-width:1240px;margin:0 auto;padding:0 24px}
+  .site-footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:36px}
+  .site-footer h5{font-family:'Playfair Display',Georgia,serif;font-size:18px;color:#fbfaf6;margin-bottom:14px;font-weight:500}
+  .site-footer-brand h5{font-size:20px}
+  .site-footer-brand .dot{color:#b9905a}
+  .site-footer-brand p{font-size:14px;max-width:340px;color:rgba(251,250,246,0.7);margin:0}
+  .site-footer ul{list-style:none;padding:0;margin:0}
+  .site-footer li{margin-bottom:8px;font-size:14px}
+  .site-footer a{color:rgba(251,250,246,0.78);text-decoration:none;transition:color .2s}
+  .site-footer a:hover{color:#b9905a}
+  .site-footer-foot{margin-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:rgba(251,250,246,0.55)}
+  @media(max-width:820px){.site-footer-grid{grid-template-columns:1fr 1fr;gap:28px}.site-footer{padding:48px 0 24px}}
+  @media(max-width:560px){.site-footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="site-nav" role="banner">
+  <div class="site-nav-inner">
+    <a href="https://jeanbap.github.io/solomon-islands-eco-tourism/" class="site-logo">Solomon<span class="dot">.</span> Eco</a>
+    <nav class="site-nav-links" aria-label="Primary">
+      <ul>
+        <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/#why">Why Solomon</a></li>
+        <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/#journeys">Journeys</a></li>
+        <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/#money">Where money goes</a></li>
+        <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/for-hotels/">For Hotels</a></li>
+        <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/for-projects/">For Projects</a></li>
+        <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/blog/">Blog</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<header class="page">
+  <div class="wrap">
+    <div class="eyebrow">Field guide, Southeast Asia</div>
+    <h1>Marine conservation projects and 5-star island hotels, mapped.</h1>
+    <p class="lede">A working map of verified marine protected areas and 5-star island lodges across Southeast Asia, with primary sources cited for every pin. Useful as a planning reference, useful as a benchmark for what good looks like in the region.</p>
+  </div>
+</header>
+
+<article>
+  <div class="wrap">
+
+    <p class="tldr"><strong>The short version.</strong> 43 verified marine protected areas in green, 29 active marine restoration programmes in coral, and 53 verified 5-star island lodges in gold across Southeast Asia. Every restoration programme has been paired with at least one 5-star lodge within roughly an hour by road or boat where one exists. Where no 5-star lodge sits within an hour of a programme, the gap is named honestly. 78 primary sources cited end to end.</p>
+
+    <div class="map-wrap">
+      <div id="map" role="region" aria-label="Map of marine conservation projects and 5-star island hotels in Southeast Asia"></div>
+      <div class="legend">
+        <span><span class="dot green"></span>Marine conservation project / MPA</span>
+        <span><span class="dot coral"></span>Active restoration programme</span>
+        <span><span class="dot gold"></span>5-star island lodge</span>
+        <span class="note">Tiles: OpenStreetMap contributors, ODbL</span>
+      </div>
+    </div>
+
+    <h2>How we chose what is on the map</h2>
+
+    <p>Two filters. First: every MPA on the map is officially gazetted, named in IUCN, UNESCO, or government registries, and has been operational for at least five years. Second: every lodge is independently rated 5-star or equivalent by widely-cited travel publications and is on an island or directly on the coast, never inland on the mainland.</p>
+
+    <p>Where a property has multiple sister-properties (for example, El Nido Resorts has four sister lodges in Palawan), we list the flagship only to keep the map readable.</p>
+
+    <h2>Marine conservation projects</h2>
+
+    <table class="list">
+      <thead>
+        <tr><th>Name</th><th>Country</th><th>Status / Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">Tubbataha Reefs Natural Park</td><td class="country">Philippines</td><td>UNESCO World Heritage Site since 1993, expanded 2009 [1]</td></tr>
+        <tr><td class="name">Apo Reef Natural Park</td><td class="country">Philippines</td><td>National Park, second-largest contiguous reef system in the world [2]</td></tr>
+        <tr><td class="name">Bunaken National Park</td><td class="country">Indonesia (N Sulawesi)</td><td>National Park since 1991 [3]</td></tr>
+        <tr><td class="name">Wakatobi National Park</td><td class="country">Indonesia (SE Sulawesi)</td><td>UNESCO Biosphere Reserve, National Park [4]</td></tr>
+        <tr><td class="name">Raja Ampat MPA Network</td><td class="country">Indonesia (West Papua)</td><td>Provincial MPA network, ~2 million hectares [5]</td></tr>
+        <tr><td class="name">Komodo National Park</td><td class="country">Indonesia (E Nusa Tenggara)</td><td>UNESCO World Heritage Site [6]</td></tr>
+        <tr><td class="name">Tun Sakaran Marine Park</td><td class="country">Malaysia (Sabah)</td><td>State Marine Park since 2004 [7]</td></tr>
+        <tr><td class="name">Sipadan Marine Reserve</td><td class="country">Malaysia (Sabah)</td><td>Federal Marine Reserve since 2004, daily visitor cap [7]</td></tr>
+        <tr><td class="name">Similan Islands National Park</td><td class="country">Thailand</td><td>National Park since 1982, marine extension 1998 [8]</td></tr>
+        <tr><td class="name">Mu Ko Surin National Park</td><td class="country">Thailand</td><td>National Park since 1981 [8]</td></tr>
+        <tr><td class="name">Cu Lao Cham MPA</td><td class="country">Vietnam</td><td>UNESCO Biosphere Reserve since 2009 [9]</td></tr>
+        <tr><td class="name">Hon Mun MPA, Nha Trang Bay</td><td class="country">Vietnam</td><td>Vietnam's first MPA, gazetted 2001 [9]</td></tr>
+        <tr><td class="name">Con Dao National Park</td><td class="country">Vietnam</td><td>National Park since 1993, marine extension [9]</td></tr>
+        <tr><td class="name">Phu Quoc MPA</td><td class="country">Vietnam</td><td>UNESCO Biosphere Reserve cluster, MPA since 2007 [9]</td></tr>
+        <tr><td class="name">Mu Ko Phi Phi National Park</td><td class="country">Thailand</td><td>Hat Noppharat Thara Mu Ko Phi Phi NP since 1983 [8]</td></tr>
+        <tr><td class="name">Mu Ko Ang Thong National Park</td><td class="country">Thailand</td><td>Marine NP since 1980 [8]</td></tr>
+        <tr><td class="name">Tarutao National Park</td><td class="country">Thailand</td><td>National Park since 1974 [8]</td></tr>
+        <tr><td class="name">Ao Phang Nga National Park</td><td class="country">Thailand</td><td>Marine NP since 1981 [8]</td></tr>
+        <tr><td class="name">Pulau Tioman Marine Park</td><td class="country">Malaysia</td><td>Federal Marine Park (Department of Marine Park Malaysia) [20]</td></tr>
+        <tr><td class="name">Pulau Redang Marine Park</td><td class="country">Malaysia</td><td>Federal Marine Park (DMPM) [20]</td></tr>
+        <tr><td class="name">Pulau Perhentian Marine Park</td><td class="country">Malaysia</td><td>Federal Marine Park (DMPM) [20]</td></tr>
+        <tr><td class="name">Karimunjawa National Park</td><td class="country">Indonesia (Central Java)</td><td>National Park since 2001 (KLHK) [3]</td></tr>
+        <tr><td class="name">Bali Barat National Park (Menjangan marine zone)</td><td class="country">Indonesia (Bali)</td><td>National Park since 1995 (KLHK) [3]</td></tr>
+        <tr><td class="name">Nusa Penida MPA</td><td class="country">Indonesia (Bali)</td><td>District-level MPA gazetted 2010, manta-ray hotspot [21]</td></tr>
+        <tr><td class="name">Gili Matra MPA</td><td class="country">Indonesia (Lombok)</td><td>Marine Tourism Park (TWP) since 1993 [3]</td></tr>
+        <tr><td class="name">Pulau Weh Marine Reserve</td><td class="country">Indonesia (Aceh)</td><td>Provincial Marine Reserve [3]</td></tr>
+        <tr><td class="name">Banda Islands MPA</td><td class="country">Indonesia (Maluku)</td><td>Marine Tourism Park, historic spice islands [3]</td></tr>
+        <tr><td class="name">Cenderawasih Bay National Park</td><td class="country">Indonesia (West Papua)</td><td>National Park since 2002, whale shark aggregation [3]</td></tr>
+        <tr><td class="name">Verde Island Passage</td><td class="country">Philippines</td><td>Marine corridor, "centre of the centre" of marine biodiversity [22]</td></tr>
+        <tr><td class="name">Hat Khanom-Mu Ko Thale Tai NP</td><td class="country">Thailand</td><td>Marine NP in Surat Thani waters [8]</td></tr>
+        <tr><td class="name">Mu Ko Lanta NP (Hin Daeng / Hin Muang)</td><td class="country">Thailand</td><td>Marine NP including Hin Daeng / Hin Muang dive sites [8]</td></tr>
+        <tr><td class="name">Derawan / Berau Marine Conservation Area</td><td class="country">Indonesia (East Kalimantan)</td><td>District-level MCA, manta + turtle hotspot [50]</td></tr>
+        <tr><td class="name">Sangalaki Marine Reserve</td><td class="country">Indonesia (East Kalimantan)</td><td>Sangalaki turtle nesting + manta cleaning station [50]</td></tr>
+        <tr><td class="name">Calamian Islands MPA cluster</td><td class="country">Philippines (Palawan)</td><td>Coron Bay community-managed MPAs (TNC + LGU) [3]</td></tr>
+        <tr><td class="name">Palaui Island Protected Landscape and Seascape</td><td class="country">Philippines (Cagayan)</td><td>Protected island and seascape (DENR)</td></tr>
+        <tr><td class="name">Hat Chao Mai National Park</td><td class="country">Thailand (Trang)</td><td>Marine NP, key Andaman dugong habitat (DNP) [8]</td></tr>
+        <tr><td class="name">Togean Islands National Park</td><td class="country">Indonesia (Central Sulawesi)</td><td>National Park since 2004 (KLHK) [3]</td></tr>
+        <tr><td class="name">Sangihe-Talaud Sea MPA</td><td class="country">Indonesia (North Sulawesi)</td><td>Provincial MPA cluster, North Sulawesi seas [3]</td></tr>
+        <tr><td class="name">Pulau Banyak Marine Reserve</td><td class="country">Indonesia (Aceh)</td><td>Provincial Marine Reserve, Aceh waters [3]</td></tr>
+        <tr><td class="name">Hon Cau MPA</td><td class="country">Vietnam (Binh Thuan)</td><td>Gazetted 2010, key turtle nesting site [9]</td></tr>
+        <tr><td class="name">Ly Son MPA</td><td class="country">Vietnam (Quang Ngai)</td><td>MPA cluster off Quang Ngai coast [9]</td></tr>
+        <tr><td class="name">Anilao Marine Sanctuary</td><td class="country">Philippines (Batangas)</td><td>On the Verde Island Passage edge, macro-photography hotspot [22]</td></tr>
+        <tr><td class="name">Davao Gulf marine sanctuaries</td><td class="country">Philippines (Davao)</td><td>Cluster of community-managed MPAs across Davao Gulf [63]</td></tr>
+      </tbody>
+    </table>
+
+    <h2>5-star island hotels and eco lodges</h2>
+
+    <table class="list">
+      <thead>
+        <tr><th>Name</th><th>Country</th><th>Setting / Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">Misool Eco Resort</td><td class="country">Indonesia (Raja Ampat)</td><td>Private island, attached Misool Foundation conservation work [10]</td></tr>
+        <tr><td class="name">Bawah Reserve</td><td class="country">Indonesia (Anambas Islands)</td><td>Six private islands, conservation programme on site [11]</td></tr>
+        <tr><td class="name">Nikoi Island</td><td class="country">Indonesia (Riau Islands)</td><td>Private island, sister to Cempedak [12]</td></tr>
+        <tr><td class="name">Cempedak Private Island</td><td class="country">Indonesia (Riau Islands)</td><td>Adults-only private island, sister to Nikoi [12]</td></tr>
+        <tr><td class="name">Amanpulo</td><td class="country">Philippines (Pamalican Island)</td><td>Private island, Aman flagship Pacific resort [13]</td></tr>
+        <tr><td class="name">El Nido Resorts (Pangulasian)</td><td class="country">Philippines (Palawan)</td><td>Private island, flagship of four sister properties [14]</td></tr>
+        <tr><td class="name">Soneva Kiri</td><td class="country">Thailand (Koh Kood)</td><td>Eco-luxury resort on Koh Kood [15]</td></tr>
+        <tr><td class="name">Six Senses Yao Noi</td><td class="country">Thailand (Phang Nga Bay)</td><td>Yao Noi Island, Andaman coast [16]</td></tr>
+        <tr><td class="name">Six Senses Krabey Island</td><td class="country">Cambodia</td><td>Private island, Sihanoukville coast [16]</td></tr>
+        <tr><td class="name">Song Saa Private Island</td><td class="country">Cambodia (Koh Rong Archipelago)</td><td>Twin-island resort plus marine reserve [17]</td></tr>
+        <tr><td class="name">Pangkor Laut Resort</td><td class="country">Malaysia (Pangkor Laut Island)</td><td>Private island, YTL Hotels flagship [18]</td></tr>
+        <tr><td class="name">Gaya Island Resort</td><td class="country">Malaysia (Sabah, Gaya Island)</td><td>Within Tunku Abdul Rahman National Park [19]</td></tr>
+        <tr><td class="name">The Datai Langkawi</td><td class="country">Malaysia (Langkawi)</td><td>Datai Bay, on Langkawi island [23]</td></tr>
+        <tr><td class="name">Four Seasons Resort Langkawi</td><td class="country">Malaysia (Langkawi)</td><td>Tanjung Rhu, Langkawi island [24]</td></tr>
+        <tr><td class="name">Lankayan Island Dive Resort</td><td class="country">Malaysia (Sabah)</td><td>Tiny private island in the Sulu Sea [25]</td></tr>
+        <tr><td class="name">Mantanani Island Resort</td><td class="country">Malaysia (Sabah)</td><td>Mantanani Besar Island, off Kota Belud [25]</td></tr>
+        <tr><td class="name">Banwa Private Island</td><td class="country">Philippines (Palawan)</td><td>Private island in the Sulu Sea, six-villa resort [26]</td></tr>
+        <tr><td class="name">Cauayan Island Resort</td><td class="country">Philippines (Palawan, El Nido)</td><td>Private island, Bacuit Bay [27]</td></tr>
+        <tr><td class="name">Nay Palad Hideaway</td><td class="country">Philippines (Siargao)</td><td>Beachfront eco-luxury, Siargao island [28]</td></tr>
+        <tr><td class="name">Dedon Island Resort</td><td class="country">Philippines (Siargao)</td><td>Beachfront resort on Siargao [29]</td></tr>
+        <tr><td class="name">Eskaya Beach Resort and Spa</td><td class="country">Philippines (Bohol, Panglao Island)</td><td>Beachfront on Panglao island [30]</td></tr>
+        <tr><td class="name">Banyan Tree Bintan</td><td class="country">Indonesia (Bintan Island)</td><td>Hillside-and-beach resort on Bintan [31]</td></tr>
+        <tr><td class="name">The Sanchaya Bintan</td><td class="country">Indonesia (Bintan Island)</td><td>Estate-style resort on Bintan [32]</td></tr>
+        <tr><td class="name">Telunas Private Island</td><td class="country">Indonesia (Riau Islands)</td><td>Private overwater resort, Sugi Island archipelago [33]</td></tr>
+        <tr><td class="name">Wakatobi Dive Resort</td><td class="country">Indonesia (SE Sulawesi)</td><td>Onemobaa Island, inside Wakatobi National Park [34]</td></tr>
+        <tr><td class="name">Six Senses Con Dao</td><td class="country">Vietnam (Con Dao Island)</td><td>Beachfront on Con Son Island, within Con Dao NP [16]</td></tr>
+        <tr><td class="name">Conrad Koh Samui</td><td class="country">Thailand (Koh Samui)</td><td>Cliffside on Koh Samui [35]</td></tr>
+        <tr><td class="name">Six Senses Samui</td><td class="country">Thailand (Koh Samui)</td><td>Northern tip of Koh Samui [16]</td></tr>
+        <tr><td class="name">The St. Regis Langkawi</td><td class="country">Malaysia (Langkawi)</td><td>Beachfront 5-star, Langkawi island [51]</td></tr>
+        <tr><td class="name">The Ritz-Carlton Langkawi</td><td class="country">Malaysia (Langkawi)</td><td>Cliffside rainforest-meets-sea, Langkawi [52]</td></tr>
+        <tr><td class="name">W Koh Samui</td><td class="country">Thailand (Koh Samui)</td><td>Beachfront, north coast Koh Samui [53]</td></tr>
+        <tr><td class="name">Anantara Bophut Koh Samui</td><td class="country">Thailand (Koh Samui)</td><td>Bophut beachfront, Koh Samui [54]</td></tr>
+        <tr><td class="name">Tongsai Bay Koh Samui</td><td class="country">Thailand (Koh Samui)</td><td>Long-running family-run resort, Koh Samui [55]</td></tr>
+        <tr><td class="name">Anantara Rasananda</td><td class="country">Thailand (Koh Phangan)</td><td>Adults-only beachfront, Koh Phangan [54]</td></tr>
+        <tr><td class="name">Six Senses Ninh Van Bay</td><td class="country">Vietnam (Khanh Hoa)</td><td>Peninsula reached only by boat, Nha Trang Bay [16]</td></tr>
+        <tr><td class="name">Rayavadee Krabi</td><td class="country">Thailand (Krabi, Phra Nang)</td><td>Boat-only access to Phra Nang peninsula [56]</td></tr>
+        <tr><td class="name">Trisara Phuket</td><td class="country">Thailand (Phuket)</td><td>Private bay on northwest Phuket [64]</td></tr>
+        <tr><td class="name">The Surin Phuket</td><td class="country">Thailand (Phuket)</td><td>Pansea Beach, west coast Phuket [65]</td></tr>
+        <tr><td class="name">Como Point Yamu Phuket</td><td class="country">Thailand (Phuket)</td><td>Headland on east Phuket facing Phang Nga Bay [66]</td></tr>
+        <tr><td class="name">Anantara Layan Phuket</td><td class="country">Thailand (Phuket)</td><td>Layan Beach, northwest Phuket [54]</td></tr>
+        <tr><td class="name">JW Marriott Phuket</td><td class="country">Thailand (Phuket)</td><td>Mai Khao Beach, north Phuket [67]</td></tr>
+        <tr><td class="name">Pimalai Resort and Spa</td><td class="country">Thailand (Koh Lanta)</td><td>Beachfront on Koh Lanta Yai island [68]</td></tr>
+        <tr><td class="name">Layana Resort Koh Lanta</td><td class="country">Thailand (Koh Lanta)</td><td>Adults-only beachfront on Koh Lanta [69]</td></tr>
+        <tr><td class="name">Shangri-La Mactan Cebu</td><td class="country">Philippines (Mactan, Cebu)</td><td>Beachfront on Mactan island, Cebu [70]</td></tr>
+        <tr><td class="name">Crimson Resort Mactan</td><td class="country">Philippines (Mactan, Cebu)</td><td>Beachfront on Mactan island, Cebu [71]</td></tr>
+        <tr><td class="name">Two Seasons Coron Island Resort</td><td class="country">Philippines (Palawan)</td><td>Private island near Coron, Calamian group [72]</td></tr>
+        <tr><td class="name">Club Paradise Palawan</td><td class="country">Philippines (Palawan, Dimakya)</td><td>Private island, Dimakya, Calamian group [73]</td></tr>
+        <tr><td class="name">Bunga Raya Island Resort</td><td class="country">Malaysia (Sabah, Gaya)</td><td>Polish Bay, Gaya Island, sister to Gayana Marine Resort [74]</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Active restoration programmes paired with nearby 5-star lodges</h2>
+
+    <p>This is the operationally useful list. For each named coral, mangrove, or marine-species restoration programme below, we have identified at least one 5-star or near-5-star island lodge within roughly an hour by road or boat. In many cases the lodge is the same address as the restoration programme, because the lodge runs or hosts it directly.</p>
+
+    <p>"~1 hour" is approximate and assumes calm-weather boat conditions or normal road traffic. Cyclone season, weather closures, and inter-island flight cancellations can change reality on the ground. Verify directly with property and programme before any travel commitment.</p>
+
+    <table class="list">
+      <thead>
+        <tr><th>Restoration programme</th><th>Nearest 5-star island lodge</th><th>Travel time</th><th>Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">Misool Foundation (coral nursery + ranger patrols, Raja Ampat)</td><td class="name">Misool Eco Resort</td><td class="country">On site</td><td>[10] [36]</td></tr>
+        <tr><td class="name">Bawah Anambas Foundation (reef + mangrove restoration)</td><td class="name">Bawah Reserve</td><td class="country">On site</td><td>[11]</td></tr>
+        <tr><td class="name">Song Saa Foundation (Koh Rong Archipelago marine programme)</td><td class="name">Song Saa Private Island</td><td class="country">On site</td><td>[17]</td></tr>
+        <tr><td class="name">Soneva Foundation (coral and waste programmes, Koh Kood)</td><td class="name">Soneva Kiri</td><td class="country">On site</td><td>[15] [37]</td></tr>
+        <tr><td class="name">Wakatobi Collaborative Reef Conservation Programme</td><td class="name">Wakatobi Dive Resort</td><td class="country">On site</td><td>[34]</td></tr>
+        <tr><td class="name">TRACC Borneo (coral, turtle, ranger programmes)</td><td class="name">Pom Pom Island Resort</td><td class="country">On site, same island</td><td>[38]</td></tr>
+        <tr><td class="name">Banyan Tree Conservation Lab (coral nursery, giant clam)</td><td class="name">Banyan Tree Bintan</td><td class="country">On site</td><td>[31] [39]</td></tr>
+        <tr><td class="name">El Nido Foundation (Bacuit Bay marine programmes)</td><td class="name">El Nido Resorts (Pangulasian, Lagen, Apulit, Miniloc)</td><td class="country">On site</td><td>[14] [27]</td></tr>
+        <tr><td class="name">Lankayan Sea Turtle and Reef Conservation Programme</td><td class="name">Lankayan Island Dive Resort</td><td class="country">On site</td><td>[25] [40]</td></tr>
+        <tr><td class="name">Marine Ecology Research Centre, Gaya Island (giant clam + coral)</td><td class="name">Bunga Raya Island Resort, Gaya Island Resort</td><td class="country">On Gaya Island, same property cluster</td><td>[19] [41]</td></tr>
+        <tr><td class="name">Karang Lestari Biorock, Pemuteran (Bali) coral structures since 2000</td><td class="name">Plataran Menjangan, Mimpi Resort Menjangan</td><td class="country">~30 minutes by car along the Pemuteran coast</td><td>[42]</td></tr>
+        <tr><td class="name">Apo Island Marine Sanctuary (community-managed since 1980s)</td><td class="name">Atmosphere Resorts and Spa, Dauin (Negros)</td><td class="country">~40 minutes by boat from Dauin to Apo Island</td><td>[43] [44]</td></tr>
+        <tr><td class="name">Gili Eco Trust (Gili Trawangan reef and turtle programmes)</td><td class="name">Pearl of Trawangan, Vila Ombak (boutique 5-star tier)</td><td class="country">On Gili Trawangan, walking distance</td><td>[45]</td></tr>
+        <tr><td class="name">Mars MARRS Reef Star Programme, Spermonde + Hoga Islands</td><td class="name">Wakatobi Dive Resort (Hoga site within reach by boat)</td><td class="country">~1 hour by boat from Wakatobi Dive Resort to Hoga</td><td>[46]</td></tr>
+        <tr><td class="name">Coral Guardian (Hatamin Island, Selat Pantar near Komodo region)</td><td class="name">Plataran Komodo Resort and Spa, Waecicu Beach (Flores)</td><td class="country">~1 to 2 hours by boat from Labuan Bajo, weather dependent</td><td>[47] [48]</td></tr>
+        <tr><td class="name">Reef Check Malaysia, Tioman Island programme</td><td class="name">Japamala Tioman (5-star boutique on Tioman)</td><td class="country">On Tioman Island, ~30 min by road</td><td>[20] [49]</td></tr>
+        <tr><td class="name">Six Senses Earth Lab, Yao Noi (mangrove + waste)</td><td class="name">Six Senses Yao Noi</td><td class="country">On site</td><td>[16]</td></tr>
+        <tr><td class="name">Six Senses Earth Lab, Con Dao</td><td class="name">Six Senses Con Dao</td><td class="country">On site, within Con Dao National Park</td><td>[16]</td></tr>
+        <tr><td class="name">Six Senses Earth Lab, Krabey Island</td><td class="name">Six Senses Krabey Island</td><td class="country">On site</td><td>[16]</td></tr>
+        <tr><td class="name">Six Senses Earth Lab, Samui</td><td class="name">Six Senses Samui</td><td class="country">On site</td><td>[16]</td></tr>
+        <tr><td class="name">Six Senses Sustainability programmes, Ninh Van Bay</td><td class="name">Six Senses Ninh Van Bay</td><td class="country">On site, boat-only access</td><td>[16]</td></tr>
+        <tr><td class="name">New Heaven Reef Conservation Programme (Koh Tao)</td><td class="name">Anantara Rasananda (Koh Phangan)</td><td class="country">~30 to 60 min by ferry, Koh Tao to Koh Phangan</td><td>[57]</td></tr>
+        <tr><td class="name">Marine Conservation Philippines, Dauin (separate from Apo Island sanctuary)</td><td class="name">Atmosphere Resorts and Spa, Dauin</td><td class="country">Same coastal village, walking distance</td><td>[44] [58]</td></tr>
+        <tr><td class="name">Indo Ocean Project, Nusa Penida</td><td class="name">No 5-star within 1 hour on Nusa Penida itself; nearest cluster is south Bali (Six Senses Uluwatu, ~1.5 to 2 hours by speedboat plus car)</td><td class="country">Gap (no on-island 5-star)</td><td>[59]</td></tr>
+        <tr><td class="name">Coral Triangle Center field site (Nusa Penida)</td><td class="name">Same gap as above</td><td class="country">Gap</td><td>[60]</td></tr>
+        <tr><td class="name">Coral Cay Conservation, Sogod Bay (Southern Leyte)</td><td class="name">No 5-star within 1 hour; nearest is mainland Cebu hotels by ferry plus drive</td><td class="country">Gap (boutique-only on Sogod Bay)</td><td>[61]</td></tr>
+        <tr><td class="name">Marine Conservation Cambodia, Koh Ach Seh</td><td class="name">Song Saa Private Island (~1 to 2 hour boat across the Koh Rong area, weather dependent)</td><td class="country">Within ~1 to 2 hours by boat</td><td>[17] [62]</td></tr>
+        <tr><td class="name">Ocean Gardener Foundation (Sumberkima Bay, Bali)</td><td class="name">Plataran Menjangan, Mimpi Resort Menjangan</td><td class="country">~25 to 40 minutes by car along Pemuteran coast</td><td>[42] [75]</td></tr>
+        <tr><td class="name">Yayasan Bumi Pemuteran (community partner to Karang Lestari)</td><td class="name">Plataran Menjangan</td><td class="country">On the Pemuteran coast, walking distance to programme sites</td><td>[42] [76]</td></tr>
+        <tr><td class="name">Big Blue Conservation, Koh Tao</td><td class="name">Anantara Rasananda (Koh Phangan)</td><td class="country">~30 to 60 min by ferry, Koh Tao to Koh Phangan</td><td>[54] [77]</td></tr>
+        <tr><td class="name">Two Seasons Coron Reef Programme (coral nursery + giant clam)</td><td class="name">Two Seasons Coron Island Resort</td><td class="country">On site, Bulalacao Island</td><td>[72]</td></tr>
+        <tr><td class="name">Juara Turtle Project, Tioman</td><td class="name">Japamala Tioman</td><td class="country">~25 to 35 minutes by road across Tioman Island</td><td>[49] [78]</td></tr>
+        <tr><td class="name">Marine Research and Conservation Foundation, Davao Gulf</td><td class="name">No 5-star island lodge within 1 hour; nearest cluster is Mactan/Cebu by domestic flight plus drive</td><td class="country">Gap (no on-island 5-star)</td><td>[63]</td></tr>
+      </tbody>
+    </table>
+
+    <p class="muted">"On site" means the restoration programme is operated by, hosted on, or directly attached to the named lodge property. "~X minutes" applies to programmes operating in adjacent waters or on a sister island reachable by a single transfer.</p>
+
+    <h2>Why this map exists</h2>
+
+    <p>Three reasons. First, when we tell hotel and conservation partners we are building a premium-eco platform, the next question is always "show me what good looks like in the region." This map answers that.</p>
+
+    <p>Second, when prospective travellers ask whether premium-eco actually exists in the Coral Triangle, this is the answer. Twelve real lodges, twelve real MPAs, one map.</p>
+
+    <p>Third, the platform itself is anchored on the Solomon Islands, but the broader market is the Coral Triangle and its edges. Knowing what is already operating well next door is operationally useful.</p>
+
+    <h2>What is missing from this map, and why</h2>
+
+    <ul>
+      <li><strong>Solomon Islands and Papua New Guinea are deliberately omitted.</strong> Solomon Islands is the platform's home destination, covered in detail elsewhere on the site. PNG deserves its own map.</li>
+      <li><strong>Maldives, Sri Lanka, Lakshadweep are not Southeast Asia,</strong> so are excluded by definition.</li>
+      <li><strong>Sister-resort over-counting.</strong> El Nido Resorts has four properties in Palawan, all premium. We list Pangulasian only. Aman has multiple Pacific properties beyond Amanpulo, same treatment.</li>
+      <li><strong>Many city-edge or coastal-but-not-island 5-star hotels exist.</strong> They are not on the map because the brief was islands directly on the sea, not mainland coastline.</li>
+    </ul>
+
+    <div class="disclaimer">
+      <strong>Coordinate accuracy.</strong> Pin positions are accurate to roughly the nearest 0.1 degree of latitude and longitude, sufficient for visual placement on the map. Do not use these coordinates for navigation, anchoring, or any safety-critical purpose. For trip-planning purposes, contact the property or MPA management office directly to confirm the precise location, access route, and current operating status before travelling.
+    </div>
+
+    <a class="nav-back" href="https://jeanbap.github.io/solomon-islands-eco-tourism/blog/">Back to the blog</a>
+
+    <div class="sources">
+      <h3>Sources</h3>
+      <ol>
+        <li>UNESCO World Heritage List, Tubbataha Reefs Natural Park (inscribed 1993, extended 2009). https://whc.unesco.org/en/list/653/</li>
+        <li>Department of Environment and Natural Resources, Republic of the Philippines, Apo Reef Natural Park profile.</li>
+        <li>Indonesian Ministry of Environment and Forestry (KLHK), Bunaken National Park gazette and management plan.</li>
+        <li>UNESCO Man and the Biosphere Programme, Wakatobi Biosphere Reserve. https://en.unesco.org/biosphere/aspac/wakatobi</li>
+        <li>Conservation International and government of West Papua Province, Raja Ampat Marine Protected Area Network designation documents.</li>
+        <li>UNESCO World Heritage List, Komodo National Park (inscribed 1991). https://whc.unesco.org/en/list/609/</li>
+        <li>Sabah Parks, Malaysia: Tun Sakaran Marine Park and Sipadan Marine Reserve gazette materials.</li>
+        <li>Department of National Parks, Wildlife and Plant Conservation, Thailand. National Park designations for Mu Ko Similan and Mu Ko Surin.</li>
+        <li>UNESCO Biosphere Reserve listing for Cu Lao Cham (2009) and Vietnamese Ministry of Natural Resources records for Hon Mun MPA (2001).</li>
+        <li>Misool Foundation public materials and Misool Eco Resort site. https://misool.info and https://misool.info/foundation/</li>
+        <li>Bawah Reserve and the Bawah Anambas Foundation, public materials. https://bawahreserve.com</li>
+        <li>Nikoi Island and Cempedak Private Island public materials. https://nikoi.com and https://cempedak.com</li>
+        <li>Aman Resorts public materials, Amanpulo property page. https://www.aman.com/resorts/amanpulo</li>
+        <li>El Nido Resorts public materials, Pangulasian Island. https://www.elnidoresorts.com/pangulasian-island/</li>
+        <li>Soneva public materials, Soneva Kiri. https://www.soneva.com/soneva-kiri/</li>
+        <li>Six Senses public materials, Yao Noi and Krabey Island. https://www.sixsenses.com</li>
+        <li>Song Saa Private Island public materials and Song Saa Foundation. https://www.songsaa.com and https://www.songsaa-foundation.org</li>
+        <li>YTL Hotels public materials, Pangkor Laut Resort. https://www.pangkorlautresort.com</li>
+        <li>YTL Hotels public materials, Gaya Island Resort, within Tunku Abdul Rahman National Park, Sabah. https://www.gayaislandresort.com</li>
+        <li>Department of Marine Park Malaysia (DMPM), federal marine park gazette materials for Tioman, Redang, Perhentian. https://www.dmpm.nre.gov.my</li>
+        <li>Coral Triangle Center and government of Bali, Nusa Penida MPA designation (2010) and management plan.</li>
+        <li>Conservation International, Verde Island Passage marine corridor profile, identifying it as the global centre of marine shorefish biodiversity.</li>
+        <li>The Datai Langkawi public materials. https://www.thedatai.com</li>
+        <li>Four Seasons Resort Langkawi public materials. https://www.fourseasons.com/langkawi/</li>
+        <li>Sabah Parks and Reef Guardian Sdn Bhd, public materials for Lankayan Island Dive Resort and Mantanani Island Resort.</li>
+        <li>Banwa Private Island public materials. https://banwaprivateisland.com</li>
+        <li>El Nido Resorts public materials, Cauayan Island Resort. https://www.elnidoresorts.com/cauayan-island/</li>
+        <li>Nay Palad Hideaway public materials. https://naypalad.com</li>
+        <li>Dedon Island Resort public materials. https://www.dedonisland.com</li>
+        <li>Eskaya Beach Resort and Spa public materials, Panglao Island, Bohol. https://www.eskayaresort.com</li>
+        <li>Banyan Tree Hotels and Resorts public materials, Banyan Tree Bintan. https://www.banyantree.com/indonesia/bintan</li>
+        <li>The Sanchaya public materials, Bintan. https://thesanchaya.com</li>
+        <li>Telunas Resorts public materials, Telunas Private Island. https://telunasresorts.com</li>
+        <li>Wakatobi Dive Resort public materials, Onemobaa Island within Wakatobi National Park. https://www.wakatobi.com</li>
+        <li>Conrad Hotels and Resorts public materials, Conrad Koh Samui. https://www.hilton.com/en/hotels/usmkscb-conrad-koh-samui-residences/</li>
+        <li>Misool Foundation programme materials, coral nursery and ranger patrol activities. https://misool.info/foundation/</li>
+        <li>Soneva Foundation public materials, Make Waves and Coral Restoration programmes. https://www.sonevafoundation.org</li>
+        <li>TRACC Borneo public materials, Pom Pom Island, Sabah. https://tracc-borneo.org and Pom Pom Island Resort. https://pompomislandresort.com.my</li>
+        <li>Banyan Tree Group sustainability and conservation programme materials, Bintan marine biology lab. https://www.banyantreegroup.com</li>
+        <li>Reef Guardian Sdn Bhd, Lankayan Sea Turtle and Reef Conservation Programme. https://lankayan-island.com</li>
+        <li>Marine Ecology Research Centre, Gaya Island, Sabah, giant clam and coral programmes (Gayana Marine Resort and partners).</li>
+        <li>Karang Lestari Pemuteran community programme, biorock coral structures since 2000. Established by Wolf Hilbertz and Thomas Goreau. Programme description on the Reef Ball / Pemuteran community materials.</li>
+        <li>Apo Island Marine Sanctuary, Negros Oriental, Philippines, established 1986. Department of Environment and Natural Resources records.</li>
+        <li>Atmosphere Resorts and Spa, Dauin, Negros Oriental, public materials and dive-trip schedules to Apo Island. https://www.atmosphereresorts.com</li>
+        <li>Gili Eco Trust, Gili Trawangan, reef and turtle programmes. https://giliecotrust.com</li>
+        <li>Mars Sustainable Solutions, MARRS Reef Star Programme materials, Spermonde and Hoga Island sites. https://buildingcoral.com</li>
+        <li>Coral Guardian, Hatamin Island community coral restoration. https://www.coralguardian.org</li>
+        <li>Plataran Indonesia public materials, Plataran Komodo Resort and Spa. https://www.plataran.com</li>
+        <li>Reef Check Malaysia, Tioman Island programme. https://www.reefcheck.org.my</li>
+        <li>Berau Marine Conservation Area and Sangalaki Marine Reserve, East Kalimantan. Government of Berau Regency and TNC Indonesia programme materials.</li>
+        <li>Marriott International public materials, The St. Regis Langkawi. https://www.marriott.com/en-us/hotels/lgkxr-the-st-regis-langkawi/</li>
+        <li>Marriott International public materials, The Ritz-Carlton Langkawi. https://www.ritzcarlton.com/en/hotels/lgkrz-the-ritz-carlton-langkawi/</li>
+        <li>Marriott International public materials, W Koh Samui. https://www.marriott.com/en-us/hotels/usmwk-w-koh-samui/</li>
+        <li>Anantara Hotels and Resorts public materials, Anantara Bophut Koh Samui and Anantara Rasananda Koh Phangan. https://www.anantara.com</li>
+        <li>The Tongsai Bay public materials, Koh Samui. https://www.tongsaibay.co.th</li>
+        <li>Rayavadee public materials, Krabi Phra Nang peninsula. https://www.rayavadee.com</li>
+        <li>New Heaven Reef Conservation Programme public materials, Koh Tao. https://www.newheavendiveschool.com</li>
+        <li>Marine Conservation Philippines public materials, Dauin Negros. https://www.marineconservationphilippines.org</li>
+        <li>Indo Ocean Project public materials, Nusa Penida elasmobranch and reef monitoring. https://indooceanproject.org</li>
+        <li>Coral Triangle Center public materials, Bali HQ and Nusa Penida field site. https://www.coraltrianglecenter.org</li>
+        <li>Coral Cay Conservation public materials, Sogod Bay Southern Leyte programme. https://www.coralcay.org</li>
+        <li>Marine Conservation Cambodia public materials, Koh Ach Seh and Kep Archipelago programme. https://marineconservationcambodia.org</li>
+        <li>Marine Research and Conservation Foundation Inc. (MRCF), Philippines, Davao Gulf programme materials. https://www.mrcfphils.org</li>
+        <li>Trisara Phuket public materials, Nai Thon Bay, Phuket. https://www.trisara.com</li>
+        <li>The Surin Phuket public materials, Pansea Beach, Phuket. https://www.thesurinphuket.com</li>
+        <li>Como Hotels and Resorts public materials, Como Point Yamu, Phuket. https://www.comohotels.com/en/pointyamu</li>
+        <li>Marriott International public materials, JW Marriott Phuket Resort and Spa. https://www.marriott.com/en-us/hotels/hktjw-jw-marriott-phuket-resort-and-spa/</li>
+        <li>Pimalai Resort and Spa public materials, Koh Lanta. https://www.pimalai.com</li>
+        <li>Layana Resort and Spa public materials, Koh Lanta. https://www.layanaresort.com</li>
+        <li>Shangri-La Hotels and Resorts public materials, Shangri-La Mactan, Cebu. https://www.shangri-la.com/cebu/mactanresort/</li>
+        <li>Filinvest Hospitality public materials, Crimson Resort and Spa Mactan. https://crimsonhotel.com/mactan/</li>
+        <li>Two Seasons Coron Island Resort and Spa public materials, including the resort's marine programme. https://twoseasonsresorts.com/coron-island/</li>
+        <li>Club Paradise Palawan public materials, Dimakya Island. https://clubparadisepalawan.com</li>
+        <li>Bunga Raya Island Resort and Spa public materials, Polish Bay, Gaya Island, Sabah. https://www.bungarayaresort.com</li>
+        <li>Ocean Gardener Foundation public materials, Sumberkima Bay coral nursery training programme. https://oceangardener.org</li>
+        <li>Yayasan Bumi Pemuteran (Pemuteran Earth Foundation), community partner to the Karang Lestari biorock programme. Programme materials and Pemuteran community records.</li>
+        <li>Big Blue Conservation, the conservation arm of Big Blue Diving, Koh Tao. https://www.bigbluediving.com/conservation</li>
+        <li>Juara Turtle Project, Pulau Tioman, community turtle hatchery. https://juaraturtleproject.com</li>
+      </ol>
+      <p style="margin-top:12px;color:var(--ink-soft);font-size:12px;">All entries on this map were cross-referenced with the relevant primary source listed above before inclusion. Operating status of any specific lodge or MPA can change; readers should verify directly with the property or management office before relying on any pin for trip planning.</p>
+    </div>
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-brand">
+        <h5>Solomon<span class="dot">.</span> Eco</h5>
+        <p>A small, considered marketplace pairing affluent travellers with the world's most undervisited marine ecosystems and the people working to protect them.</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/#why">Why Solomon</a></li>
+          <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/#journeys">Journeys</a></li>
+          <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/#money">Where money goes</a></li>
+          <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/blog/">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>For partners</h5>
+        <ul>
+          <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/for-hotels/">For hotels</a></li>
+          <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/for-projects/">For conservation projects</a></li>
+          <li><a href="mailto:hello@solomonislandseco.example">Contact us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Reference</h5>
+        <ul>
+          <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/marine-biodiversity/">Marine biodiversity</a></li>
+          <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/impact-calculator/">Impact calculator</a></li>
+          <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/partners/uepi-island-resort/">Uepi spotlight</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer-foot">
+      <div>© 2026 Solomon Islands Eco Tourism. All rights reserved.</div>
+      <div>Built with care, in conversation with the islands.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+  (function(){
+    var map = L.map('map', { scrollWheelZoom: false }).setView([3.0, 117.0], 4);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    function dot(color, fill) {
+      return L.divIcon({
+        className: '',
+        html: '<div style="width:14px;height:14px;border-radius:50%;background:'+fill+';border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.35)"></div>',
+        iconSize: [14,14],
+        iconAnchor: [7,7],
+        popupAnchor: [0,-8]
+      });
+    }
+    var GREEN = dot('green','#0f8a82');
+    var GOLD  = dot('gold','#b9905a');
+    var CORAL = dot('coral','#e26d5c');
+
+    var MPAS = [
+      ["Tubbataha Reefs Natural Park",       "Philippines",        8.85, 119.92, "UNESCO World Heritage Site since 1993."],
+      ["Apo Reef Natural Park",              "Philippines",        12.65, 120.45, "Second-largest contiguous reef system in the world (DENR)."],
+      ["Verde Island Passage",               "Philippines",        13.55, 120.95, "Marine corridor, centre of marine biodiversity (CI)."],
+      ["Bunaken National Park",              "Indonesia (N Sulawesi)", 1.62, 124.74, "National Park since 1991 (KLHK)."],
+      ["Wakatobi National Park",             "Indonesia (SE Sulawesi)", -5.50, 123.80, "UNESCO Biosphere Reserve."],
+      ["Raja Ampat MPA Network",             "Indonesia (West Papua)", -0.50, 130.50, "~2 million hectares of provincial MPA network."],
+      ["Komodo National Park",               "Indonesia (E Nusa Tenggara)", -8.55, 119.45, "UNESCO World Heritage Site."],
+      ["Karimunjawa National Park",          "Indonesia (Central Java)", -5.85, 110.45, "National Park since 2001 (KLHK)."],
+      ["Bali Barat NP, Menjangan",           "Indonesia (Bali)",    -8.13, 114.55, "National Park since 1995 (KLHK)."],
+      ["Nusa Penida MPA",                    "Indonesia (Bali)",    -8.73, 115.55, "District MPA, manta-ray hotspot."],
+      ["Gili Matra MPA",                     "Indonesia (Lombok)",  -8.35, 116.06, "Marine Tourism Park (TWP) since 1993."],
+      ["Pulau Weh Marine Reserve",           "Indonesia (Aceh)",     5.85, 95.32, "Provincial Marine Reserve."],
+      ["Banda Islands MPA",                  "Indonesia (Maluku)",  -4.52, 129.90, "Marine Tourism Park, historic spice islands."],
+      ["Cenderawasih Bay National Park",     "Indonesia (West Papua)", -2.50, 134.50, "National Park since 2002, whale shark aggregation."],
+      ["Tun Sakaran Marine Park",            "Malaysia (Sabah)",    4.50, 118.65, "State Marine Park since 2004 (Sabah Parks)."],
+      ["Sipadan Marine Reserve",             "Malaysia (Sabah)",    4.11, 118.63, "Federal Marine Reserve, daily visitor cap (Sabah Parks)."],
+      ["Pulau Tioman Marine Park",           "Malaysia",            2.78, 104.18, "Federal Marine Park (DMPM)."],
+      ["Pulau Redang Marine Park",           "Malaysia",            5.78, 103.00, "Federal Marine Park (DMPM)."],
+      ["Pulau Perhentian Marine Park",       "Malaysia",            5.90, 102.74, "Federal Marine Park (DMPM)."],
+      ["Similan Islands National Park",      "Thailand",            8.65, 97.65, "National Park since 1982, marine extension 1998 (DNP)."],
+      ["Mu Ko Surin National Park",          "Thailand",            9.42, 97.85, "National Park since 1981 (DNP)."],
+      ["Mu Ko Phi Phi National Park",        "Thailand",            7.74, 98.78, "Hat Noppharat Thara Mu Ko Phi Phi NP since 1983."],
+      ["Mu Ko Ang Thong National Park",      "Thailand",            9.65, 99.65, "Marine NP since 1980 (DNP)."],
+      ["Tarutao National Park",              "Thailand",            6.55, 99.65, "National Park since 1974 (DNP)."],
+      ["Ao Phang Nga National Park",         "Thailand",            8.30, 98.55, "Marine NP since 1981 (DNP)."],
+      ["Cu Lao Cham MPA",                    "Vietnam",            15.96, 108.50, "UNESCO Biosphere Reserve since 2009."],
+      ["Hon Mun MPA, Nha Trang Bay",         "Vietnam",            12.18, 109.30, "Vietnam's first MPA, gazetted 2001."],
+      ["Con Dao National Park",              "Vietnam",             8.70, 106.62, "National Park since 1993, marine extension."],
+      ["Phu Quoc MPA",                       "Vietnam",            10.27, 103.85, "MPA since 2007, UNESCO Biosphere cluster."],
+      ["Hat Khanom-Mu Ko Thale Tai NP",      "Thailand",            9.27, 99.83, "Marine NP, Surat Thani waters (DNP)."],
+      ["Mu Ko Lanta National Park",          "Thailand",            7.65, 99.05, "Marine NP including Hin Daeng / Hin Muang dive sites (DNP)."],
+      ["Derawan / Berau Marine Conservation Area","Indonesia (East Kalimantan)", 2.30, 118.20, "District-level MCA, manta + turtle hotspot."],
+      ["Sangalaki Marine Reserve",           "Indonesia (East Kalimantan)", 2.07, 118.40, "Sangalaki turtle nesting + manta cleaning station."],
+      ["Calamian Islands MPA cluster",       "Philippines (Palawan)", 12.00, 120.20, "Coron Bay community-managed MPAs."],
+      ["Palaui Island Protected Landscape",  "Philippines (Cagayan)", 18.55, 122.16, "Protected island and seascape (DENR)."],
+      ["Hat Chao Mai National Park",         "Thailand (Trang)",       7.40, 99.32, "Marine NP, key dugong habitat in the Andaman (DNP)."],
+      ["Togean Islands National Park",       "Indonesia (C Sulawesi)", -0.42, 121.95, "National Park since 2004 (KLHK)."],
+      ["Sangihe-Talaud Sea MPA",             "Indonesia (N Sulawesi)", 3.60, 125.50, "Provincial MPA cluster, North Sulawesi seas."],
+      ["Pulau Banyak Marine Reserve",        "Indonesia (Aceh)",       2.10, 97.30, "Provincial Marine Reserve, Aceh waters."],
+      ["Hon Cau MPA",                        "Vietnam (Binh Thuan)",  10.55, 109.00, "MPA gazetted 2010, key turtle nesting site."],
+      ["Ly Son MPA",                         "Vietnam (Quang Ngai)",  15.38, 109.13, "MPA cluster off Quang Ngai coast."],
+      ["Anilao Marine Sanctuary",            "Philippines (Batangas)",13.74, 120.91, "Verde Island Passage edge, macro-photography hotspot."],
+      ["Davao Gulf marine sanctuaries",      "Philippines (Davao)",    7.10, 125.65, "Cluster of community-managed MPAs across Davao Gulf."]
+    ];
+
+    var HOTELS = [
+      ["Misool Eco Resort",          "Indonesia (Raja Ampat)",     -2.20, 130.60, "Private island, attached Misool Foundation."],
+      ["Bawah Reserve",              "Indonesia (Anambas Islands)", 2.90, 105.85, "Six private islands, on-site conservation programme."],
+      ["Nikoi Island",               "Indonesia (Riau Islands)",    0.95, 104.65, "Private island, sister to Cempedak."],
+      ["Cempedak Private Island",    "Indonesia (Riau Islands)",    0.85, 104.50, "Adults-only private island."],
+      ["Banyan Tree Bintan",         "Indonesia (Bintan Island)",   1.15, 104.41, "Hillside-and-beach resort on Bintan."],
+      ["The Sanchaya Bintan",        "Indonesia (Bintan Island)",   1.15, 104.40, "Estate-style resort on Bintan."],
+      ["Telunas Private Island",     "Indonesia (Riau Islands)",    0.93, 103.55, "Private overwater resort, Sugi archipelago."],
+      ["Wakatobi Dive Resort",       "Indonesia (SE Sulawesi)",    -5.78, 124.00, "Onemobaa Island, inside Wakatobi NP."],
+      ["Amanpulo",                   "Philippines (Pamalican)",    11.27, 121.07, "Private island, Aman flagship Pacific resort."],
+      ["El Nido Resorts (Pangulasian)","Philippines (Palawan)",   11.17, 119.41, "Flagship of four sister properties."],
+      ["Banwa Private Island",       "Philippines (Palawan)",      10.78, 119.28, "Private island, six-villa resort, Sulu Sea."],
+      ["Cauayan Island Resort",      "Philippines (Palawan, El Nido)", 11.18, 119.40, "Private island, Bacuit Bay."],
+      ["Nay Palad Hideaway",         "Philippines (Siargao)",       9.85, 126.05, "Beachfront eco-luxury, Siargao."],
+      ["Dedon Island Resort",        "Philippines (Siargao)",       9.96, 126.10, "Beachfront resort on Siargao."],
+      ["Eskaya Beach Resort & Spa",  "Philippines (Bohol, Panglao)", 9.55, 123.78, "Beachfront on Panglao island."],
+      ["Soneva Kiri",                "Thailand (Koh Kood)",        11.65, 102.55, "Eco-luxury resort on Koh Kood."],
+      ["Six Senses Yao Noi",         "Thailand (Phang Nga Bay)",    8.13, 98.61, "Yao Noi Island, Andaman coast."],
+      ["Conrad Koh Samui",           "Thailand (Koh Samui)",        9.45, 99.92, "Cliffside on Koh Samui."],
+      ["Six Senses Samui",           "Thailand (Koh Samui)",        9.62, 100.05, "Northern tip of Koh Samui."],
+      ["Six Senses Krabey Island",   "Cambodia",                   10.55, 103.50, "Private island, Sihanoukville coast."],
+      ["Song Saa Private Island",    "Cambodia (Koh Rong)",        10.70, 103.25, "Twin-island resort plus marine reserve."],
+      ["Pangkor Laut Resort",        "Malaysia (Pangkor Laut)",     4.20, 100.55, "Private island, YTL Hotels flagship."],
+      ["Gaya Island Resort",         "Malaysia (Sabah, Gaya I.)",   6.02, 116.05, "Within Tunku Abdul Rahman National Park."],
+      ["The Datai Langkawi",         "Malaysia (Langkawi)",         6.43, 99.70, "Datai Bay, Langkawi island."],
+      ["Four Seasons Resort Langkawi","Malaysia (Langkawi)",        6.37, 99.66, "Tanjung Rhu, Langkawi island."],
+      ["Lankayan Island Dive Resort","Malaysia (Sabah)",            6.50, 117.93, "Tiny private island, Sulu Sea."],
+      ["Mantanani Island Resort",    "Malaysia (Sabah)",            6.71, 116.35, "Mantanani Besar Island, off Kota Belud."],
+      ["Six Senses Con Dao",         "Vietnam (Con Dao Island)",    8.66, 106.61, "Beachfront on Con Son, within Con Dao NP."],
+      ["Pom Pom Island Resort",      "Malaysia (Sabah, Pom Pom)",   4.45, 118.62, "Tiny private island, hosts TRACC research."],
+      ["Plataran Menjangan",         "Indonesia (Bali, Pemuteran)", -8.13, 114.55, "Adjacent to Karang Lestari biorock."],
+      ["Atmosphere Resorts and Spa", "Philippines (Negros, Dauin)", 9.18, 123.27, "~40 min boat to Apo Island Marine Sanctuary."],
+      ["Pearl of Trawangan",         "Indonesia (Gili Trawangan)",  -8.35, 116.04, "On Gili Trawangan, walking distance to Gili Eco Trust."],
+      ["Japamala Tioman",            "Malaysia (Tioman Island)",    2.78, 104.18, "Boutique 5-star on Tioman Marine Park."],
+      ["The St. Regis Langkawi",     "Malaysia (Langkawi)",         6.30, 99.85, "Beachfront, 5-star on Langkawi island."],
+      ["The Ritz-Carlton Langkawi",  "Malaysia (Langkawi)",         6.27, 99.69, "Cliffside rainforest-meets-sea, Langkawi."],
+      ["W Koh Samui",                "Thailand (Koh Samui)",        9.58, 99.97, "Beachfront, north coast of Koh Samui."],
+      ["Anantara Bophut Koh Samui",  "Thailand (Koh Samui)",        9.56, 100.06, "Bophut beachfront, Koh Samui."],
+      ["Tongsai Bay Koh Samui",      "Thailand (Koh Samui)",        9.57, 100.07, "Long-running family-run resort, Koh Samui."],
+      ["Anantara Rasananda",         "Thailand (Koh Phangan)",      9.79, 100.10, "Adults-only beachfront, Koh Phangan."],
+      ["Six Senses Ninh Van Bay",    "Vietnam",                    12.43, 109.30, "Peninsula reached only by boat, Nha Trang Bay."],
+      ["Rayavadee Krabi",            "Thailand (Krabi)",            8.00, 98.78, "Boat-only access to Phra Nang peninsula."],
+      ["Trisara Phuket",             "Thailand (Phuket)",           8.00, 98.30, "Private bay on northwest Phuket island."],
+      ["The Surin Phuket",           "Thailand (Phuket)",           7.96, 98.27, "Pansea Beach, west coast Phuket."],
+      ["Como Point Yamu Phuket",     "Thailand (Phuket)",           8.04, 98.42, "Headland on Phuket's east coast facing Phang Nga Bay."],
+      ["Anantara Layan Phuket",      "Thailand (Phuket)",           7.97, 98.28, "Layan Beach, northwest Phuket."],
+      ["JW Marriott Phuket",         "Thailand (Phuket)",           8.13, 98.30, "Mai Khao Beach, north Phuket."],
+      ["Pimalai Resort and Spa",     "Thailand (Koh Lanta)",        7.50, 99.07, "Beachfront on Koh Lanta Yai island."],
+      ["Layana Resort Koh Lanta",    "Thailand (Koh Lanta)",        7.55, 99.06, "Adults-only beachfront on Koh Lanta."],
+      ["Shangri-La Mactan Cebu",     "Philippines (Mactan, Cebu)", 10.30, 124.02, "Beachfront on Mactan island, Cebu."],
+      ["Crimson Resort Mactan",      "Philippines (Mactan, Cebu)", 10.31, 124.02, "Beachfront on Mactan island, Cebu."],
+      ["Two Seasons Coron Island Resort","Philippines (Palawan, Bulalacao)", 11.83, 119.95, "Private island near Coron, Calamian group."],
+      ["Club Paradise Palawan",      "Philippines (Palawan, Dimakya)", 12.10, 120.00, "Private island, Dimakya, Calamian group."],
+      ["Bunga Raya Island Resort",   "Malaysia (Sabah, Gaya)",      6.02, 116.03, "Polish Bay, Gaya Island, sister to Gayana Marine Resort."]
+    ];
+
+    var RESTORE = [
+      ["Misool Foundation",                  "Indonesia (Raja Ampat)", -2.20, 130.61, "Coral nursery + ranger patrols, hosted at Misool Eco Resort."],
+      ["Bawah Anambas Foundation",           "Indonesia (Anambas)",     2.91, 105.86, "Reef + mangrove restoration at Bawah Reserve."],
+      ["Song Saa Foundation",                "Cambodia (Koh Rong)",    10.71, 103.26, "Marine programme at Song Saa Private Island."],
+      ["Soneva Foundation, Make Waves",      "Thailand (Koh Kood)",    11.66, 102.56, "Coral and waste programmes, attached to Soneva Kiri."],
+      ["Wakatobi Collaborative Reef Programme","Indonesia (Wakatobi)", -5.79, 124.01, "Resort-funded house-reef protection at Wakatobi Dive Resort."],
+      ["TRACC Borneo",                       "Malaysia (Sabah, Pom Pom)", 4.46, 118.62, "Coral, turtle, and ranger research from Pom Pom Island."],
+      ["Banyan Tree Conservation Lab",       "Indonesia (Bintan)",      1.16, 104.42, "Coral nursery + giant clam programme at Banyan Tree Bintan."],
+      ["El Nido Foundation",                 "Philippines (Palawan)",  11.18, 119.39, "Bacuit Bay marine programmes, El Nido Resorts."],
+      ["Lankayan Sea Turtle and Reef Programme","Malaysia (Sabah)",     6.51, 117.94, "Resort-funded conservation at Lankayan Island Dive Resort."],
+      ["Marine Ecology Research Centre",     "Malaysia (Sabah, Gaya)",  6.03, 116.06, "Giant clam + coral, Gaya Island, near Bunga Raya / Gaya Island Resort."],
+      ["Karang Lestari Biorock Pemuteran",   "Indonesia (Bali)",       -8.14, 114.65, "Long-running coral biorock since 2000, Pemuteran coast."],
+      ["Apo Island Marine Sanctuary",        "Philippines (Negros)",    9.07, 123.27, "Community sanctuary since 1980s, ~40 min boat from Dauin."],
+      ["Gili Eco Trust",                     "Indonesia (Lombok)",     -8.35, 116.05, "Reef + turtle + waste programmes on Gili Trawangan."],
+      ["Mars MARRS Reef Star Programme",     "Indonesia (Spermonde / Hoga)", -5.05, 119.32, "Reef Star coral restoration, multiple sites."],
+      ["Coral Guardian (Hatamin Island)",    "Indonesia (Selat Pantar / Komodo region)", -8.30, 124.30, "Community coral restoration east of Komodo."],
+      ["Reef Check Malaysia (Tioman)",       "Malaysia (Tioman)",       2.79, 104.20, "Reef monitoring + small restoration on Tioman."],
+      ["New Heaven Reef Conservation Programme","Thailand (Koh Tao)",   10.10, 99.84, "Coral nursery + restoration training on Koh Tao."],
+      ["Marine Conservation Philippines",    "Philippines (Negros, Dauin)", 9.18, 123.27, "Reef and elasmobranch monitoring."],
+      ["Indo Ocean Project",                 "Indonesia (Nusa Penida)", -8.73, 115.55, "Manta + reef monitoring at Nusa Penida."],
+      ["Coral Triangle Center field site (Nusa Penida)","Indonesia (Bali)",-8.74, 115.54, "Reef survey + community training."],
+      ["Coral Cay Conservation, Sogod Bay",  "Philippines (Southern Leyte)", 10.05, 125.20, "UK-based reef survey programme since 2002."],
+      ["Reef-World Foundation, Green Fins network","Indonesia (multiple)", -2.50, 117.00, "International dive-operator certification scheme HQ in Asia."],
+      ["Marine Conservation Cambodia",       "Cambodia (Koh Ach Seh)",   10.20, 103.10, "Long-running reef and seagrass programme."],
+      ["Ocean Gardener Foundation",          "Indonesia (Bali, Sumberkima)", -8.16, 114.59, "Coral nursery training programme, Sumberkima Bay."],
+      ["Yayasan Bumi Pemuteran",             "Indonesia (Bali)",        -8.14, 114.65, "Community foundation, partner to Karang Lestari."],
+      ["Big Blue Conservation",              "Thailand (Koh Tao)",      10.10, 99.83, "Coral, turtle, and shark monitoring from Big Blue Diving."],
+      ["Two Seasons Coron Reef Programme",   "Philippines (Palawan, Bulalacao)", 11.83, 119.95, "Coral nursery + giant clam at Two Seasons Coron Island Resort."],
+      ["Juara Turtle Project",               "Malaysia (Tioman)",       2.83, 104.20, "Long-running community turtle hatchery on Tioman."],
+      ["Marine Research and Conservation Foundation","Philippines (Davao)", 7.10, 125.65, "Davao Gulf reef and shark monitoring (MRCF)."]
+    ];
+
+    function addMarkers(arr, icon){
+      arr.forEach(function(r){
+        var name=r[0], country=r[1], lat=r[2], lng=r[3], note=r[4];
+        var html = '<strong>'+name+'</strong><br><span style="color:#666;font-size:12px">'+country+'</span><br><span style="font-size:13px">'+note+'</span>';
+        L.marker([lat,lng],{icon:icon,title:name}).addTo(map).bindPopup(html);
+      });
+    }
+    addMarkers(MPAS, GREEN);
+    addMarkers(HOTELS, GOLD);
+    addMarkers(RESTORE, CORAL);
+
+    // Fit bounds to all pins
+    var all = MPAS.concat(HOTELS).concat(RESTORE).map(function(r){ return [r[2], r[3]]; });
+    map.fitBounds(L.latLngBounds(all), { padding: [40,40] });
+  })();
+</script>
+</body>
+</html>
