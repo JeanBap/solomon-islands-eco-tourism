@@ -38,6 +38,10 @@ hello@solomonislandseco.example
 - Project: Manta Trust (Hanifaru Bay UNESCO Biosphere): https://jeanbap.github.io/solomon-islands-eco-tourism/projects/manta-trust/
 - Project: Save Our Seas Foundation (D'Arros Research Centre): https://jeanbap.github.io/solomon-islands-eco-tourism/projects/save-our-seas-foundation/
 - Pillar guide: Solomon Islands marine conservation, definitive 2026 reference: https://jeanbap.github.io/solomon-islands-eco-tourism/blog/solomon-islands-marine-conservation-guide/
+- Reserve your journey (4-step inquiry): https://jeanbap.github.io/solomon-islands-eco-tourism/plan/
+- About + founder: https://jeanbap.github.io/solomon-islands-eco-tourism/about/
+- Privacy policy: https://jeanbap.github.io/solomon-islands-eco-tourism/privacy/
+- Terms of service: https://jeanbap.github.io/solomon-islands-eco-tourism/terms/
 - Marine biodiversity background: https://jeanbap.github.io/solomon-islands-eco-tourism/marine-biodiversity
 - Impact calculator: https://jeanbap.github.io/solomon-islands-eco-tourism/impact-calculator
 - For hotels (B2B pitch): https://jeanbap.github.io/solomon-islands-eco-tourism/for-hotels/
