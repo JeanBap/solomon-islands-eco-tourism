@@ -1457,15 +1457,12 @@
     addMarkers(HOTELS, GOLD, 'lodge');
     addMarkers(RESTORE, CORAL, 'restoration');
 
-    // Build bounds from normalised longitudes so the map keeps the Indo-Pacific contiguous.
-    var allNorm = MPAS.concat(HOTELS).concat(RESTORE).map(function(r){ return [r[2], normLng(r[3])]; });
-    try {
-      map.fitBounds(L.latLngBounds(allNorm), { padding: [40,40] });
-    } catch (e) {
-      console.warn('fitBounds failed, falling back to default view', e);
-      map.setView([-10.0, -180.0], 3);
-    }
-    console.log('[map] pins placed:', MPAS.length + HOTELS.length + RESTORE.length, '({MPAs:' + MPAS.length + ', lodges:' + HOTELS.length + ', restoration:' + RESTORE.length + '})');
+    // Use a fixed Pacific-centred view rather than fitBounds. Indo-Pacific spans ~95°E (Aceh)
+    // through 180° to ~-138°E (Marquesas). fitBounds would draw the wrong-way-around globe.
+    // Centring at lat -10, lng 200 (== -160) with zoom 3 shows Indo-Pacific contiguously, and
+    // worldCopyJump:true lets the user pan past the dateline either direction.
+    map.setView([-10.0, 200.0], 3);
+    console.log('[map] pins placed:', MPAS.length + HOTELS.length + RESTORE.length, '(MPAs:' + MPAS.length + ', lodges:' + HOTELS.length + ', restoration:' + RESTORE.length + ')');
 
     // Filter wiring
     var ACTIVE = new Set(['lodge','mpa','restoration','coral','turtle','sharks','whale','mangrove','community','research','citizen','resort','unesco']);
