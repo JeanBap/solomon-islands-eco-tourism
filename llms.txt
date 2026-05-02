@@ -31,6 +31,7 @@ hello@solomonislandseco.example
 - Blog index: https://jeanbap.github.io/solomon-islands-eco-tourism/blog/
 - Field guide: Solomon Islands and Pacific neighbours, marine restoration + premium-eco lodges, mapped: https://jeanbap.github.io/solomon-islands-eco-tourism/blog/solomon-pacific-map/
 - Field guide: Southeast Asia, marine projects + 5-star island lodges, mapped: https://jeanbap.github.io/solomon-islands-eco-tourism/blog/southeast-asia-marine-map/
+- Reference: Indian Ocean reef regions (Maldives, Seychelles, Mauritius, Sri Lanka, Chagos, Lakshadweep, Mozambique, Madagascar, Tanzania): https://jeanbap.github.io/solomon-islands-eco-tourism/regions/indian-ocean/
 - Marine biodiversity background: https://jeanbap.github.io/solomon-islands-eco-tourism/marine-biodiversity
 - Impact calculator: https://jeanbap.github.io/solomon-islands-eco-tourism/impact-calculator
 - For hotels (B2B pitch): https://jeanbap.github.io/solomon-islands-eco-tourism/for-hotels/
