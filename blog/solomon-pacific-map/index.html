@@ -83,13 +83,21 @@
   .legend .dot.coral{background:#e26d5c}
   .legend .note{margin-left:auto;font-size:12px;color:var(--ink-soft);opacity:.8}
   .filters{display:flex;gap:8px;padding:14px 18px;background:#fff;border-bottom:1px solid var(--line);flex-wrap:wrap;align-items:center}
-  .filters strong{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-right:8px}
-  .filter-btn{background:var(--sand);color:var(--ink-deep);border:1px solid var(--line);border-radius:18px;padding:5px 12px;font-size:12px;font-weight:500;cursor:pointer;transition:all .18s;font-family:'Inter',sans-serif}
-  .filter-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+  .filters strong{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-right:8px;flex-shrink:0}
+  .filter-btn{background:#fff;color:var(--ink-soft);border:1px solid var(--line);border-radius:18px;padding:6px 13px;font-size:12px;font-weight:500;cursor:pointer;transition:all .18s;font-family:'Inter',sans-serif;white-space:nowrap}
+  .filter-btn:hover{border-color:var(--gold);color:var(--ink-deep)}
   .filter-btn.active{background:var(--ink-deep);color:#fff;border-color:var(--ink-deep)}
-  .filter-btn.off{opacity:.45;text-decoration:line-through}
+  .filter-btn.active:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+  .filter-btn.off{background:#f0ece1;color:#9d9583;border-color:#d8d2c5;text-decoration:line-through;text-decoration-color:#b08c5a}
   .filter-actions{margin-left:auto;display:flex;gap:8px}
-  .filter-count{font-size:12px;color:var(--ink-soft);margin-left:6px}
+  .filter-count{font-size:12px;color:var(--ink-soft);margin-left:6px;font-weight:500}
+  @media(max-width:760px){
+    .filters{flex-wrap:nowrap;overflow-x:auto;padding:12px 14px;-webkit-overflow-scrolling:touch}
+    .filters::-webkit-scrollbar{height:4px}
+    .filters::-webkit-scrollbar-thumb{background:var(--line);border-radius:2px}
+    .filter-btn{padding:6px 11px;font-size:11px}
+    .filter-actions{margin-left:6px}
+  }
 
   table.list{width:100%;border-collapse:collapse;margin:18px 0 28px;font-size:14px}
   table.list th,table.list td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
@@ -1028,11 +1036,16 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
   (function(){
-    var map = L.map('map', { scrollWheelZoom: false }).setView([-12.0, 162.0], 4);
+    var map = L.map('map', { scrollWheelZoom: false, worldCopyJump: true }).setView([-10.0, -180.0], 3);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
+      noWrap: false,
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
+
+    // Normalise longitudes for fitBounds so French Polynesia (negative lng) and Solomons (positive lng)
+    // sit on a single contiguous world copy. Without this, Leaflet draws the "wrong way around" view.
+    function normLng(lng) { return lng < 0 ? lng + 360 : lng; }
 
     function dot(color, fill) {
       return L.divIcon({
@@ -1444,8 +1457,15 @@
     addMarkers(HOTELS, GOLD, 'lodge');
     addMarkers(RESTORE, CORAL, 'restoration');
 
-    var all = MPAS.concat(HOTELS).concat(RESTORE).map(function(r){ return [r[2], r[3]]; });
-    map.fitBounds(L.latLngBounds(all), { padding: [40,40] });
+    // Build bounds from normalised longitudes so the map keeps the Indo-Pacific contiguous.
+    var allNorm = MPAS.concat(HOTELS).concat(RESTORE).map(function(r){ return [r[2], normLng(r[3])]; });
+    try {
+      map.fitBounds(L.latLngBounds(allNorm), { padding: [40,40] });
+    } catch (e) {
+      console.warn('fitBounds failed, falling back to default view', e);
+      map.setView([-10.0, -180.0], 3);
+    }
+    console.log('[map] pins placed:', MPAS.length + HOTELS.length + RESTORE.length, '({MPAs:' + MPAS.length + ', lodges:' + HOTELS.length + ', restoration:' + RESTORE.length + '})');
 
     // Filter wiring
     var ACTIVE = new Set(['lodge','mpa','restoration','coral','turtle','sharks','whale','mangrove','community','research','citizen','resort','unesco']);
@@ -1454,6 +1474,9 @@
     function applyFilters() {
       var visible = 0;
       ALL_MARKERS.forEach(function(item){
+        // Defensive: every pin has its primaryType (lodge/mpa/restoration) in tags. If for any
+        // reason a pin somehow has zero matching tags but the user hasn't switched everything off,
+        // we still show it under the type chip. "All off" must hide everything.
         var ok = item.tags.some(function(t){ return ACTIVE.has(t); });
         if (ok) {
           if (!map.hasLayer(item.marker)) item.marker.addTo(map);
@@ -1463,6 +1486,7 @@
         }
       });
       if (countEl) countEl.textContent = visible + ' of ' + ALL_MARKERS.length + ' pins shown';
+      console.log('[filter] active:', Array.from(ACTIVE).join(','), '| visible:', visible, '/', ALL_MARKERS.length);
     }
 
     document.querySelectorAll('.filter-btn[data-tag]').forEach(function(btn){
