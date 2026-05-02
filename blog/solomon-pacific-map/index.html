@@ -55,7 +55,10 @@
 <style>
   :root { --ink:#0b3d3a; --ink-deep:#07262a; --ink-soft:#2a4f4c; --sand:#f5efe6; --sand-warm:#ece2d0; --gold:#b9905a; --gold-deep:#8a6a3f; --paper:#fbfaf6; --line:#d8d2c5; }
   *{box-sizing:border-box;margin:0;padding:0}
+  html,body{overflow-x:hidden;max-width:100%}
   body{font-family:'Inter',system-ui,sans-serif;color:var(--ink-deep);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .sources li{word-break:break-word;overflow-wrap:anywhere}
+  .sources a{word-break:break-all;overflow-wrap:anywhere}
   a{color:var(--gold-deep)}
   a:hover{color:var(--ink)}
   .wrap{max-width:980px;margin:0 auto;padding:0 24px}
