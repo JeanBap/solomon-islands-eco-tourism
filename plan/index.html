@@ -87,6 +87,15 @@
   .site-footer-inner{max-width:1240px;margin:0 auto;padding:0 24px;text-align:center;font-size:13px;color:rgba(251,250,246,0.65)}
   .site-footer a{color:rgba(251,250,246,0.85);text-decoration:none;margin:0 12px}
   .site-footer a:hover{color:#b9905a}
+
+  .social-proof{margin:48px 0;padding:0}
+  .proof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+  .proof-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:24px 26px;margin:0;display:flex;flex-direction:column;gap:14px}
+  .proof-card blockquote{margin:0;font-family:'Playfair Display',serif;font-size:18px;line-height:1.4;color:var(--ink-deep);font-style:italic;quotes:"\201C" "\201D"}
+  .proof-card blockquote::before{content:open-quote;color:var(--gold);font-size:32px;line-height:0;vertical-align:-12px;margin-right:2px}
+  .proof-card figcaption{font-size:13px;color:var(--ink-soft);font-style:normal;margin-top:auto}
+  .proof-card figcaption strong{display:block;color:var(--ink-deep);font-family:'Inter',sans-serif;font-style:normal;font-size:13px;font-weight:600;margin-bottom:2px}
+  .proof-card figcaption a{font-size:12px}
 </style>
 </head>
 <body>
@@ -128,7 +137,15 @@
       <li class="step"><span class="step-num">4</span> Contact</li>
     </ol>
 
-    <form id="plan-form" action="mailto:hello@solomonislandseco.example" method="post" enctype="text/plain" novalidate>
+    <form id="plan-form" action="https://formsubmit.co/hello@solomonislandseco.example" method="POST" novalidate>
+      <!-- Formsubmit anti-spam honeypot -->
+      <input type="text" name="_honey" style="display:none">
+      <!-- Disable Formsubmit captcha for friction-free UX (still has honeypot anti-spam) -->
+      <input type="hidden" name="_captcha" value="false">
+      <!-- Email subject -->
+      <input type="hidden" name="_subject" value="New Solomon journey inquiry">
+      <!-- After submit, redirect to a thank-you page -->
+      <input type="hidden" name="_next" value="https://jeanbap.github.io/solomon-islands-eco-tourism/plan/thanks/">
 
       <fieldset>
         <legend>1. Destination interest</legend>
