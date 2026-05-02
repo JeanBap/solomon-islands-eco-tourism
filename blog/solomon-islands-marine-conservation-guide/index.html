@@ -143,6 +143,10 @@
   .proof-card figcaption{font-size:13px;color:var(--ink-soft);font-style:normal;margin-top:auto}
   .proof-card figcaption strong{display:block;color:var(--ink-deep);font-family:'Inter',sans-serif;font-style:normal;font-size:13px;font-weight:600;margin-bottom:2px}
   .proof-card figcaption a{font-size:12px}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease}
+  .reveal.visible{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
@@ -159,6 +163,7 @@
         <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/blog/">Blog</a></li>
         <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/for-hotels/">For Hotels</a></li>
         <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/for-projects/">For Projects</a></li>
+        <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/compare/">Compare</a></li>
         <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/plan/" class="nav-cta">Reserve your journey</a></li>
       </ul>
     </nav>
@@ -405,7 +410,7 @@
       <div class="card"><h4>Solomons vs Palau for shark conservation</h4><p>Palau is the world reference for national-scale shark sanctuary policy with its 500,000 km² Palau National Marine Sanctuary [30]. Solomons has community-managed protections at Arnavon and other sites but no equivalent national no-take. Palau for sanctuary policy, Solomons for grassroots community-managed model.</p></div>
     </div>
 
-    <figure class="section"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&h=450&fit=crop&q=78&auto=format" alt="Open ocean horizon" width="1200" height="450" loading="lazy" decoding="async"><figcaption>The Solomon Islands have committed to the 30 by 30 framework. Photo: Unsplash representative imagery.</figcaption></figure>
+    <figure class="section"><img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Looking_back_from_Marovo_Lagoon_%2819_July_2008%29.jpg" alt="View from Marovo Lagoon, Solomon Islands" width="1200" height="450" loading="lazy" decoding="async"><figcaption>Marovo Lagoon, Solomon Islands. Photo: Xplore Dive, CC BY 2.0 (<a href="https://commons.wikimedia.org/wiki/File:Looking_back_from_Marovo_Lagoon_(19_July_2008).jpg" target="_blank" rel="noopener">source</a>).</figcaption></figure>
 
     <h2 id="future">The future and outlook</h2>
 
@@ -561,5 +566,19 @@
 </footer>
 
 <div class="mobile-cta-bar" role="complementary" aria-label="Reserve your journey"><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/plan/">Reserve your journey</a></div>
+<script>
+(function(){
+  // Tag long-form sections for fade-in
+  document.querySelectorAll('article h2, article figure, article .crosslinks, article .answer, article .toc, article .social-proof, article .sources, article .cards, article .faq').forEach(function(el){ el.classList.add('reveal'); });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('visible'); });
+  }
+})();
+</script>
 </body>
 </html>

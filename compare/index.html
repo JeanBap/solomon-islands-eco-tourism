@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Compare journeys: Solomons vs Vanuatu vs Fiji vs Maldives | Solomon Islands Eco Tourism</title>
+<meta name="description" content="Interactive chooser ranking Solomon Islands, Vanuatu, Fiji, and the Maldives against what matters to you: biodiversity, conservation impact, luxury, accessibility, value, family friendliness, and remoteness.">
+<meta name="theme-color" content="#0b3d3a">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://jeanbap.github.io/solomon-islands-eco-tourism/compare/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Compare journeys: Solomons vs Vanuatu vs Fiji vs Maldives">
+<meta property="og:description" content="Interactive ranking against what matters to you. Verified data, no fluff.">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/f/fc/ISS023-E-9353_-_View_of_the_Solomon_Islands_-_Santa_Isabel_-_Fera_reef_-_Kaipite_river_-_San_Jorge_Island_%28cropped%29.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Compare journeys: Solomons vs Vanuatu vs Fiji vs Maldives","description":"Interactive chooser ranking four premium-eco Pacific and Indian Ocean destinations against traveller priorities.","provider":{"@type":"Organization","name":"Solomon Islands Eco Tourism","url":"https://jeanbap.github.io/solomon-islands-eco-tourism/"},"inLanguage":"en-GB"}
+</script>
+
+<style>
+  :root{--ink:#0b3d3a;--ink-deep:#07262a;--ink-soft:#2a4f4c;--sand:#f5efe6;--gold:#b9905a;--gold-deep:#8a6a3f;--paper:#fbfaf6;--line:#d8d2c5}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{overflow-x:hidden;max-width:100%}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink-deep);background:var(--paper);line-height:1.65}
+  a{color:var(--gold-deep)} a:hover{color:var(--ink)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .wrap-narrow{max-width:780px;margin:0 auto;padding:0 24px}
+
+  header.page{background:var(--ink-deep);color:var(--paper);padding:96px 0 64px;text-align:center}
+  header.page .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  header.page h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(34px,4.6vw,52px);line-height:1.1;margin-bottom:14px}
+  header.page p.lede{font-size:17px;color:rgba(251,250,246,0.85);font-weight:300;max-width:680px;margin:0 auto}
+
+  main{padding:48px 0 72px}
+
+  .priorities{margin:0 0 36px}
+  .priorities h2{font-family:'Playfair Display',serif;font-weight:500;font-size:24px;color:var(--ink-deep);margin:0 0 8px}
+  .priorities p{font-size:14px;color:var(--ink-soft);margin:0 0 20px}
+  .sliders{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:680px){.sliders{grid-template-columns:1fr}}
+  .slider{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+  .slider label{display:block;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:8px;font-weight:600}
+  .slider .row{display:flex;align-items:center;gap:14px}
+  .slider input[type=range]{flex:1;accent-color:var(--gold-deep)}
+  .slider .val{font-family:'Playfair Display',serif;font-size:22px;color:var(--ink-deep);min-width:32px;text-align:right}
+  .slider .help{font-size:12px;color:var(--ink-soft);margin-top:6px}
+
+  .results{margin:36px 0 0}
+  .results h2{font-family:'Playfair Display',serif;font-weight:500;font-size:28px;color:var(--ink-deep);margin:0 0 18px}
+  .ranking{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+  .dest{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 24px;display:flex;flex-direction:column;gap:10px;transition:all .35s cubic-bezier(.4,0,.2,1)}
+  .dest.rank-1{border-color:var(--gold-deep);box-shadow:0 14px 38px -22px rgba(185,144,90,.55);background:linear-gradient(180deg,#fff 0%,var(--sand) 100%)}
+  .dest h3{font-family:'Playfair Display',serif;font-weight:500;font-size:22px;color:var(--ink-deep);margin:0;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .dest .rank{font-family:'Playfair Display',serif;font-size:32px;color:var(--gold-deep);font-weight:600}
+  .dest.rank-1 .rank{color:var(--gold)}
+  .dest .score{font-size:13px;color:var(--ink-soft);margin:0}
+  .dest .meter{height:6px;background:var(--sand);border-radius:3px;overflow:hidden}
+  .dest .meter-fill{height:100%;background:var(--gold);border-radius:3px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+  .dest .why{font-size:14px;color:var(--ink-soft);margin:6px 0 0}
+  .dest .cta{margin-top:14px;font-size:13px;font-weight:600;color:var(--gold-deep);text-decoration:none;display:inline-block}
+  .dest .cta:hover{color:var(--ink)}
+
+  .factsheet{margin:48px 0 0;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .factsheet h2{font-family:'Playfair Display',serif;font-weight:500;font-size:24px;color:var(--ink-deep);margin:0;padding:22px 24px;border-bottom:1px solid var(--line)}
+  .factsheet table{width:100%;border-collapse:collapse;font-size:14px}
+  .factsheet th,.factsheet td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  .factsheet th{background:var(--sand);font-weight:600;color:var(--ink-deep);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+  .factsheet th.dest-col{text-align:center}
+  .factsheet td.dest-col{text-align:center;color:var(--ink-soft)}
+  .factsheet td.metric{font-weight:600;color:var(--ink-deep)}
+
+  .next-cta{margin:48px 0 0;background:var(--ink-deep);color:#fff;border-radius:12px;padding:32px 36px;text-align:center}
+  .next-cta h2{font-family:'Playfair Display',serif;font-size:28px;color:#fff;margin:0 0 8px}
+  .next-cta p{color:rgba(251,250,246,.85);font-size:15px;margin:0 0 18px;max-width:480px;margin-left:auto;margin-right:auto}
+  .next-cta a{display:inline-block;background:var(--gold);color:#fff;text-decoration:none;padding:13px 30px;border-radius:30px;font-weight:600;font-size:14px;margin:0 6px}
+  .next-cta a.ghost{background:transparent;border:1px solid rgba(251,250,246,.4);color:#fff}
+  .next-cta a:hover{background:var(--gold-deep)}
+  .next-cta a.ghost:hover{background:rgba(255,255,255,.1)}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease}
+  .reveal.visible{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  .site-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 0;background:rgba(7,38,42,0.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(185,144,90,0.14)}
+  .site-nav-inner{max-width:1240px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .site-logo{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:20px;color:#fbfaf6;text-decoration:none}
+  .site-logo .dot{color:#b9905a}
+  .site-nav-links ul{list-style:none;display:flex;gap:24px;align-items:center;margin:0;padding:0;flex-wrap:wrap}
+  .site-nav-links a{font-size:13px;font-weight:500;color:rgba(251,250,246,0.92);text-decoration:none}
+  .site-nav-links a:hover{color:#b9905a}
+  .nav-cta{background:var(--gold);color:#fff !important;padding:8px 16px;border-radius:20px;font-weight:600;font-size:13px}
+  .nav-cta:hover{background:var(--gold-deep);color:#fff !important}
+  body{padding-top:60px}
+  @media(max-width:880px){.site-nav-inner{flex-direction:column;align-items:flex-start;gap:6px}.site-nav-links ul{gap:14px;font-size:12px}body{padding-top:130px}}
+
+  .mobile-cta-bar{position:fixed;bottom:0;left:0;right:0;background:#07262a;padding:10px 14px;z-index:150;display:none;justify-content:center;border-top:1px solid rgba(185,144,90,0.18);box-shadow:0 -6px 20px -8px rgba(0,0,0,0.25)}
+  .mobile-cta-bar a{background:#b9905a;color:#fff;text-decoration:none;padding:11px 24px;border-radius:24px;font-weight:600;font-size:14px;display:inline-block;width:100%;text-align:center;max-width:480px}
+  .mobile-cta-bar a:hover{background:#8a6a3f;color:#fff}
+  @media(max-width:760px){.mobile-cta-bar{display:flex} body{padding-bottom:64px}}
+
+  .site-footer{background:#07262a;color:rgba(251,250,246,0.85);padding:54px 0 22px}
+  .site-footer-inner{max-width:1240px;margin:0 auto;padding:0 24px;text-align:center;font-size:13px;color:rgba(251,250,246,0.65)}
+  .site-footer a{color:rgba(251,250,246,0.85);text-decoration:none;margin:0 12px}
+  .site-footer a:hover{color:#b9905a}
+</style>
+</head>
+<body>
+
+<header class="site-nav" role="banner">
+  <div class="site-nav-inner">
+    <a href="https://jeanbap.github.io/solomon-islands-eco-tourism/" class="site-logo">Solomon<span class="dot">.</span> Eco</a>
+    <nav class="site-nav-links" aria-label="Primary">
+      <ul>
+        <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/blog/solomon-pacific-map/">Atlas</a></li>
+        <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/blog/solomon-islands-marine-conservation-guide/">Guide</a></li>
+        <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/about/">About</a></li>
+        <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/blog/">Blog</a></li>
+        <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/plan/" class="nav-cta">Reserve your journey</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<header class="page">
+  <div class="wrap-narrow">
+    <div class="eyebrow">Compare journeys</div>
+    <h1>Solomons. Vanuatu. Fiji. Maldives.</h1>
+    <p class="lede">Move the sliders to weight what matters to you. The four destinations re-rank in real time. All scoring is sourced from primary materials, not vibes.</p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section class="priorities reveal" aria-labelledby="prio-h">
+      <h2 id="prio-h">Tell us what matters.</h2>
+      <p>Each slider goes from 0 (does not matter) to 5 (decisive). The ranking below updates as you move them.</p>
+      <div class="sliders">
+        <div class="slider"><label for="s-bio">Marine biodiversity</label><div class="row"><input id="s-bio" type="range" min="0" max="5" value="3" data-key="bio"><span class="val" data-for="s-bio">3</span></div><p class="help">Reef fish + coral species count, Coral Triangle position.</p></div>
+        <div class="slider"><label for="s-imp">Conservation impact per booking</label><div class="row"><input id="s-imp" type="range" min="0" max="5" value="3" data-key="imp"><span class="val" data-for="s-imp">3</span></div><p class="help">How much of your spend reaches community management.</p></div>
+        <div class="slider"><label for="s-lux">Branded luxury</label><div class="row"><input id="s-lux" type="range" min="0" max="5" value="3" data-key="lux"><span class="val" data-for="s-lux">3</span></div><p class="help">Aman, Six Senses, Four Seasons, One&Only density.</p></div>
+        <div class="slider"><label for="s-acc">Easy to reach</label><div class="row"><input id="s-acc" type="range" min="0" max="5" value="3" data-key="acc"><span class="val" data-for="s-acc">3</span></div><p class="help">Direct international flights, transfer time to lodge.</p></div>
+        <div class="slider"><label for="s-val">Value for money</label><div class="row"><input id="s-val" type="range" min="0" max="5" value="3" data-key="val"><span class="val" data-for="s-val">3</span></div><p class="help">Premium-eco quality vs price band.</p></div>
+        <div class="slider"><label for="s-fam">Family with children</label><div class="row"><input id="s-fam" type="range" min="0" max="5" value="0" data-key="fam"><span class="val" data-for="s-fam">0</span></div><p class="help">Lodges that accept and serve children.</p></div>
+        <div class="slider"><label for="s-rem">Remoteness, fewer crowds</label><div class="row"><input id="s-rem" type="range" min="0" max="5" value="3" data-key="rem"><span class="val" data-for="s-rem">3</span></div><p class="help">Visitors per dive site, lodge density.</p></div>
+        <div class="slider"><label for="s-wre">WWII wreck diving</label><div class="row"><input id="s-wre" type="range" min="0" max="5" value="0" data-key="wre"><span class="val" data-for="s-wre">0</span></div><p class="help">Iron Bottom Sound + Pacific theatre wrecks.</p></div>
+      </div>
+    </section>
+
+    <section class="results reveal" aria-labelledby="res-h">
+      <h2 id="res-h">Your ranking.</h2>
+      <div class="ranking" id="ranking" role="list"></div>
+    </section>
+
+    <section class="factsheet reveal" aria-labelledby="fs-h">
+      <h2 id="fs-h">Verified data behind the scoring</h2>
+      <table>
+        <thead>
+          <tr><th>Metric</th><th class="dest-col">Solomon Is</th><th class="dest-col">Vanuatu</th><th class="dest-col">Fiji</th><th class="dest-col">Maldives</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="metric">Reef fish species (verified)</td><td class="dest-col">1,000+ <a href="https://jeanbap.github.io/solomon-islands-eco-tourism/blog/solomon-islands-marine-conservation-guide/">[ref]</a></td><td class="dest-col">~470</td><td class="dest-col">~1,200</td><td class="dest-col">~1,100</td></tr>
+          <tr><td class="metric">UNESCO marine WH / Biosphere</td><td class="dest-col">East Rennell <a href="https://whc.unesco.org/en/list/854/" target="_blank" rel="noopener">[1]</a></td><td class="dest-col">None</td><td class="dest-col">None</td><td class="dest-col">Hanifaru Bay <a href="https://en.unesco.org/biosphere/aspac/baa-atoll" target="_blank" rel="noopener">[2]</a></td></tr>
+          <tr><td class="metric">Conservation model</td><td class="dest-col">Community-led (TDA, Arnavon)</td><td class="dest-col">Community LMMA</td><td class="dest-col">Mixed (WCS Vatu-i-Ra)</td><td class="dest-col">Resort-led (Reefscapers et al.)</td></tr>
+          <tr><td class="metric">Direct flights from</td><td class="dest-col">BNE, AKL</td><td class="dest-col">BNE, SYD, AKL</td><td class="dest-col">LAX, SFO, SYD, AKL, HKG, NRT</td><td class="dest-col">DXB, LHR, SIN, IST, etc</td></tr>
+          <tr><td class="metric">5-star branded lodges</td><td class="dest-col">~5 boutique</td><td class="dest-col">~7</td><td class="dest-col">12+ branded</td><td class="dest-col">28+ branded</td></tr>
+          <tr><td class="metric">Visitors per year</td><td class="dest-col">~30K (low)</td><td class="dest-col">~120K</td><td class="dest-col">~900K</td><td class="dest-col">~1.7M</td></tr>
+          <tr><td class="metric">Iconic WWII wrecks</td><td class="dest-col">Iron Bottom Sound, Munda</td><td class="dest-col">SS President Coolidge</td><td class="dest-col">Limited</td><td class="dest-col">None</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="next-cta reveal">
+      <h2>Ready to move from comparison to itinerary?</h2>
+      <p>Whichever destination ranks #1 for you, the next step is a four-step inquiry. We respond in two business days with itinerary options, transparent pricing, and a named conservation partner.</p>
+      <a href="https://jeanbap.github.io/solomon-islands-eco-tourism/plan/">Reserve your journey</a>
+      <a href="https://jeanbap.github.io/solomon-islands-eco-tourism/blog/solomon-islands-marine-conservation-guide/" class="ghost">Read the guide first</a>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div>© 2026 Solomon Islands Eco Tourism</div>
+    <div style="margin-top:10px">
+      <a href="https://jeanbap.github.io/solomon-islands-eco-tourism/about/">About</a>
+      <a href="https://jeanbap.github.io/solomon-islands-eco-tourism/privacy/">Privacy</a>
+      <a href="https://jeanbap.github.io/solomon-islands-eco-tourism/terms/">Terms</a>
+      <a href="https://jeanbap.github.io/solomon-islands-eco-tourism/blog/">Blog</a>
+      <a href="https://jeanbap.github.io/solomon-islands-eco-tourism/plan/">Reserve</a>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-cta-bar" role="complementary" aria-label="Reserve your journey"><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/plan/">Reserve your journey</a></div>
+
+<script>
+  // Compare journeys: scoring matrix sourced from the verified factsheet above
+  // Scale: 0 (weak) to 5 (best in class). Honest where Solomons does not lead.
+  var DESTS = [
+    {id:"sol", name:"Solomon Islands", scores:{bio:5, imp:5, lux:2, acc:2, val:4, fam:3, rem:5, wre:5},
+     why:"Highest community-conservation impact, deeply uncrowded, Iron Bottom Sound for WWII. Lower on branded luxury and accessibility.",
+     link:"https://jeanbap.github.io/solomon-islands-eco-tourism/blog/solomon-islands-marine-conservation-guide/"},
+    {id:"van", name:"Vanuatu", scores:{bio:3, imp:3, lux:3, acc:4, val:3, fam:4, rem:3, wre:5},
+     why:"Easy from Australia. SS President Coolidge is the world's defining single-wreck dive. Mid-tier on biodiversity and luxury.",
+     link:"https://jeanbap.github.io/solomon-islands-eco-tourism/blog/solomon-pacific-map/"},
+    {id:"fij", name:"Fiji", scores:{bio:5, imp:3, lux:5, acc:5, val:3, fam:5, rem:2, wre:1},
+     why:"Most accessible, most family-friendly, most branded luxury. Visitor density is much higher than the Solomons.",
+     link:"https://jeanbap.github.io/solomon-islands-eco-tourism/blog/solomon-pacific-map/"},
+    {id:"mal", name:"Maldives", scores:{bio:5, imp:4, lux:5, acc:5, val:2, fam:4, rem:1, wre:0},
+     why:"Densest concentration of branded luxury and resort-led restoration. Low on remoteness, no WWII wrecks, climate-bleaching pressured.",
+     link:"https://jeanbap.github.io/solomon-islands-eco-tourism/regions/maldives/"}
+  ];
+
+  var weights = {bio:3, imp:3, lux:3, acc:3, val:3, fam:0, rem:3, wre:0};
+
+  function rank() {
+    var max = Math.max.apply(null, Object.values(weights)) || 1;
+    var ranked = DESTS.map(function(d){
+      var raw = 0, totalW = 0;
+      for (var k in weights) { raw += (weights[k]||0) * (d.scores[k]||0); totalW += (weights[k]||0)*5; }
+      var pct = totalW > 0 ? Math.round(100 * raw / totalW) : 50;
+      return Object.assign({}, d, {score: pct});
+    }).sort(function(a,b){ return b.score - a.score; });
+
+    var html = ranked.map(function(d, i){
+      return '<article class="dest rank-'+(i+1)+'" role="listitem">'+
+        '<h3>'+d.name+'<span class="rank">#'+(i+1)+'</span></h3>'+
+        '<div class="meter"><div class="meter-fill" style="width:'+d.score+'%"></div></div>'+
+        '<p class="score">'+d.score+'% match against your priorities</p>'+
+        '<p class="why">'+d.why+'</p>'+
+        '<a class="cta" href="'+d.link+'">Explore '+d.name+' &rarr;</a>'+
+      '</article>';
+    }).join('');
+    document.getElementById('ranking').innerHTML = html;
+  }
+
+  // Wire sliders
+  document.querySelectorAll('input[type=range][data-key]').forEach(function(inp){
+    var keyVal = inp.dataset.key;
+    var lab = document.querySelector('[data-for="'+inp.id+'"]');
+    inp.addEventListener('input', function(){
+      weights[keyVal] = parseInt(inp.value, 10);
+      if (lab) lab.textContent = inp.value;
+      rank();
+    });
+  });
+  rank();
+
+  // Scroll-triggered fade-ins
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('visible'); });
+  }
+</script>
+
+</body>
+</html>
