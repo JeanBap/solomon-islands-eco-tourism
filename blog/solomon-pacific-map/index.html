@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Solomon Islands and Pacific neighbours: marine restoration + premium-eco lodges, mapped | Solomon Islands Eco Tourism</title>
+<meta name="description" content="An interactive map of every verified marine restoration programme and premium-eco lodge across the Solomon Islands and the immediate Pacific (Vanuatu, PNG, Fiji, New Caledonia, Northern Australia). Primary sources cited for every pin.">
+<meta name="theme-color" content="#0b3d3a">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://jeanbap.github.io/solomon-islands-eco-tourism/blog/solomon-pacific-map/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Solomon Islands and Pacific neighbours: restoration + premium-eco lodges, mapped">
+<meta property="og:description" content="Verified-source map of marine restoration programmes and premium-eco lodges across the Solomon Islands and the immediate Pacific.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=1200&h=630&fit=crop&q=78&auto=format">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Solomon Islands and Pacific neighbours: marine restoration and premium-eco lodges, mapped",
+  "description": "Interactive map of every verified marine restoration programme and premium-eco lodge across the Solomon Islands and the immediate Pacific (Vanuatu, PNG, Fiji, New Caledonia, Northern Australia), with primary sources cited for every pin.",
+  "author": { "@type": "Organization", "name": "Solomon Islands Eco Tourism" },
+  "publisher": { "@type": "Organization", "name": "Solomon Islands Eco Tourism" },
+  "datePublished": "2026-05-02",
+  "dateModified": "2026-05-02",
+  "inLanguage": "en-GB",
+  "spatialCoverage": [
+    {"@type":"Place","name":"Solomon Islands"},
+    {"@type":"Place","name":"Vanuatu"},
+    {"@type":"Place","name":"Papua New Guinea"},
+    {"@type":"Place","name":"Fiji"},
+    {"@type":"Place","name":"New Caledonia"},
+    {"@type":"Place","name":"Northern Australia"}
+  ]
+}
+</script>
+
+<style>
+  :root { --ink:#0b3d3a; --ink-deep:#07262a; --ink-soft:#2a4f4c; --sand:#f5efe6; --sand-warm:#ece2d0; --gold:#b9905a; --gold-deep:#8a6a3f; --paper:#fbfaf6; --line:#d8d2c5; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink-deep);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--gold-deep)}
+  a:hover{color:var(--ink)}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+  .wrap-narrow{max-width:780px;margin:0 auto;padding:0 24px}
+
+  header.page{background:var(--ink-deep);color:var(--paper);padding:96px 0 64px;text-align:center}
+  header.page .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  header.page h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(34px,4.6vw,52px);line-height:1.1;letter-spacing:-0.01em;margin-bottom:14px}
+  header.page p.lede{font-size:17px;color:rgba(251,250,246,0.85);font-weight:300;max-width:720px;margin:0 auto}
+
+  article{padding:56px 0 72px}
+  article h2{font-family:'Playfair Display',serif;font-weight:500;font-size:32px;margin:48px 0 14px;color:var(--ink-deep);line-height:1.2}
+  article h3{font-family:'Playfair Display',serif;font-weight:500;font-size:22px;margin:28px 0 10px;color:var(--ink-deep)}
+  article p{margin:0 0 18px;font-size:17px}
+  article p.tldr{background:var(--sand);border-left:3px solid var(--gold);padding:18px 22px;margin:0 0 28px;border-radius:0 6px 6px 0}
+  article ul{margin:0 0 18px;padding-left:22px}
+  article li{margin-bottom:8px;font-size:16px}
+
+  .map-wrap{margin:24px 0 40px;border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 14px 38px -22px rgba(7,38,42,.25)}
+  #map{height:580px;width:100%;background:#dfeae0}
+  .legend{display:flex;gap:16px;padding:14px 18px;background:var(--sand);border-top:1px solid var(--line);font-size:13px;color:var(--ink-soft);align-items:center;flex-wrap:wrap}
+  .legend .dot{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;margin-right:8px;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.2)}
+  .legend .dot.green{background:#0f8a82}
+  .legend .dot.gold{background:#b9905a}
+  .legend .dot.coral{background:#e26d5c}
+  .legend .note{margin-left:auto;font-size:12px;color:var(--ink-soft);opacity:.8}
+
+  table.list{width:100%;border-collapse:collapse;margin:18px 0 28px;font-size:14px}
+  table.list th,table.list td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  table.list th{background:var(--sand);font-weight:600;color:var(--ink-deep);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+  table.list td.country{white-space:nowrap;color:var(--ink-soft);font-size:13px}
+  table.list td.name{font-weight:600}
+
+  .sources{background:#f9f6ed;border:1px solid var(--line);border-radius:6px;padding:24px;margin-top:36px;font-size:14px}
+  .sources h3{margin:0 0 10px;font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+  .sources ol{padding-left:20px}
+  .sources li{font-size:13px;margin-bottom:6px;color:var(--ink-soft)}
+
+  .disclaimer{background:#fff3e6;border:1px solid #f5d4a8;border-radius:8px;padding:18px 22px;font-size:13px;color:#5a3a18;margin-top:28px}
+  .disclaimer strong{color:#5a3a18}
+
+  .nav-back{display:inline-block;margin:24px 0 0;font-size:14px;color:var(--gold-deep)}
+  .crosslinks{background:#eef4f1;border:1px solid #cfe0d8;border-radius:8px;padding:18px 22px;margin:24px 0 32px;font-size:14px}
+  .crosslinks strong{color:var(--ink-deep)}
+  .crosslinks ul{margin:6px 0 0;padding-left:18px}
+  .crosslinks li{margin-bottom:6px;font-size:14px}
+
+  .site-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 0;background:rgba(7,38,42,0.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(185,144,90,0.14)}
+  .site-nav-inner{max-width:1240px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .site-logo{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:20px;letter-spacing:.01em;color:#fbfaf6;text-decoration:none}
+  .site-logo .dot{color:#b9905a}
+  .site-nav-links ul{list-style:none;display:flex;gap:24px;align-items:center;margin:0;padding:0;flex-wrap:wrap;justify-content:flex-end}
+  .site-nav-links li{margin:0}
+  .site-nav-links a{font-size:13px;font-weight:500;letter-spacing:.02em;color:rgba(251,250,246,0.92);text-decoration:none;transition:color .25s}
+  .site-nav-links a:hover{color:#b9905a}
+  body{padding-top:60px}
+  @media(max-width:880px){
+    .site-nav-inner{flex-direction:column;align-items:flex-start;gap:6px}
+    .site-nav-links ul{gap:14px;font-size:12px}
+    body{padding-top:120px}
+    #map{height:440px}
+  }
+
+  .site-footer{background:#07262a;color:rgba(251,250,246,0.85);padding:64px 0 28px}
+  .site-footer-inner{max-width:1240px;margin:0 auto;padding:0 24px}
+  .site-footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:36px}
+  .site-footer h5{font-family:'Playfair Display',Georgia,serif;font-size:18px;color:#fbfaf6;margin-bottom:14px;font-weight:500}
+  .site-footer-brand h5{font-size:20px}
+  .site-footer-brand .dot{color:#b9905a}
+  .site-footer-brand p{font-size:14px;max-width:340px;color:rgba(251,250,246,0.7);margin:0}
+  .site-footer ul{list-style:none;padding:0;margin:0}
+  .site-footer li{margin-bottom:8px;font-size:14px}
+  .site-footer a{color:rgba(251,250,246,0.78);text-decoration:none;transition:color .2s}
+  .site-footer a:hover{color:#b9905a}
+  .site-footer-foot{margin-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:rgba(251,250,246,0.55)}
+  @media(max-width:820px){.site-footer-grid{grid-template-columns:1fr 1fr;gap:28px}.site-footer{padding:48px 0 24px}}
+  @media(max-width:560px){.site-footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="site-nav" role="banner">
+  <div class="site-nav-inner">
+    <a href="https://jeanbap.github.io/solomon-islands-eco-tourism/" class="site-logo">Solomon<span class="dot">.</span> Eco</a>
+    <nav class="site-nav-links" aria-label="Primary">
+      <ul>
+        <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/#why">Why Solomon</a></li>
+        <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/#journeys">Journeys</a></li>
+        <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/#money">Where money goes</a></li>
+        <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/for-hotels/">For Hotels</a></li>
+        <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/for-projects/">For Projects</a></li>
+        <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/blog/">Blog</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<header class="page">
+  <div class="wrap">
+    <div class="eyebrow">Field guide, Solomon Islands and Pacific neighbours</div>
+    <h1>Marine restoration and premium-eco lodges across the Solomon Islands and the immediate Pacific, mapped.</h1>
+    <p class="lede">Every verified premium-eco lodge and active marine restoration programme across the Solomon Islands archipelago plus the immediate Pacific neighbours: Vanuatu, Papua New Guinea, Fiji, New Caledonia, and Northern Australia. Primary sources cited for every pin.</p>
+  </div>
+</header>
+
+<article>
+  <div class="wrap">
+
+    <p class="tldr"><strong>The short version.</strong> 17 verified Solomon Islands lodges across nine island groups, paired with 12 marine conservation areas and 9 active restoration programmes. Plus 38 verified premium-eco lodges and 22 marine restoration programmes across Vanuatu, Papua New Guinea, Fiji, New Caledonia, and Northern Australia. Where no lodge sits within reasonable reach of a programme, the gap is named honestly. 96 primary sources cited end to end.</p>
+
+    <div class="map-wrap">
+      <div id="map" role="region" aria-label="Map of marine restoration programmes and premium-eco lodges across the Solomon Islands and immediate Pacific neighbours"></div>
+      <div class="legend">
+        <span><span class="dot green"></span>Marine conservation area / MPA</span>
+        <span><span class="dot coral"></span>Active restoration programme</span>
+        <span><span class="dot gold"></span>Premium-eco / 5-star island lodge</span>
+        <span class="note">Tiles: OpenStreetMap contributors, ODbL</span>
+      </div>
+    </div>
+
+    <div class="crosslinks">
+      <strong>Already covered in depth on this site.</strong>
+      <ul>
+        <li>Tetepare Descendants' Association: <a href="https://jeanbap.github.io/solomon-islands-eco-tourism/projects/tetepare/">project profile</a></li>
+        <li>Arnavon Community Marine Conservation Area: <a href="https://jeanbap.github.io/solomon-islands-eco-tourism/projects/arnavon/">project profile</a></li>
+        <li>Coral Sea Foundation, Sea Women of Melanesia: <a href="https://jeanbap.github.io/solomon-islands-eco-tourism/projects/coral-sea-foundation/">project profile</a></li>
+        <li>Uepi Island Resort, Marovo Lagoon: <a href="https://jeanbap.github.io/solomon-islands-eco-tourism/partners/uepi-island-resort/">partner spotlight</a></li>
+        <li>Solomon Islands marine biodiversity: <a href="https://jeanbap.github.io/solomon-islands-eco-tourism/marine-biodiversity/">reference page</a></li>
+      </ul>
+    </div>
+
+    <h2>How we chose what is on the map</h2>
+
+    <p>Two filters. First: every conservation area and restoration programme is officially gazetted, named in IUCN, UNESCO, or government registries, or is a community-managed area with at least one peer-reviewed citation or NGO operational record. Second: every lodge is on an island or on a coastal site reachable by short boat or charter flight, and is independently rated 5-star or boutique-eco-premium by widely-cited travel publications, dive media, or government tourism boards.</p>
+
+    <p>The Solomon Islands tier of premium tourism is small and intentional. There are no 50-villa Aman properties in the Western Province, and that is the point. The lodges below are the ones that exist, that operate, and that meet the brief.</p>
+
+    <h2>Solomon Islands lodges, by island group</h2>
+
+    <table class="list">
+      <thead>
+        <tr><th>Lodge</th><th>Island group / Province</th><th>Setting / Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">Uepi Island Resort</td><td class="country">Marovo Lagoon, Western Province</td><td>Private island on the Marovo Lagoon barrier reef [1]</td></tr>
+        <tr><td class="name">Tetepare Eco Lodge</td><td class="country">Tetepare Island, Western Province</td><td>Community-run, Tetepare Descendants' Association [2]</td></tr>
+        <tr><td class="name">Fatboys Resort</td><td class="country">Mbabanga Island, Vona Vona Lagoon, Western</td><td>Overwater bungalows, Vona Vona Lagoon [3]</td></tr>
+        <tr><td class="name">Sanbis Resort</td><td class="country">Lola Island, Vona Vona Lagoon, Western</td><td>Boutique resort on Lola Island [4]</td></tr>
+        <tr><td class="name">Zipolo Habu Resort</td><td class="country">Lola Island, Vona Vona Lagoon, Western</td><td>Boutique waterfront on Lola Island [5]</td></tr>
+        <tr><td class="name">Imagination Island</td><td class="country">Gizo, Western Province</td><td>Private island, short boat from Gizo [6]</td></tr>
+        <tr><td class="name">Oravae Cottage</td><td class="country">Gizo, Western Province</td><td>Family-run private island near Gizo [7]</td></tr>
+        <tr><td class="name">Agnes Gateway Hotel</td><td class="country">Munda, Western Province</td><td>Waterfront hotel at Munda, gateway to Roviana Lagoon [8]</td></tr>
+        <tr><td class="name">Munda Coastal Lodge</td><td class="country">Munda, Western Province</td><td>Boutique waterfront lodge at Munda [9]</td></tr>
+        <tr><td class="name">Tavanipupu Island Resort</td><td class="country">Marau Sound, Guadalcanal Province</td><td>Private island in Marau Sound, east Guadalcanal [10]</td></tr>
+        <tr><td class="name">Papatura Island Retreat</td><td class="country">Isabel Province</td><td>Private island, Santa Isabel north coast [11]</td></tr>
+        <tr><td class="name">Mavo Beach Resort</td><td class="country">Marau Sound, Guadalcanal Province</td><td>Beachfront lodge, eastern Guadalcanal [12]</td></tr>
+        <tr><td class="name">Solomon Kitano Mendana Hotel</td><td class="country">Honiara, Guadalcanal</td><td>Long-running 4-star, Honiara waterfront [13]</td></tr>
+        <tr><td class="name">Heritage Park Hotel</td><td class="country">Honiara, Guadalcanal</td><td>4-star, Honiara waterfront, Mendana Avenue [14]</td></tr>
+        <tr><td class="name">Coral Sea Resort and Casino</td><td class="country">Honiara, Guadalcanal</td><td>4-star, Honiara waterfront [15]</td></tr>
+        <tr><td class="name">Liapari Island Resort</td><td class="country">Liapari Island, Western Province</td><td>Boutique island lodge, north of Gizo [16]</td></tr>
+        <tr><td class="name">Sasavele Resort</td><td class="country">Roviana Lagoon, Western Province</td><td>Lagoon-side eco lodge, Roviana Lagoon [17]</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Solomon Islands marine conservation areas</h2>
+
+    <table class="list">
+      <thead>
+        <tr><th>Area</th><th>Province</th><th>Status / Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">East Rennell</td><td class="country">Rennell-Bellona</td><td>UNESCO World Heritage Site since 1998, Lake Tegano [18]</td></tr>
+        <tr><td class="name">Arnavon Community Marine Conservation Area</td><td class="country">Between Isabel and Choiseul</td><td>Community-managed since 1995 (TNC + community) [19]</td></tr>
+        <tr><td class="name">Tetepare Island Reserve</td><td class="country">Western Province</td><td>World's largest uninhabited tropical island, community-managed [2]</td></tr>
+        <tr><td class="name">Marovo Lagoon</td><td class="country">Western Province</td><td>UNESCO Tentative List, world's largest saltwater lagoon [20]</td></tr>
+        <tr><td class="name">Roviana and Vonavona Lagoon Marine Area</td><td class="country">Western Province</td><td>Community managed area, multiple village MPAs [21]</td></tr>
+        <tr><td class="name">Marau Sound community managed area</td><td class="country">Guadalcanal Province</td><td>Community managed marine area, eastern Guadalcanal [22]</td></tr>
+        <tr><td class="name">Choiseul Bay community MPAs</td><td class="country">Choiseul Province</td><td>Cluster of community managed MPAs, Choiseul south coast [23]</td></tr>
+        <tr><td class="name">Sandfly Passage / Florida Islands</td><td class="country">Central Province</td><td>Community managed marine area, Nggela group [24]</td></tr>
+        <tr><td class="name">Reef Islands community managed area</td><td class="country">Temotu Province</td><td>Community managed area, Reef Islands cluster [25]</td></tr>
+        <tr><td class="name">Pigeon Island and Santa Cruz waters</td><td class="country">Temotu Province</td><td>Community-managed marine zones, Santa Cruz group [26]</td></tr>
+        <tr><td class="name">Kavachi underwater volcano biological hotspot</td><td class="country">Western Province (Vangunu south)</td><td>Submarine volcano, sharks documented inside crater (NGS / NIWA) [27]</td></tr>
+        <tr><td class="name">Mai-Maasina Green Belt (coastal interface)</td><td class="country">Malaita Province</td><td>Indigenous community conservation network, terrestrial-marine interface [28]</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Active Solomon Islands restoration programmes paired with nearby lodges</h2>
+
+    <p>For each named Solomon Islands restoration or conservation programme below, the nearest premium-eco lodge is identified. In several cases the lodge runs or co-funds the programme directly. Travel times are calm-weather estimates; check with the lodge before booking.</p>
+
+    <table class="list">
+      <thead>
+        <tr><th>Restoration / conservation programme</th><th>Nearest premium-eco lodge</th><th>Travel time</th><th>Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">Tetepare Descendants' Association (turtle, dugong, ranger patrols)</td><td class="name">Tetepare Eco Lodge (community-run on the island)</td><td class="country">On site, Tetepare</td><td>[2] [29]</td></tr>
+        <tr><td class="name">Arnavon Community Marine Conservation Area (hawksbill turtle nesting)</td><td class="name">Papatura Island Retreat (Isabel north coast, ~3 hours by boat)</td><td class="country">~3 hours by boat from Papatura, weather dependent</td><td>[19] [11]</td></tr>
+        <tr><td class="name">Marovo Lagoon community-managed MPAs</td><td class="name">Uepi Island Resort (on the Marovo barrier reef)</td><td class="country">On site or short boat across the lagoon</td><td>[1] [20]</td></tr>
+        <tr><td class="name">Coral Sea Foundation reef monitoring + Sea Women of Melanesia</td><td class="name">Uepi Island Resort and Munda lodges (CSF runs trips out of both)</td><td class="country">Vessel-based, Marovo and Western Province sites</td><td>[30]</td></tr>
+        <tr><td class="name">Roviana Marine Conservation Programme (community led)</td><td class="name">Agnes Gateway Hotel and Munda Coastal Lodge (Munda)</td><td class="country">Same lagoon, walking + short boat</td><td>[21] [8] [9]</td></tr>
+        <tr><td class="name">WorldFish Solomon Islands community fisheries (Auki and Western Province sites)</td><td class="name">Sanbis / Zipolo Habu (Vona Vona) and Tavanipupu for east-Solomon sites</td><td class="country">Same province for each, short boat</td><td>[31]</td></tr>
+        <tr><td class="name">WWF Solomon Islands Western Province MPAs</td><td class="name">Fatboys, Sanbis, Zipolo Habu (Vona Vona), Imagination Island (Gizo)</td><td class="country">Within Vona Vona Lagoon, short boat</td><td>[32]</td></tr>
+        <tr><td class="name">Marau Sound community managed area</td><td class="name">Tavanipupu Island Resort (in the sound itself)</td><td class="country">On site, Marau Sound</td><td>[10] [22]</td></tr>
+        <tr><td class="name">East Rennell UNESCO World Heritage management</td><td class="name">No premium-eco lodge on Rennell. Honiara hotels plus charter flight to Tigoa</td><td class="country">Gap (no on-island premium lodge)</td><td>[18]</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Adjacent Pacific: Vanuatu</h2>
+
+    <table class="list">
+      <thead>
+        <tr><th>Lodge / Programme</th><th>Island / Province</th><th>Setting / Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">Ratua Private Island</td><td class="country">Espiritu Santo</td><td>Private island, off southern Espiritu Santo [33]</td></tr>
+        <tr><td class="name">The Havannah Vanuatu</td><td class="country">Efate</td><td>Adults-only, Havannah Harbour, Efate [34]</td></tr>
+        <tr><td class="name">Eratap Beach Resort</td><td class="country">Efate</td><td>Beachfront on Eratap peninsula, Efate [35]</td></tr>
+        <tr><td class="name">Bokissa Private Island Resort</td><td class="country">Espiritu Santo</td><td>Private island off southern Espiritu Santo [36]</td></tr>
+        <tr><td class="name">Iririki Island Resort</td><td class="country">Port Vila, Efate</td><td>Private island in Port Vila harbour [37]</td></tr>
+        <tr><td class="name">Aore Island Resort</td><td class="country">Espiritu Santo</td><td>Private island, off Luganville [38]</td></tr>
+        <tr><td class="name">Tranquility Island Eco Resort</td><td class="country">Moso Island, Efate</td><td>Off-grid eco lodge, Moso Island [39]</td></tr>
+        <tr><td class="name">Vanuatu Locally Managed Marine Areas (LMMA) network</td><td class="country">Multiple provinces</td><td>Network of community managed marine areas (SPC + Vanuatu Fisheries) [40]</td></tr>
+        <tr><td class="name">Vanuatu Environmental Science Society (VESS)</td><td class="country">Port Vila / Efate</td><td>Reef and turtle programmes; Wan Smolbag Turtle Monitors [41]</td></tr>
+        <tr><td class="name">Lamen Bay Dugong Sanctuary</td><td class="country">Epi Island</td><td>Community-led dugong protection, central Vanuatu [42]</td></tr>
+        <tr><td class="name">President Coolidge Marine Reserve</td><td class="country">Espiritu Santo</td><td>Wreck and reef, gazetted reserve, Luganville [43]</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Adjacent Pacific: Papua New Guinea</h2>
+
+    <table class="list">
+      <thead>
+        <tr><th>Lodge / Programme</th><th>Province / Region</th><th>Setting / Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">Walindi Plantation Resort</td><td class="country">Kimbe Bay, West New Britain</td><td>On Kimbe Bay, founded by Max and Cecilie Benjamin [44]</td></tr>
+        <tr><td class="name">Tufi Resort</td><td class="country">Tufi, Oro Province</td><td>Clifftop on the Tufi fjords, Cape Nelson [45]</td></tr>
+        <tr><td class="name">Tawali Dive Resort</td><td class="country">Milne Bay</td><td>Boutique dive lodge, Milne Bay [46]</td></tr>
+        <tr><td class="name">Lissenung Island Resort</td><td class="country">Kavieng, New Ireland</td><td>Tiny private island near Kavieng [47]</td></tr>
+        <tr><td class="name">Loloata Island Resort</td><td class="country">Bootless Bay, Port Moresby</td><td>Private island, short boat from Port Moresby [48]</td></tr>
+        <tr><td class="name">Doini Island Plantation Resort</td><td class="country">Milne Bay</td><td>Private island plantation lodge [49]</td></tr>
+        <tr><td class="name">Mahonia Na Dari Research and Conservation Centre</td><td class="country">Kimbe Bay, New Britain</td><td>Research and education NGO at Walindi [50]</td></tr>
+        <tr><td class="name">Walindi Foundation</td><td class="country">Kimbe Bay</td><td>Reef and ranger work, attached to Walindi Plantation Resort [44] [50]</td></tr>
+        <tr><td class="name">Conservation International Bismarck Sea programme</td><td class="country">Bismarck Sea (Manus, New Ireland, ENB)</td><td>Marine planning and community programmes [51]</td></tr>
+        <tr><td class="name">Tufi Reef coral programme</td><td class="country">Cape Nelson, Oro</td><td>Reef monitoring and small-scale restoration [45]</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Adjacent Pacific: Fiji</h2>
+
+    <table class="list">
+      <thead>
+        <tr><th>Lodge / Programme</th><th>Island / Group</th><th>Setting / Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">Laucala Island</td><td class="country">Northern Lau group</td><td>Private island, 25 villas across 3,500 acres [52]</td></tr>
+        <tr><td class="name">Vatuvara Private Islands</td><td class="country">Northern Lau group</td><td>Private island, four villas, Lau group [53]</td></tr>
+        <tr><td class="name">Royal Davui Island Resort</td><td class="country">Beqa Lagoon</td><td>Adults-only private island, Beqa Lagoon [54]</td></tr>
+        <tr><td class="name">Kokomo Private Island</td><td class="country">Yaukuvelevu, Kadavu group</td><td>Private island, 21 villas + 5 residences [55]</td></tr>
+        <tr><td class="name">Turtle Island Resort</td><td class="country">Yasawa group</td><td>Private island, 14 bures, all-inclusive [56]</td></tr>
+        <tr><td class="name">Tokoriki Island Resort</td><td class="country">Mamanuca group</td><td>Adults-only beachfront, Mamanucas [57]</td></tr>
+        <tr><td class="name">Yasawa Island Resort and Spa</td><td class="country">Yasawa Island</td><td>Northernmost Yasawa island [58]</td></tr>
+        <tr><td class="name">Six Senses Fiji</td><td class="country">Malolo Island, Mamanucas</td><td>Eco-luxury, Malolo Island [59]</td></tr>
+        <tr><td class="name">Likuliku Lagoon Resort</td><td class="country">Malolo Island, Mamanucas</td><td>Adults-only over-water bures, Mamanucas [60]</td></tr>
+        <tr><td class="name">Wakaya Club and Spa</td><td class="country">Wakaya, Lomaiviti</td><td>Private island, Lomaiviti group [61]</td></tr>
+        <tr><td class="name">Jean-Michel Cousteau Resort</td><td class="country">Vanua Levu</td><td>Beachfront eco resort with marine biology programme [62]</td></tr>
+        <tr><td class="name">Vatu-i-Ra Conservation Park</td><td class="country">Bligh Water, between Viti Levu and Vanua Levu</td><td>Community-managed MPA, established 2012 [63]</td></tr>
+        <tr><td class="name">Namena Marine Reserve</td><td class="country">Vanua Levu south coast</td><td>Community-managed MPA, established 1997 [64]</td></tr>
+        <tr><td class="name">Beqa Lagoon shark sanctuary</td><td class="country">Beqa Lagoon, Viti Levu south</td><td>Bull and tiger shark dive site, sanctuary status (Beqa Adventure Divers) [65]</td></tr>
+        <tr><td class="name">Mamanuca Environment Society reef restoration</td><td class="country">Mamanuca group</td><td>Coral nursery and reef monitoring across Mamanuca resorts [66]</td></tr>
+        <tr><td class="name">Coral Coast Conservation Center (CCCC)</td><td class="country">Coral Coast, Viti Levu</td><td>Community reef monitoring and outreach [67]</td></tr>
+        <tr><td class="name">Korolevu-i-wai Marine Protected Area</td><td class="country">Coral Coast, Viti Levu</td><td>Community managed MPA, Coral Coast villages [68]</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Adjacent Pacific: New Caledonia</h2>
+
+    <table class="list">
+      <thead>
+        <tr><th>Lodge / Programme</th><th>Region</th><th>Setting / Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">Lagoons of New Caledonia (UNESCO World Heritage)</td><td class="country">Six sites, total ~15,743 km²</td><td>UNESCO World Heritage since 2008, world's second-largest barrier reef [69]</td></tr>
+        <tr><td class="name">Le Méridien Île des Pins</td><td class="country">Île des Pins</td><td>Beachfront on Oro Bay, Île des Pins [70]</td></tr>
+        <tr><td class="name">Sheraton New Caledonia Deva Spa and Golf Resort</td><td class="country">Deva, Bourail (west coast)</td><td>5-star within the Deva nature reserve [71]</td></tr>
+        <tr><td class="name">Oure Lodge Beach Resort</td><td class="country">Île des Pins</td><td>Beach lodge on Kanumera Bay, Île des Pins [72]</td></tr>
+        <tr><td class="name">Hilton Noumea La Promenade Residences</td><td class="country">Noumea</td><td>Urban 5-star, Noumea Anse Vata bay [73]</td></tr>
+        <tr><td class="name">Natural Park of the Coral Sea (NPCS)</td><td class="country">EEZ-wide marine park</td><td>1.3 million km², gazetted 2014 (Government of New Caledonia) [74]</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Adjacent Pacific: Northern Australia</h2>
+
+    <table class="list">
+      <thead>
+        <tr><th>Lodge / Programme</th><th>Region</th><th>Setting / Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">Lizard Island Resort</td><td class="country">Northern Great Barrier Reef</td><td>Private island, GBR World Heritage Area [75]</td></tr>
+        <tr><td class="name">Hayman Island by InterContinental</td><td class="country">Whitsundays</td><td>Private island, north Whitsunday group [76]</td></tr>
+        <tr><td class="name">qualia Hamilton Island</td><td class="country">Whitsundays</td><td>Adults-only on Hamilton Island [77]</td></tr>
+        <tr><td class="name">Bedarra Island Resort</td><td class="country">Family Islands, North Queensland</td><td>Private island lodge, eight villas [78]</td></tr>
+        <tr><td class="name">Orpheus Island Lodge</td><td class="country">Palm Islands, North Queensland</td><td>Boutique island lodge, 14 rooms [79]</td></tr>
+        <tr><td class="name">Heron Island Resort</td><td class="country">Capricorn-Bunker group, Southern GBR</td><td>Coral cay resort within GBR Marine Park [80]</td></tr>
+        <tr><td class="name">Lady Elliot Island Eco Resort</td><td class="country">Southern GBR</td><td>Coral cay eco resort, Green Zone [81]</td></tr>
+        <tr><td class="name">Capella Lodge Lord Howe Island</td><td class="country">Lord Howe Island (UNESCO WH)</td><td>Boutique luxury, Lord Howe World Heritage area [82]</td></tr>
+        <tr><td class="name">Great Barrier Reef Marine Park</td><td class="country">QLD coast, ~344,400 km²</td><td>UNESCO World Heritage Site since 1981 (GBRMPA) [83]</td></tr>
+        <tr><td class="name">Reef Restoration and Adaptation Program (RRAP)</td><td class="country">GBR-wide</td><td>Federal research programme, AU$300M+ committed [84]</td></tr>
+        <tr><td class="name">Reef Restoration Foundation</td><td class="country">Cairns and Northern GBR</td><td>Community coral nursery and out-planting programme [85]</td></tr>
+        <tr><td class="name">Coral Nurture Program</td><td class="country">Tourism operator coral planting, GBR</td><td>Tourism-operator coral planting partnership (UTS + operators) [86]</td></tr>
+        <tr><td class="name">Lizard Island Research Station</td><td class="country">Lizard Island</td><td>Australian Museum field station, since 1973 [87]</td></tr>
+        <tr><td class="name">Heron Island Research Station</td><td class="country">Heron Island</td><td>University of Queensland field station [88]</td></tr>
+        <tr><td class="name">Lady Elliot Island reef monitoring</td><td class="country">Lady Elliot Island</td><td>Resort-supported manta ray and turtle research [81]</td></tr>
+        <tr><td class="name">Lord Howe Island Marine Park</td><td class="country">Lord Howe Island</td><td>Commonwealth + NSW marine park, UNESCO listed [82]</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Pacific neighbours: lodge + restoration pairings</h2>
+
+    <table class="list">
+      <thead>
+        <tr><th>Restoration / conservation programme</th><th>Nearest premium-eco lodge</th><th>Travel time</th><th>Source</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="name">Mahonia Na Dari + Walindi Foundation (Kimbe Bay)</td><td class="name">Walindi Plantation Resort</td><td class="country">On site, Kimbe Bay</td><td>[44] [50]</td></tr>
+        <tr><td class="name">Tufi Reef coral programme</td><td class="name">Tufi Resort</td><td class="country">On site</td><td>[45]</td></tr>
+        <tr><td class="name">Vanuatu LMMA network (Efate sites)</td><td class="name">The Havannah, Eratap Beach, Tranquility Island (Moso)</td><td class="country">Within Efate, short boat or drive</td><td>[40] [34] [35] [39]</td></tr>
+        <tr><td class="name">Lamen Bay Dugong Sanctuary, Epi</td><td class="name">No 5-star on Epi; Ratua + Bokissa (Espiritu Santo) reachable by inter-island flight + boat</td><td class="country">Gap (no on-island premium lodge on Epi)</td><td>[42]</td></tr>
+        <tr><td class="name">Vatu-i-Ra Conservation Park</td><td class="name">Volivoli Beach Resort (Rakiraki, mainland) and Wakaya Club + Jean-Michel Cousteau Resort within reach by boat / charter</td><td class="country">~1 to 2 hours by boat from Rakiraki coast</td><td>[63] [89]</td></tr>
+        <tr><td class="name">Namena Marine Reserve</td><td class="name">Jean-Michel Cousteau Resort (Vanua Levu)</td><td class="country">~2 hours by boat from Savusavu</td><td>[62] [64]</td></tr>
+        <tr><td class="name">Beqa Lagoon shark sanctuary</td><td class="name">Royal Davui Island Resort (in the lagoon)</td><td class="country">On site</td><td>[54] [65]</td></tr>
+        <tr><td class="name">Mamanuca Environment Society reef restoration</td><td class="name">Six Senses Fiji, Likuliku Lagoon, Tokoriki Island Resort</td><td class="country">Same Mamanuca group, short boat between resorts</td><td>[57] [59] [60] [66]</td></tr>
+        <tr><td class="name">Coral Coast Conservation Center + Korolevu-i-wai MPA</td><td class="name">Outrigger Fiji, Warwick Fiji, Naviti Resort (Coral Coast hotels)</td><td class="country">Same Coral Coast strip, walking + short drive</td><td>[67] [68]</td></tr>
+        <tr><td class="name">Lagoons of New Caledonia (UNESCO WH)</td><td class="name">Le Méridien Île des Pins (within the Southern Lagoon site)</td><td class="country">On site</td><td>[69] [70]</td></tr>
+        <tr><td class="name">Lizard Island Research Station</td><td class="name">Lizard Island Resort (sister site, walking distance)</td><td class="country">On site</td><td>[75] [87]</td></tr>
+        <tr><td class="name">Heron Island Research Station</td><td class="name">Heron Island Resort (sister site, walking distance)</td><td class="country">On site</td><td>[80] [88]</td></tr>
+        <tr><td class="name">Lady Elliot Island reef monitoring</td><td class="name">Lady Elliot Island Eco Resort (resort hosts the work)</td><td class="country">On site</td><td>[81]</td></tr>
+        <tr><td class="name">Reef Restoration Foundation, Cairns and Northern GBR</td><td class="name">Lizard Island Resort, Bedarra, Orpheus Island Lodge</td><td class="country">~1 to 3 hours by boat or charter from Cairns</td><td>[78] [79] [85]</td></tr>
+        <tr><td class="name">Coral Nurture Program (tourism operator out-planting)</td><td class="name">Lizard Island Resort and other GBR resorts that partner with operators</td><td class="country">Within resort dive radius</td><td>[86]</td></tr>
+        <tr><td class="name">Lord Howe Island Marine Park</td><td class="name">Capella Lodge Lord Howe Island</td><td class="country">On site</td><td>[82]</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Honest gaps</h2>
+
+    <ul>
+      <li><strong>East Rennell.</strong> UNESCO World Heritage Site, but no premium-eco lodge on the island. Charter flight from Honiara to Tigoa, then community guesthouses. Worth visiting; not yet served by the premium tier.</li>
+      <li><strong>Choiseul Bay community MPAs.</strong> No premium lodge on Choiseul. Nearest premium-eco access is via Western Province lodges on chartered boats.</li>
+      <li><strong>Reef Islands and Santa Cruz (Temotu).</strong> Some of the most undervisited reefs in the Pacific. No premium-eco lodge yet. Charter flights from Honiara required.</li>
+      <li><strong>Malaita.</strong> Mai-Maasina Green Belt is significant but tourism infrastructure is limited.</li>
+      <li><strong>Lamen Bay dugong sanctuary on Epi (Vanuatu).</strong> No premium lodge on Epi itself; access via inter-island flight from Port Vila.</li>
+      <li><strong>Bismarck Sea (PNG, Manus, New Ireland).</strong> Conservation programmes exist; premium accommodation outside Walindi, Lissenung, Tufi, and Loloata is sparse.</li>
+    </ul>
+
+    <p>Naming the gaps is part of the brief. The platform exists in part to develop premium-eco capacity in places that genuinely lack it.</p>
+
+    <h2>Why this map exists</h2>
+
+    <p>This map is the working reference behind the Solomon Islands Eco Tourism platform. It answers three operational questions at once. Where can a 5-star or boutique-eco traveller actually stay across the Solomons and the immediate Pacific? Which active marine conservation programmes can they meaningfully visit or support? And where do those two overlap inside an hour of road or boat travel?</p>
+
+    <p>It also names the gaps. There are island groups in the Solomons with significant conservation programmes and no premium accommodation within reach. Surfacing those is part of the platform's longer term mandate: helping owner-operators in the right places build the right kind of property.</p>
+
+    <a class="nav-back" href="https://jeanbap.github.io/solomon-islands-eco-tourism/blog/">Back to the blog</a>
+
+    <div class="disclaimer">
+      <strong>Coordinate accuracy.</strong> Pin positions are accurate to roughly the nearest 0.05 to 0.1 degree of latitude and longitude, sufficient for visual placement on the map. Do not use these coordinates for navigation, anchoring, or any safety-critical purpose. For trip planning, contact the property or programme management office to confirm precise location, access route, and current operating status before travelling. Some lodges and programmes operate seasonally and may be closed during cyclone season (broadly November to April in the southwest Pacific).
+    </div>
+
+    <div class="sources">
+      <h3>Sources</h3>
+      <ol>
+        <li>Uepi Island Resort public materials, Marovo Lagoon, Western Province, Solomon Islands. https://www.uepi.com</li>
+        <li>Tetepare Descendants' Association, public materials and TDA Eco Lodge. https://tetepare.org</li>
+        <li>Fatboys Resort public materials, Mbabanga Island, Vona Vona Lagoon. https://fatboysresort.com</li>
+        <li>Sanbis Resort public materials, Lola Island, Vona Vona Lagoon. https://sanbisresort.com</li>
+        <li>Zipolo Habu Resort public materials, Lola Island, Vona Vona Lagoon. https://zipolohabu.com.sb</li>
+        <li>Imagination Island public materials, near Gizo. https://www.imaginationisland.com</li>
+        <li>Oravae Cottage public materials, near Gizo. https://www.oravaecottage.com</li>
+        <li>Agnes Gateway Hotel public materials, Munda. https://www.agnesgateway.com</li>
+        <li>Munda Coastal Lodge public materials, Munda.</li>
+        <li>Tavanipupu Island Resort public materials, Marau Sound, Guadalcanal.</li>
+        <li>Papatura Island Retreat public materials, Isabel Province. https://www.papatura.com</li>
+        <li>Mavo Beach Resort public materials, Marau Sound, Guadalcanal.</li>
+        <li>Solomon Kitano Mendana Hotel public materials, Honiara.</li>
+        <li>Heritage Park Hotel public materials, Honiara. https://www.heritageparkhotel.com.sb</li>
+        <li>Coral Sea Resort and Casino public materials, Honiara. https://www.coralsearesort.com.sb</li>
+        <li>Liapari Island Resort public materials, north of Gizo, Western Province.</li>
+        <li>Sasavele Resort public materials, Roviana Lagoon, Western Province.</li>
+        <li>UNESCO World Heritage List, East Rennell (inscribed 1998). https://whc.unesco.org/en/list/854/</li>
+        <li>The Nature Conservancy, Arnavon Community Marine Conservation Area programme materials. https://www.nature.org/en-us/about-us/where-we-work/asia-pacific/solomon-islands/</li>
+        <li>UNESCO Tentative World Heritage List, Marovo Lagoon (submitted 2008). https://whc.unesco.org/en/tentativelists/5414/</li>
+        <li>Roviana and Vonavona Lagoon community managed area, WWF Solomon Islands and University of Queensland community programme materials.</li>
+        <li>Marau Sound community managed area, Solomon Islands Ministry of Environment, Climate Change, Disaster Management and Meteorology.</li>
+        <li>Choiseul Bay community MPAs, IUCN Pacific and Solomon Islands community materials.</li>
+        <li>Sandfly Passage / Florida Islands community managed area, Central Province community materials.</li>
+        <li>Reef Islands community managed area, Temotu Province community materials.</li>
+        <li>Pigeon Island and Santa Cruz waters community managed area, Temotu Province.</li>
+        <li>National Geographic Society and NIWA expeditions to Kavachi underwater volcano (Phinney et al., 2016, "Discovery of large communities of fish in the active crater of Kavachi", Oceanography 29(4)).</li>
+        <li>Mai-Maasina Green Belt, Malaita Province, Indigenous community conservation network. Public materials from Live and Learn Solomon Islands and SICCP.</li>
+        <li>Tetepare Descendants' Association turtle and dugong programme materials. https://tetepare.org/conservation/</li>
+        <li>Coral Sea Foundation, Sea Women of Melanesia, Solomon Islands and PNG public materials. https://www.coralseafoundation.org</li>
+        <li>WorldFish Solomon Islands programme materials, Auki Hub, Western Province community fisheries. https://www.worldfishcenter.org</li>
+        <li>WWF Solomon Islands programme materials, Western Province MPAs. https://wwf-pacific.org</li>
+        <li>Ratua Private Island public materials, Espiritu Santo, Vanuatu. https://www.ratua.com</li>
+        <li>The Havannah Vanuatu public materials, Efate. https://www.thehavannah.com</li>
+        <li>Eratap Beach Resort public materials, Efate. https://www.eratap.com</li>
+        <li>Bokissa Private Island Resort public materials, Espiritu Santo. https://www.bokissa.com</li>
+        <li>Iririki Island Resort public materials, Port Vila harbour, Efate. https://www.iririki.com</li>
+        <li>Aore Island Resort public materials, Espiritu Santo. https://www.aoreislandresort.com</li>
+        <li>Tranquility Island Eco Resort public materials, Moso Island, Efate. https://tranquillityisland.com</li>
+        <li>Pacific Community (SPC) and Vanuatu Department of Fisheries Locally Managed Marine Areas (LMMA) network materials. https://www.spc.int</li>
+        <li>Vanuatu Environmental Science Society programme materials. https://www.vess.org.vu</li>
+        <li>Lamen Bay Dugong Sanctuary, Epi Island, community programme materials.</li>
+        <li>President Coolidge Marine Reserve, Luganville, Espiritu Santo. Vanuatu Department of Environmental Protection and Conservation.</li>
+        <li>Walindi Plantation Resort public materials, Kimbe Bay, West New Britain. https://www.walindi.com</li>
+        <li>Tufi Resort public materials, Cape Nelson, Oro Province. https://www.tufiresort.com</li>
+        <li>Tawali Dive Resort public materials, Milne Bay. https://www.tawali.com</li>
+        <li>Lissenung Island Resort public materials, Kavieng, New Ireland. https://www.lissenung.com</li>
+        <li>Loloata Island Resort public materials, Bootless Bay, Port Moresby.</li>
+        <li>Doini Island Plantation Resort public materials, Milne Bay.</li>
+        <li>Mahonia Na Dari Research and Conservation Centre, Kimbe Bay, public materials. https://www.mahonianadari.org</li>
+        <li>Conservation International Bismarck Sea programme materials. https://www.conservation.org</li>
+        <li>Laucala Island public materials. https://www.laucala.com</li>
+        <li>Vatuvara Private Islands public materials, Lau group, Fiji. https://www.vatuvara.com</li>
+        <li>Royal Davui Island Resort public materials, Beqa Lagoon. https://www.royaldavui.com</li>
+        <li>Kokomo Private Island Fiji public materials, Yaukuvelevu. https://www.kokomoislandfiji.com</li>
+        <li>Turtle Island Resort public materials, Yasawa group. https://turtlefiji.com</li>
+        <li>Tokoriki Island Resort public materials, Mamanuca group. https://www.tokoriki.com</li>
+        <li>Yasawa Island Resort and Spa public materials. https://www.yasawa.com</li>
+        <li>Six Senses Fiji public materials, Malolo Island. https://www.sixsenses.com/fiji</li>
+        <li>Likuliku Lagoon Resort public materials, Mamanucas. https://www.likulikulagoon.com</li>
+        <li>Wakaya Club and Spa public materials, Wakaya Island, Lomaiviti. https://www.wakaya.com</li>
+        <li>Jean-Michel Cousteau Resort public materials, Savusavu, Vanua Levu. https://www.fijiresort.com</li>
+        <li>Vatu-i-Ra Conservation Park, Wildlife Conservation Society Fiji programme materials, established 2012. https://fiji.wcs.org</li>
+        <li>Namena Marine Reserve, Kubulau community managed marine area, Vanua Levu. https://fiji.wcs.org</li>
+        <li>Beqa Adventure Divers and Beqa Lagoon shark sanctuary materials. https://www.fijisharkdive.com</li>
+        <li>Mamanuca Environment Society reef restoration programme. https://www.mesfiji.org</li>
+        <li>Coral Coast Conservation Center, Coral Coast, Viti Levu. https://www.cccfiji.com</li>
+        <li>Korolevu-i-wai Marine Protected Area, Coral Coast community managed MPA, WCS Fiji.</li>
+        <li>UNESCO World Heritage List, Lagoons of New Caledonia: Reef Diversity and Associated Ecosystems (inscribed 2008). https://whc.unesco.org/en/list/1115/</li>
+        <li>Le Méridien Île des Pins public materials. https://www.marriott.com/en-us/hotels/nourd-le-meridien-ile-des-pins/</li>
+        <li>Sheraton New Caledonia Deva Spa and Golf Resort public materials. https://www.marriott.com/en-us/hotels/nounh-sheraton-new-caledonia-deva-spa-and-golf-resort/</li>
+        <li>Oure Lodge Beach Resort public materials, Île des Pins.</li>
+        <li>Hilton Noumea La Promenade Residences public materials.</li>
+        <li>Natural Park of the Coral Sea (NPCS), Government of New Caledonia, gazetted 2014. https://parc-marin.gouv.nc</li>
+        <li>Lizard Island Resort public materials, Northern Great Barrier Reef. https://www.lizardisland.com.au</li>
+        <li>Hayman Island by InterContinental public materials, Whitsundays. https://haymanisland.intercontinental.com</li>
+        <li>qualia public materials, Hamilton Island. https://www.qualia.com.au</li>
+        <li>Bedarra Island Resort public materials, Family Islands. https://www.bedarra.com.au</li>
+        <li>Orpheus Island Lodge public materials, Palm Islands. https://www.orpheus.com.au</li>
+        <li>Heron Island Resort public materials, Capricorn-Bunker group. https://www.heronisland.com</li>
+        <li>Lady Elliot Island Eco Resort public materials, Southern Great Barrier Reef. https://ladyelliot.com.au</li>
+        <li>Capella Lodge Lord Howe Island public materials, UNESCO World Heritage area. https://capellalodge.com.au</li>
+        <li>Great Barrier Reef Marine Park Authority (GBRMPA), public materials, UNESCO listed 1981. https://www2.gbrmpa.gov.au</li>
+        <li>Reef Restoration and Adaptation Program (RRAP), Australian Institute of Marine Science. https://gbrrestoration.org</li>
+        <li>Reef Restoration Foundation public materials, Cairns. https://www.reefrestorationfoundation.org</li>
+        <li>Coral Nurture Program, University of Technology Sydney and tourism operators. https://www.coralnurtureprogram.org</li>
+        <li>Lizard Island Research Station, Australian Museum, established 1973. https://australian.museum/learn/lirs/</li>
+        <li>Heron Island Research Station, University of Queensland. https://heron-island.uq.edu.au</li>
+        <li>Volivoli Beach Resort public materials, Rakiraki, gateway to Vatu-i-Ra. https://www.volivoli.com</li>
+      </ol>
+      <p style="margin-top:12px;color:var(--ink-soft);font-size:12px;">All entries on this map were cross-referenced with the relevant primary source listed above before inclusion. Operating status of any specific lodge or programme can change; readers should verify directly with the property or management office before relying on any pin for trip planning.</p>
+    </div>
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-brand">
+        <h5>Solomon<span class="dot">.</span> Eco</h5>
+        <p>A small, considered marketplace pairing affluent travellers with the world's most undervisited marine ecosystems and the people working to protect them.</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/#why">Why Solomon</a></li>
+          <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/#journeys">Journeys</a></li>
+          <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/#money">Where money goes</a></li>
+          <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/blog/">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>For partners</h5>
+        <ul>
+          <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/for-hotels/">For hotels</a></li>
+          <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/for-projects/">For conservation projects</a></li>
+          <li><a href="mailto:hello@solomonislandseco.example">Contact us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Reference</h5>
+        <ul>
+          <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/marine-biodiversity/">Marine biodiversity</a></li>
+          <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/impact-calculator/">Impact calculator</a></li>
+          <li><a href="https://jeanbap.github.io/solomon-islands-eco-tourism/partners/uepi-island-resort/">Uepi spotlight</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer-foot">
+      <div>© 2026 Solomon Islands Eco Tourism. All rights reserved.</div>
+      <div>Built with care, in conversation with the islands.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+  (function(){
+    var map = L.map('map', { scrollWheelZoom: false }).setView([-12.0, 162.0], 4);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    function dot(color, fill) {
+      return L.divIcon({
+        className: '',
+        html: '<div style="width:14px;height:14px;border-radius:50%;background:'+fill+';border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.35)"></div>',
+        iconSize: [14,14],
+        iconAnchor: [7,7],
+        popupAnchor: [0,-8]
+      });
+    }
+    var GREEN = dot('green','#0f8a82');
+    var GOLD  = dot('gold','#b9905a');
+    var CORAL = dot('coral','#e26d5c');
+
+    // Solomon Islands lodges
+    var HOTELS = [
+      ["Uepi Island Resort",          "Marovo Lagoon, Western Province", -8.42, 158.18, "Private island on the Marovo barrier reef."],
+      ["Tetepare Eco Lodge",          "Tetepare Island, Western Province", -8.78, 157.55, "Community-run, Tetepare Descendants' Association."],
+      ["Fatboys Resort",              "Mbabanga Island, Vona Vona, Western", -8.10, 156.84, "Overwater bungalows on Vona Vona Lagoon."],
+      ["Sanbis Resort",               "Lola Island, Vona Vona, Western", -8.20, 156.95, "Boutique resort on Lola Island."],
+      ["Zipolo Habu Resort",          "Lola Island, Vona Vona, Western", -8.21, 156.96, "Boutique waterfront on Lola Island."],
+      ["Imagination Island",          "Gizo, Western Province",         -8.10, 156.84, "Private island, short boat from Gizo."],
+      ["Oravae Cottage",              "Gizo, Western Province",         -8.11, 156.83, "Family-run private island near Gizo."],
+      ["Agnes Gateway Hotel",         "Munda, Western Province",        -8.32, 157.27, "Waterfront, gateway to Roviana Lagoon."],
+      ["Munda Coastal Lodge",         "Munda, Western Province",        -8.33, 157.27, "Boutique waterfront lodge at Munda."],
+      ["Tavanipupu Island Resort",    "Marau Sound, Guadalcanal",       -9.85, 160.83, "Private island in Marau Sound."],
+      ["Papatura Island Retreat",     "Isabel Province",                -7.43, 158.40, "Private island, Santa Isabel north coast."],
+      ["Mavo Beach Resort",           "Marau Sound, Guadalcanal",       -9.86, 160.85, "Beachfront lodge, eastern Guadalcanal."],
+      ["Solomon Kitano Mendana Hotel","Honiara, Guadalcanal",           -9.43, 159.96, "Long-running 4-star, Honiara waterfront."],
+      ["Heritage Park Hotel",         "Honiara, Guadalcanal",           -9.43, 159.97, "4-star, Honiara Mendana Avenue."],
+      ["Coral Sea Resort and Casino", "Honiara, Guadalcanal",           -9.43, 159.95, "4-star, Honiara waterfront."],
+      ["Liapari Island Resort",       "Liapari Island, Western Province", -8.05, 156.60, "Boutique island lodge, north of Gizo."],
+      ["Sasavele Resort",             "Roviana Lagoon, Western Province", -8.40, 157.55, "Lagoon-side eco lodge, Roviana."],
+      // Pacific neighbours
+      ["Ratua Private Island",        "Espiritu Santo, Vanuatu",       -15.55, 167.18, "Private island, southern Espiritu Santo."],
+      ["The Havannah Vanuatu",        "Efate, Vanuatu",                -17.58, 168.27, "Adults-only, Havannah Harbour."],
+      ["Eratap Beach Resort",         "Efate, Vanuatu",                -17.83, 168.40, "Beachfront, Eratap peninsula."],
+      ["Bokissa Private Island",      "Espiritu Santo, Vanuatu",       -15.59, 167.20, "Private island off Luganville."],
+      ["Iririki Island Resort",       "Port Vila, Efate, Vanuatu",     -17.74, 168.30, "Private island in Port Vila harbour."],
+      ["Aore Island Resort",          "Espiritu Santo, Vanuatu",       -15.58, 167.18, "Private island off Luganville."],
+      ["Tranquility Island Eco Resort","Moso Island, Efate, Vanuatu",  -17.55, 168.25, "Off-grid eco lodge, Moso Island."],
+      ["Walindi Plantation Resort",   "Kimbe Bay, New Britain, PNG",    -5.55, 150.10, "On Kimbe Bay, founded by the Benjamins."],
+      ["Tufi Resort",                 "Cape Nelson, Oro Province, PNG", -9.10, 149.32, "Clifftop on the Tufi fjords."],
+      ["Tawali Dive Resort",          "Milne Bay, PNG",                -10.20, 150.65, "Boutique dive lodge, Milne Bay."],
+      ["Lissenung Island Resort",     "Kavieng, New Ireland, PNG",     -2.62, 150.78, "Tiny private island near Kavieng."],
+      ["Loloata Island Resort",       "Port Moresby, PNG",             -9.55, 147.27, "Private island, short boat from Port Moresby."],
+      ["Doini Island Plantation",     "Milne Bay, PNG",               -10.70, 150.70, "Private island plantation lodge."],
+      ["Laucala Island",              "Northern Lau, Fiji",            -16.75, -179.65, "Private island, 25 villas, 3,500 acres."],
+      ["Vatuvara Private Islands",    "Northern Lau, Fiji",            -17.32, -179.32, "Private island, four villas."],
+      ["Royal Davui Island",          "Beqa Lagoon, Fiji",             -18.45, 178.18, "Adults-only private island."],
+      ["Kokomo Private Island",       "Kadavu group, Fiji",            -19.05, 178.57, "21 villas + 5 residences, Yaukuvelevu."],
+      ["Turtle Island Resort",        "Yasawa group, Fiji",            -16.95, 177.36, "14 bures, all-inclusive."],
+      ["Tokoriki Island Resort",      "Mamanucas, Fiji",               -17.50, 177.05, "Adults-only beachfront."],
+      ["Yasawa Island Resort and Spa","Yasawa Island, Fiji",           -16.78, 177.40, "Northernmost Yasawa."],
+      ["Six Senses Fiji",             "Malolo Island, Fiji",           -17.78, 177.20, "Eco-luxury, Mamanucas."],
+      ["Likuliku Lagoon Resort",      "Malolo Lailai, Fiji",           -17.77, 177.18, "Adults-only over-water bures."],
+      ["Wakaya Club and Spa",         "Wakaya, Lomaiviti, Fiji",       -17.62, 179.00, "Private island, Lomaiviti."],
+      ["Jean-Michel Cousteau Resort", "Savusavu, Vanua Levu, Fiji",    -16.78, 179.32, "Beachfront eco resort, marine biology programme."],
+      ["Le Méridien Île des Pins",    "Île des Pins, New Caledonia",   -22.62, 167.45, "Beachfront on Oro Bay."],
+      ["Sheraton Deva NC",            "Bourail, New Caledonia",        -21.48, 165.30, "5-star within Deva nature reserve."],
+      ["Oure Lodge Beach Resort",     "Île des Pins, New Caledonia",   -22.65, 167.40, "Beach lodge, Kanumera Bay."],
+      ["Hilton Noumea La Promenade",  "Noumea, New Caledonia",         -22.30, 166.45, "Urban 5-star, Anse Vata."],
+      ["Lizard Island Resort",        "Northern GBR, Australia",       -14.67, 145.45, "Private island, GBR World Heritage."],
+      ["Hayman Island InterContinental","Whitsundays, Australia",      -20.05, 148.88, "Private island, north Whitsundays."],
+      ["qualia Hamilton Island",      "Whitsundays, Australia",        -20.35, 148.95, "Adults-only on Hamilton Island."],
+      ["Bedarra Island Resort",       "Family Islands, Australia",     -18.00, 146.10, "Private island, eight villas."],
+      ["Orpheus Island Lodge",        "Palm Islands, Australia",       -18.62, 146.48, "Boutique island lodge, 14 rooms."],
+      ["Heron Island Resort",         "Capricorn-Bunker, Australia",   -23.44, 151.91, "Coral cay resort within GBR Marine Park."],
+      ["Lady Elliot Island Eco Resort","Southern GBR, Australia",      -24.11, 152.71, "Coral cay eco resort, Green Zone."],
+      ["Capella Lodge Lord Howe",     "Lord Howe Island, Australia",   -31.55, 159.07, "Boutique luxury, UNESCO Lord Howe."]
+    ];
+
+    var MPAS = [
+      ["East Rennell",                       "Solomon Islands (Rennell)",   -11.65, 160.30, "UNESCO WH since 1998, Lake Tegano."],
+      ["Arnavon Community MCA",              "Solomon Islands (Isabel/Choiseul)", -7.42, 158.05, "Community managed since 1995 (TNC + community)."],
+      ["Tetepare Island Reserve",            "Solomon Islands (Western)",    -8.75, 157.55, "World's largest uninhabited tropical island."],
+      ["Marovo Lagoon",                      "Solomon Islands (Western)",    -8.45, 158.15, "UNESCO Tentative List, world's largest saltwater lagoon."],
+      ["Roviana / Vonavona Lagoon area",     "Solomon Islands (Western)",    -8.30, 157.40, "Multiple village MPAs."],
+      ["Marau Sound managed area",           "Solomon Islands (Guadalcanal)",-9.85, 160.85, "Community managed marine area."],
+      ["Choiseul Bay community MPAs",        "Solomon Islands (Choiseul)",   -7.00, 156.80, "Cluster of community managed MPAs."],
+      ["Sandfly Passage / Florida Islands",  "Solomon Islands (Central)",    -9.10, 160.00, "Nggela community managed marine area."],
+      ["Reef Islands managed area",          "Solomon Islands (Temotu)",    -10.20, 166.20, "Reef Islands cluster."],
+      ["Pigeon Island / Santa Cruz waters",  "Solomon Islands (Temotu)",    -10.75, 165.85, "Santa Cruz group community MPAs."],
+      ["Kavachi underwater volcano",         "Solomon Islands (Western)",    -8.99, 157.97, "Submarine volcano biological hotspot."],
+      ["Mai-Maasina Green Belt",             "Solomon Islands (Malaita)",    -8.85, 161.10, "Indigenous community conservation network."],
+      ["Vatu-i-Ra Conservation Park",        "Fiji (Bligh Water)",          -17.30, 178.55, "Community managed MPA, est 2012."],
+      ["Namena Marine Reserve",              "Fiji (Vanua Levu)",           -17.10, 179.10, "Community MPA, est 1997."],
+      ["Beqa Lagoon shark sanctuary",        "Fiji (Beqa)",                 -18.40, 178.13, "Bull and tiger shark sanctuary."],
+      ["Korolevu-i-wai MPA",                 "Fiji (Coral Coast)",          -18.20, 177.83, "Community managed, Coral Coast."],
+      ["Lagoons of New Caledonia (UNESCO)",  "New Caledonia",               -22.10, 165.40, "UNESCO WH, six sites, ~15,743 km²."],
+      ["Natural Park of the Coral Sea",      "New Caledonia EEZ",           -20.00, 162.00, "1.3 million km² marine park, 2014."],
+      ["Great Barrier Reef Marine Park",     "Australia (QLD)",             -18.00, 147.00, "UNESCO WH since 1981 (GBRMPA)."],
+      ["Lord Howe Island Marine Park",       "Australia (NSW/Cwlth)",       -31.55, 159.10, "Commonwealth + NSW marine park."],
+      ["President Coolidge Marine Reserve",  "Vanuatu (Espiritu Santo)",    -15.53, 167.20, "Wreck and reef gazetted reserve."]
+    ];
+
+    var RESTORE = [
+      // Solomon Islands
+      ["Tetepare Descendants' Association",         "Solomon Islands (Western)", -8.78, 157.55, "Turtle, dugong, ranger patrols."],
+      ["Arnavon Community MCA hawksbill programme", "Solomon Islands (Isabel)",  -7.42, 158.05, "Hawksbill turtle nesting protection (TNC + community)."],
+      ["Coral Sea Foundation, Sea Women of Melanesia","Solomon Islands (Western)", -8.40, 158.10, "Reef monitoring + women in marine science."],
+      ["Marovo Lagoon community MPAs management",   "Solomon Islands (Western)", -8.46, 158.16, "Village-level reef management."],
+      ["Roviana Marine Conservation Programme",     "Solomon Islands (Western)", -8.31, 157.27, "Community led, Roviana Lagoon."],
+      ["WorldFish Solomon Islands",                 "Solomon Islands (Auki + Western)", -8.77, 160.71, "Community based fisheries."],
+      ["WWF Solomon Islands Western Province MPAs", "Solomon Islands (Western)", -8.10, 156.85, "Vona Vona + Gizo MPAs."],
+      ["Marau Sound community managed area mgmt",   "Solomon Islands (Guadalcanal)", -9.85, 160.85, "Marine resource management."],
+      ["Reef Explorer Solomon Islands",             "Solomon Islands (Western)", -8.30, 157.20, "Community reef monitoring."],
+      // Pacific neighbours
+      ["Mahonia Na Dari Research Centre",           "PNG (Kimbe Bay)",            -5.55, 150.10, "Research and education NGO at Walindi."],
+      ["Walindi Foundation",                        "PNG (Kimbe Bay)",            -5.56, 150.12, "Reef and ranger work, attached to Walindi resort."],
+      ["Conservation International Bismarck Sea",   "PNG (Bismarck Sea)",         -3.50, 149.50, "Marine planning + community programmes."],
+      ["Tufi Reef coral programme",                 "PNG (Cape Nelson)",          -9.12, 149.33, "Reef monitoring + small-scale restoration."],
+      ["Vanuatu LMMA network",                      "Vanuatu (multiple)",        -16.50, 168.00, "Community managed marine area network."],
+      ["Vanuatu Environmental Science Society",     "Vanuatu (Efate)",           -17.74, 168.31, "Reef and turtle programmes."],
+      ["Lamen Bay Dugong Sanctuary",                "Vanuatu (Epi)",             -16.60, 168.15, "Community-led dugong protection."],
+      ["Vatu-i-Ra Conservation Park (WCS Fiji)",    "Fiji (Bligh Water)",        -17.31, 178.56, "Active community managed MPA."],
+      ["Namena Marine Reserve (WCS Fiji)",          "Fiji (Vanua Levu)",         -17.11, 179.11, "Active community managed MPA."],
+      ["Beqa Adventure Divers shark conservation",  "Fiji (Beqa Lagoon)",        -18.41, 178.14, "Shark sanctuary monitoring."],
+      ["Mamanuca Environment Society",              "Fiji (Mamanucas)",          -17.60, 177.10, "Coral nursery + reef monitoring across Mamanuca resorts."],
+      ["Coral Coast Conservation Center",           "Fiji (Coral Coast)",        -18.20, 177.83, "Community reef monitoring + outreach."],
+      ["Reef Restoration and Adaptation Program",   "Australia (GBR-wide)",      -18.50, 147.20, "Federal research programme, AU$300M+ committed."],
+      ["Reef Restoration Foundation, Cairns",       "Australia (Northern GBR)",  -16.70, 145.80, "Community coral nursery + outplanting."],
+      ["Coral Nurture Program (UTS + operators)",   "Australia (GBR)",           -16.90, 146.00, "Tourism operator coral planting."],
+      ["Lizard Island Research Station",            "Australia (Lizard Island)", -14.68, 145.46, "Australian Museum field station, since 1973."],
+      ["Heron Island Research Station",             "Australia (Heron Island)",  -23.45, 151.92, "University of Queensland field station."],
+      ["Lady Elliot Island reef monitoring",        "Australia (Lady Elliot)",   -24.12, 152.72, "Resort-supported manta and turtle research."]
+    ];
+
+    function addMarkers(arr, icon){
+      arr.forEach(function(r){
+        var name=r[0], country=r[1], lat=r[2], lng=r[3], note=r[4];
+        var html = '<strong>'+name+'</strong><br><span style="color:#666;font-size:12px">'+country+'</span><br><span style="font-size:13px">'+note+'</span>';
+        L.marker([lat,lng],{icon:icon,title:name}).addTo(map).bindPopup(html);
+      });
+    }
+    addMarkers(MPAS, GREEN);
+    addMarkers(HOTELS, GOLD);
+    addMarkers(RESTORE, CORAL);
+
+    var all = MPAS.concat(HOTELS).concat(RESTORE).map(function(r){ return [r[2], r[3]]; });
+    map.fitBounds(L.latLngBounds(all), { padding: [40,40] });
+  })();
+</script>
+</body>
+</html>

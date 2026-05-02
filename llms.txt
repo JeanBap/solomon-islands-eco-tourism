@@ -1,18 +1,24 @@
 # Solomon Islands Eco Tourism
 
-> Marketplace pairing affluent purpose-driven travellers with 5-star Solomon Islands eco lodges and active marine conservation projects. Premium 4 to 7 day journeys. Every booking funds reef restoration.
+> A small, considered marketplace pairing affluent purpose-driven travellers with 5-star Solomon Islands eco lodges and active marine conservation projects. Premium 4 to 7 day journeys. Every booking funds reef restoration.
 
 ## Positioning
 Work. Learn. Restore.
 
+## What we do
+We curate 4 to 7 day journeys that pair stays at 5-star eco lodges with hands-on marine conservation work alongside partner projects. Reef survey, coral planting, mangrove planting, marine debris removal. Every booking includes a per-booking impact report.
+
+## Where we operate
+Honiara, Munda, Gizo, Kolombangara, Marovo Lagoon, Isabel.
+
 ## Pricing
-$2,500 to $5,000 per guest, all-inclusive of accommodation, conservation experience, inter-island transport, concierge.
+Packages range from $2,500 to $5,000 per guest, all-inclusive of accommodation, conservation experience, inter-island transport, and concierge. Flights to Honiara and traveller insurance are not included.
 
 ## How money is split
 On a typical $2,500 package: platform 30% ($750), hotel margin 12% ($300), conservation project share 20% of experience fees ($500), accommodation pass-through $1,200, transport pass-through $50.
 
 ## Cancellation
-60+ days: 90% refund. 30 to 60 days: 50%. 15 to 30 days: 25%. Under 15 days: 0% refund except medical or force majeure.
+60+ days: 90% refund. 30 to 60 days: 50%. 15 to 30 days: 25%. Under 15 days: 0% refund except medical or force majeure (experience fees refunded).
 
 ## Insurance
 Comprehensive traveller insurance covering medical evacuation is required at booking.
@@ -21,14 +27,15 @@ Comprehensive traveller insurance covering medical evacuation is required at boo
 hello@solomonislandseco.example
 
 ## Site map
-- Home (for travellers): https://jeanbap.github.io/solomon-islands-eco-tourism/
-- For hotels (B2B partnership pitch): https://jeanbap.github.io/solomon-islands-eco-tourism/for-hotels/
-- For conservation projects (B2B partnership pitch): https://jeanbap.github.io/solomon-islands-eco-tourism/for-projects/
+- Home: https://jeanbap.github.io/solomon-islands-eco-tourism/
 - Blog index: https://jeanbap.github.io/solomon-islands-eco-tourism/blog/
-- Blog: SE Asia marine + 5-star island lodges map: https://jeanbap.github.io/solomon-islands-eco-tourism/blog/southeast-asia-marine-map/
-- Marine biodiversity reference: https://jeanbap.github.io/solomon-islands-eco-tourism/marine-biodiversity/
-- Impact calculator: https://jeanbap.github.io/solomon-islands-eco-tourism/impact-calculator/
-- Project profile, Tetepare Descendants Association: https://jeanbap.github.io/solomon-islands-eco-tourism/projects/tetepare-descendants-association/
-- Project profile, Arnavon Community Marine Conservation Area: https://jeanbap.github.io/solomon-islands-eco-tourism/projects/arnavon-community-marine-conservation-area/
-- Project profile, Coral Sea Foundation: https://jeanbap.github.io/solomon-islands-eco-tourism/projects/coral-sea-foundation/
-- Partner spotlight, Uepi Island Resort: https://jeanbap.github.io/solomon-islands-eco-tourism/partners/uepi-island-resort/
+- Field guide: Solomon Islands and Pacific neighbours, marine restoration + premium-eco lodges, mapped: https://jeanbap.github.io/solomon-islands-eco-tourism/blog/solomon-pacific-map/
+- Field guide: Southeast Asia, marine projects + 5-star island lodges, mapped: https://jeanbap.github.io/solomon-islands-eco-tourism/blog/southeast-asia-marine-map/
+- Marine biodiversity background: https://jeanbap.github.io/solomon-islands-eco-tourism/marine-biodiversity
+- Impact calculator: https://jeanbap.github.io/solomon-islands-eco-tourism/impact-calculator
+- For hotels (B2B pitch): https://jeanbap.github.io/solomon-islands-eco-tourism/for-hotels/
+- For projects (B2B pitch): https://jeanbap.github.io/solomon-islands-eco-tourism/for-projects/
+- Project: Tetepare Descendants Association: https://jeanbap.github.io/solomon-islands-eco-tourism/projects/tetepare-descendants-association
+- Project: Arnavon Community Marine Conservation Area: https://jeanbap.github.io/solomon-islands-eco-tourism/projects/arnavon-community-marine-conservation-area
+- Project: Coral Sea Foundation: https://jeanbap.github.io/solomon-islands-eco-tourism/projects/coral-sea-foundation
+- Partner: Uepi Island Resort: https://jeanbap.github.io/solomon-islands-eco-tourism/partners/uepi-island-resort
