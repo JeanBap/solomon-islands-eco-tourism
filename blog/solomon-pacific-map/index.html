@@ -99,11 +99,22 @@
     .filter-actions{margin-left:6px}
   }
 
-  table.list{width:100%;border-collapse:collapse;margin:18px 0 28px;font-size:14px}
-  table.list th,table.list td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  .table-wrap{width:100%;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:18px 0 28px;box-sizing:border-box;border:1px solid var(--line);border-radius:6px;background:#fff}
+  .table-wrap::-webkit-scrollbar{height:6px}
+  .table-wrap::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+  table.list{width:100%;max-width:100%;border-collapse:collapse;margin:0;font-size:14px;box-sizing:border-box;table-layout:fixed}
+  table.list th,table.list td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;word-wrap:break-word;overflow-wrap:anywhere}
   table.list th{background:var(--sand);font-weight:600;color:var(--ink-deep);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
-  table.list td.country{white-space:nowrap;color:var(--ink-soft);font-size:13px}
+  table.list td.country{color:var(--ink-soft);font-size:13px}
   table.list td.name{font-weight:600}
+  /* Three-column tables: 38% / 28% / 34%. Four-column tables: 30% / 28% / 22% / 20%. */
+  table.list col.c1{width:38%}
+  table.list col.c2{width:28%}
+  table.list col.c3{width:34%}
+  @media(max-width:760px){
+    table.list{font-size:13px}
+    table.list th,table.list td{padding:8px 10px}
+  }
 
   .sources{background:#f9f6ed;border:1px solid var(--line);border-radius:6px;padding:24px;margin-top:36px;font-size:14px}
   .sources h3{margin:0 0 10px;font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
@@ -232,6 +243,7 @@
 
     <h2>Solomon Islands lodges, by island group</h2>
 
+    <div class="table-wrap">
     <table class="list">
       <thead>
         <tr><th>Lodge</th><th>Island group / Province</th><th>Setting / Source</th></tr>
@@ -259,9 +271,11 @@
         <tr><td class="name">Maravagi Resort</td><td class="country">Mangalonga Island, Florida Islands</td><td>Boutique island lodge, Sandfly Passage area [99]</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>Solomon Islands marine conservation areas</h2>
 
+    <div class="table-wrap">
     <table class="list">
       <thead>
         <tr><th>Area</th><th>Province</th><th>Status / Source</th></tr>
@@ -281,11 +295,13 @@
         <tr><td class="name">Mai-Maasina Green Belt (coastal interface)</td><td class="country">Malaita Province</td><td>Indigenous community conservation network, terrestrial-marine interface [28]</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>Active Solomon Islands restoration programmes paired with nearby lodges</h2>
 
     <p>For each named Solomon Islands restoration or conservation programme below, the nearest premium-eco lodge is identified. In several cases the lodge runs or co-funds the programme directly. Travel times are calm-weather estimates; check with the lodge before booking.</p>
 
+    <div class="table-wrap">
     <table class="list">
       <thead>
         <tr><th>Restoration / conservation programme</th><th>Nearest premium-eco lodge</th><th>Travel time</th><th>Source</th></tr>
@@ -307,9 +323,11 @@
         <tr><td class="name">Lauru Land Conference of Tribal Communities (Choiseul community network)</td><td class="name">Gap, no premium lodge on Choiseul. Western Province lodges via boat charter</td><td class="country">Gap (no on-island premium lodge)</td><td>[105]</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>Adjacent Pacific: Vanuatu</h2>
 
+    <div class="table-wrap">
     <table class="list">
       <thead>
         <tr><th>Lodge / Programme</th><th>Island / Province</th><th>Setting / Source</th></tr>
@@ -336,9 +354,11 @@
         <tr><td class="name">Hideaway Island Marine Sanctuary</td><td class="country">Mele Bay, Efate</td><td>Marine sanctuary attached to Hideaway Island Resort [107]</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>Adjacent Pacific: Papua New Guinea</h2>
 
+    <div class="table-wrap">
     <table class="list">
       <thead>
         <tr><th>Lodge / Programme</th><th>Province / Region</th><th>Setting / Source</th></tr>
@@ -361,9 +381,11 @@
         <tr><td class="name">Coral Sea Foundation, Sea Women of Melanesia (PNG sites)</td><td class="country">Milne Bay, New Ireland, ENB</td><td>Reef monitoring + women in marine science (CSF works across Solomons + PNG) [30]</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>Adjacent Pacific: Fiji</h2>
 
+    <div class="table-wrap">
     <table class="list">
       <thead>
         <tr><th>Lodge / Programme</th><th>Island / Group</th><th>Setting / Source</th></tr>
@@ -404,9 +426,11 @@
         <tr><td class="name">Save Our Seas Foundation Fiji programmes</td><td class="country">Multiple sites</td><td>Shark and reef research, multiple Fiji partners [131]</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>Adjacent Pacific: New Caledonia</h2>
 
+    <div class="table-wrap">
     <table class="list">
       <thead>
         <tr><th>Lodge / Programme</th><th>Region</th><th>Setting / Source</th></tr>
@@ -425,9 +449,11 @@
         <tr><td class="name">Conservation Internationale Nouvelle-Calédonie programme</td><td class="country">Multiple sites</td><td>Marine planning + community programmes, NC [135]</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>Adjacent Pacific: Northern Australia</h2>
 
+    <div class="table-wrap">
     <table class="list">
       <thead>
         <tr><th>Lodge / Programme</th><th>Region</th><th>Setting / Source</th></tr>
@@ -461,9 +487,11 @@
         <tr><td class="name">Lady Musgrave Experience</td><td class="country">Capricorn-Bunker</td><td>Tourism-operator reef restoration partnership, Lady Musgrave Island [145]</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>Polynesia east: French Polynesia (Tahiti, Bora Bora, Moorea, Tuamotus, Marquesas)</h2>
 
+    <div class="table-wrap">
     <table class="list">
       <thead>
         <tr><th>Lodge / Programme</th><th>Island / Group</th><th>Setting / Source</th></tr>
@@ -491,9 +519,11 @@
         <tr><td class="name">French Polynesia Marine Educational Reserves</td><td class="country">Multiple atolls</td><td>Government-managed Educational Marine Areas (PEM) [165]</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>Polynesia: Cook Islands</h2>
 
+    <div class="table-wrap">
     <table class="list">
       <thead>
         <tr><th>Lodge / Programme</th><th>Island</th><th>Setting / Source</th></tr>
@@ -509,9 +539,11 @@
         <tr><td class="name">Cook Islands Turtle Project</td><td class="country">Multiple islands</td><td>Pacific Islands Conservation Initiative, since 2009 [173]</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>Polynesia: Tonga</h2>
 
+    <div class="table-wrap">
     <table class="list">
       <thead>
         <tr><th>Lodge / Programme</th><th>Island</th><th>Setting / Source</th></tr>
@@ -526,9 +558,11 @@
         <tr><td class="name">Hihifo Marine Reserve</td><td class="country">Tongatapu</td><td>Community managed marine reserve [180]</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>Polynesia: Samoa, American Samoa, Niue</h2>
 
+    <div class="table-wrap">
     <table class="list">
       <thead>
         <tr><th>Lodge / Programme</th><th>Country / Region</th><th>Setting / Source</th></tr>
@@ -547,9 +581,11 @@
         <tr><td class="name">Niue Oceanwide Conservation Trust</td><td class="country">Niue</td><td>Marine conservation trust, established with Tofia Niue, 2017 [191]</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>Micronesia: Palau, FSM, Marshall Islands, Kiribati</h2>
 
+    <div class="table-wrap">
     <table class="list">
       <thead>
         <tr><th>Lodge / Programme</th><th>Country / Region</th><th>Setting / Source</th></tr>
@@ -576,11 +612,13 @@
         <tr><td class="name">Palau Conservation Society</td><td class="country">Palau</td><td>Local NGO, marine and terrestrial programmes [210]</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>Coral Triangle west: Indonesia (Bali, Komodo, Sumba, Lombok and beyond)</h2>
 
     <p>For the comprehensive Indonesia and Philippines coverage including Raja Ampat, Wakatobi, Bunaken, Phuket-onwards across all of Southeast Asia, see also the <a href="https://jeanbap.github.io/solomon-islands-eco-tourism/blog/southeast-asia-marine-map/">Southeast Asia map</a>. This section adds the Indonesian and Philippine premium-eco lodges beyond what is on that map, and the restoration programmes specific to them.</p>
 
+    <div class="table-wrap">
     <table class="list">
       <thead>
         <tr><th>Lodge / Programme</th><th>Island / Region</th><th>Setting / Source</th></tr>
@@ -611,9 +649,11 @@
         <tr><td class="name">Yayasan Penyu Indonesia (Indonesian Sea Turtle Foundation)</td><td class="country">Indonesia (multi-province)</td><td>National turtle conservation network [233]</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>Coral Triangle west: Philippines (additional lodges and restoration NGOs)</h2>
 
+    <div class="table-wrap">
     <table class="list">
       <thead>
         <tr><th>Lodge / Programme</th><th>Island / Region</th><th>Setting / Source</th></tr>
@@ -643,11 +683,13 @@
         <tr><td class="name">Sulu-Sulawesi Marine Ecoregion programme</td><td class="country">Philippines / Indonesia / Malaysia</td><td>Tri-national WWF marine programme [255]</td></tr>
       </tbody>
     </table>
+    </div>
 
     <h2>Region-wide restoration and conservation NGOs</h2>
 
     <p>The cross-border NGOs that work across multiple countries listed above. Each one is a useful starting point if you are trying to find which programmes are operating where and which lodges support them.</p>
 
+    <div class="table-wrap">
     <table class="list">
       <thead>
         <tr><th>NGO / Programme</th><th>Geography</th><th>Focus / Source</th></tr>
@@ -670,32 +712,7 @@
         <tr><td class="name">Pacific Whale Foundation</td><td class="country">Pacific (Hawaii HQ, work in Australia + region)</td><td>Cetacean research and citizen science [269]</td></tr>
       </tbody>
     </table>
-
-    <h2>Pacific neighbours: lodge + restoration pairings</h2>
-
-    <table class="list">
-      <thead>
-        <tr><th>Restoration / conservation programme</th><th>Nearest premium-eco lodge</th><th>Travel time</th><th>Source</th></tr>
-      </thead>
-      <tbody>
-        <tr><td class="name">Mahonia Na Dari + Walindi Foundation (Kimbe Bay)</td><td class="name">Walindi Plantation Resort</td><td class="country">On site, Kimbe Bay</td><td>[44] [50]</td></tr>
-        <tr><td class="name">Tufi Reef coral programme</td><td class="name">Tufi Resort</td><td class="country">On site</td><td>[45]</td></tr>
-        <tr><td class="name">Vanuatu LMMA network (Efate sites)</td><td class="name">The Havannah, Eratap Beach, Tranquility Island (Moso)</td><td class="country">Within Efate, short boat or drive</td><td>[40] [34] [35] [39]</td></tr>
-        <tr><td class="name">Lamen Bay Dugong Sanctuary, Epi</td><td class="name">No 5-star on Epi; Ratua + Bokissa (Espiritu Santo) reachable by inter-island flight + boat</td><td class="country">Gap (no on-island premium lodge on Epi)</td><td>[42]</td></tr>
-        <tr><td class="name">Vatu-i-Ra Conservation Park</td><td class="name">Volivoli Beach Resort (Rakiraki, mainland) and Wakaya Club + Jean-Michel Cousteau Resort within reach by boat / charter</td><td class="country">~1 to 2 hours by boat from Rakiraki coast</td><td>[63] [89]</td></tr>
-        <tr><td class="name">Namena Marine Reserve</td><td class="name">Jean-Michel Cousteau Resort (Vanua Levu)</td><td class="country">~2 hours by boat from Savusavu</td><td>[62] [64]</td></tr>
-        <tr><td class="name">Beqa Lagoon shark sanctuary</td><td class="name">Royal Davui Island Resort (in the lagoon)</td><td class="country">On site</td><td>[54] [65]</td></tr>
-        <tr><td class="name">Mamanuca Environment Society reef restoration</td><td class="name">Six Senses Fiji, Likuliku Lagoon, Tokoriki Island Resort</td><td class="country">Same Mamanuca group, short boat between resorts</td><td>[57] [59] [60] [66]</td></tr>
-        <tr><td class="name">Coral Coast Conservation Center + Korolevu-i-wai MPA</td><td class="name">Outrigger Fiji, Warwick Fiji, Naviti Resort (Coral Coast hotels)</td><td class="country">Same Coral Coast strip, walking + short drive</td><td>[67] [68]</td></tr>
-        <tr><td class="name">Lagoons of New Caledonia (UNESCO WH)</td><td class="name">Le Méridien Île des Pins (within the Southern Lagoon site)</td><td class="country">On site</td><td>[69] [70]</td></tr>
-        <tr><td class="name">Lizard Island Research Station</td><td class="name">Lizard Island Resort (sister site, walking distance)</td><td class="country">On site</td><td>[75] [87]</td></tr>
-        <tr><td class="name">Heron Island Research Station</td><td class="name">Heron Island Resort (sister site, walking distance)</td><td class="country">On site</td><td>[80] [88]</td></tr>
-        <tr><td class="name">Lady Elliot Island reef monitoring</td><td class="name">Lady Elliot Island Eco Resort (resort hosts the work)</td><td class="country">On site</td><td>[81]</td></tr>
-        <tr><td class="name">Reef Restoration Foundation, Cairns and Northern GBR</td><td class="name">Lizard Island Resort, Bedarra, Orpheus Island Lodge</td><td class="country">~1 to 3 hours by boat or charter from Cairns</td><td>[78] [79] [85]</td></tr>
-        <tr><td class="name">Coral Nurture Program (tourism operator out-planting)</td><td class="name">Lizard Island Resort and other GBR resorts that partner with operators</td><td class="country">Within resort dive radius</td><td>[86]</td></tr>
-        <tr><td class="name">Lord Howe Island Marine Park</td><td class="name">Capella Lodge Lord Howe Island</td><td class="country">On site</td><td>[82]</td></tr>
-      </tbody>
-    </table>
+    </div>
 
     <h2>Honest gaps</h2>
 
