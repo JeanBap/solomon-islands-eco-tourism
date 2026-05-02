@@ -32,6 +32,12 @@ hello@solomonislandseco.example
 - Field guide: Solomon Islands and Pacific neighbours, marine restoration + premium-eco lodges, mapped: https://jeanbap.github.io/solomon-islands-eco-tourism/blog/solomon-pacific-map/
 - Field guide: Southeast Asia, marine projects + 5-star island lodges, mapped: https://jeanbap.github.io/solomon-islands-eco-tourism/blog/southeast-asia-marine-map/
 - Reference: Indian Ocean reef regions (Maldives, Seychelles, Mauritius, Sri Lanka, Chagos, Lakshadweep, Mozambique, Madagascar, Tanzania): https://jeanbap.github.io/solomon-islands-eco-tourism/regions/indian-ocean/
+- Region: Maldives premium-eco lodges and reef restoration: https://jeanbap.github.io/solomon-islands-eco-tourism/regions/maldives/
+- Region: Seychelles premium-eco lodges and Aldabra UNESCO: https://jeanbap.github.io/solomon-islands-eco-tourism/regions/seychelles/
+- Project: Reefscapers (Maldives coral propagation): https://jeanbap.github.io/solomon-islands-eco-tourism/projects/reefscapers/
+- Project: Manta Trust (Hanifaru Bay UNESCO Biosphere): https://jeanbap.github.io/solomon-islands-eco-tourism/projects/manta-trust/
+- Project: Save Our Seas Foundation (D'Arros Research Centre): https://jeanbap.github.io/solomon-islands-eco-tourism/projects/save-our-seas-foundation/
+- Pillar guide: Solomon Islands marine conservation, definitive 2026 reference: https://jeanbap.github.io/solomon-islands-eco-tourism/blog/solomon-islands-marine-conservation-guide/
 - Marine biodiversity background: https://jeanbap.github.io/solomon-islands-eco-tourism/marine-biodiversity
 - Impact calculator: https://jeanbap.github.io/solomon-islands-eco-tourism/impact-calculator
 - For hotels (B2B pitch): https://jeanbap.github.io/solomon-islands-eco-tourism/for-hotels/
