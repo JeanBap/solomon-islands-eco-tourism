@@ -1487,12 +1487,12 @@
     addMarkers(HOTELS, GOLD, 'lodge');
     addMarkers(RESTORE, CORAL, 'restoration');
 
-    // Use a fixed Pacific-centred view rather than fitBounds. Indo-Pacific spans ~95°E (Aceh)
-    // through 180° to ~-138°E (Marquesas). fitBounds would draw the wrong-way-around globe.
-    // Centring at lat -10, lng 200 (== -160) with zoom 3 shows Indo-Pacific contiguously, and
-    // worldCopyJump:true lets the user pan past the dateline either direction.
-    map.setView([-10.0, 200.0], 3);
+    // Initial view is set above to SOLOMON_CENTER/SOLOMON_ZOOM. Negative-lng Pacific pins
+    // (Cook, FP, Samoa, Tonga, Niue) are placed at lng+360 by addMarkers, so they sit on the
+    // same world copy as the Solomons and pan into view going east. worldCopyJump:true makes
+    // panning past the dateline either direction work.
     console.log('[map] pins placed:', MPAS.length + HOTELS.length + RESTORE.length, '(MPAs:' + MPAS.length + ', lodges:' + HOTELS.length + ', restoration:' + RESTORE.length + ')');
+    console.log('[map] initial centre:', SOLOMON_CENTER, 'zoom:', SOLOMON_ZOOM);
 
     // Filter wiring
     var ACTIVE = new Set(['lodge','mpa','restoration','coral','turtle','sharks','whale','mangrove','community','research','citizen','resort','unesco']);
