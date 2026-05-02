@@ -82,6 +82,14 @@
   .legend .dot.gold{background:#b9905a}
   .legend .dot.coral{background:#e26d5c}
   .legend .note{margin-left:auto;font-size:12px;color:var(--ink-soft);opacity:.8}
+  .filters{display:flex;gap:8px;padding:14px 18px;background:#fff;border-bottom:1px solid var(--line);flex-wrap:wrap;align-items:center}
+  .filters strong{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-right:8px}
+  .filter-btn{background:var(--sand);color:var(--ink-deep);border:1px solid var(--line);border-radius:18px;padding:5px 12px;font-size:12px;font-weight:500;cursor:pointer;transition:all .18s;font-family:'Inter',sans-serif}
+  .filter-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+  .filter-btn.active{background:var(--ink-deep);color:#fff;border-color:var(--ink-deep)}
+  .filter-btn.off{opacity:.45;text-decoration:line-through}
+  .filter-actions{margin-left:auto;display:flex;gap:8px}
+  .filter-count{font-size:12px;color:var(--ink-soft);margin-left:6px}
 
   table.list{width:100%;border-collapse:collapse;margin:18px 0 28px;font-size:14px}
   table.list th,table.list td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
@@ -167,11 +175,32 @@
     <p class="tldr"><strong>The short version.</strong> A comprehensive Indo-Pacific atlas. 20 Solomon Islands lodges, 65 lodges across the immediate Pacific (Vanuatu, PNG, Fiji, New Caledonia, N Australia), 38 lodges east to French Polynesia (Cook Islands, Tonga, Samoa, Niue, FSM, Palau, Marshall Islands, Kiribati, Tahiti, Bora Bora, Moorea, Tuamotus, Marquesas), and 30 additional Coral Triangle lodges across Indonesia and the Philippines beyond what is on the Southeast Asia map. Total 153 verified premium-eco lodges, 38 marine conservation areas including 9 UNESCO World Heritage sites, and 60 active restoration programmes. Gaps named honestly where no lodge sits within reach. Over 220 primary sources cited end to end.</p>
 
     <div class="map-wrap">
-      <div id="map" role="region" aria-label="Map of marine restoration programmes and premium-eco lodges across the Solomon Islands and immediate Pacific neighbours"></div>
+      <div class="filters" role="toolbar" aria-label="Map filters by conservation type">
+        <strong>Filter:</strong>
+        <button class="filter-btn active" data-tag="lodge">Premium lodges</button>
+        <button class="filter-btn active" data-tag="mpa">MPAs / parks</button>
+        <button class="filter-btn active" data-tag="restoration">Restoration</button>
+        <button class="filter-btn active" data-tag="coral">Coral</button>
+        <button class="filter-btn active" data-tag="turtle">Turtles</button>
+        <button class="filter-btn active" data-tag="sharks">Sharks / mantas</button>
+        <button class="filter-btn active" data-tag="whale">Whales / dugong</button>
+        <button class="filter-btn active" data-tag="mangrove">Mangrove / seagrass</button>
+        <button class="filter-btn active" data-tag="community">Community / LMMA</button>
+        <button class="filter-btn active" data-tag="research">Research stations</button>
+        <button class="filter-btn active" data-tag="citizen">Citizen science</button>
+        <button class="filter-btn active" data-tag="resort">Resort-led</button>
+        <button class="filter-btn active" data-tag="unesco">UNESCO</button>
+        <span class="filter-actions">
+          <button class="filter-btn" id="filter-all-on">All on</button>
+          <button class="filter-btn" id="filter-all-off">All off</button>
+        </span>
+      </div>
+      <div id="map" role="region" aria-label="Map of marine restoration programmes and premium-eco lodges across the Indo-Pacific"></div>
       <div class="legend">
         <span><span class="dot green"></span>Marine conservation area / MPA</span>
         <span><span class="dot coral"></span>Active restoration programme</span>
         <span><span class="dot gold"></span>Premium-eco / 5-star island lodge</span>
+        <span class="filter-count" id="filter-count"></span>
         <span class="note">Tiles: OpenStreetMap contributors, ODbL</span>
       </div>
     </div>
@@ -1180,7 +1209,37 @@
       ["Kalinaw Resort Siargao",      "Siargao, Philippines",          9.80, 126.16, "Adults-only boutique."],
       ["Camiguin Volcano Beach Eco Resort","Camiguin, Philippines",     9.20, 124.72, "Beachfront eco resort."],
       ["Eagle Point Resort Anilao",   "Batangas, Philippines",        13.74, 120.91, "Dive resort, Verde Island Passage edge."],
-      ["El Rio y Mar",                "Coron, Palawan",               12.00, 120.10, "Private cove resort, Coron."]
+      ["El Rio y Mar",                "Coron, Palawan",               12.00, 120.10, "Private cove resort, Coron."],
+      // Malaysia (Sabah dive belt + Peninsular)
+      ["Mabul Beach Resort",          "Mabul, Sabah, Malaysia",        4.25, 118.63, "Sipadan-edge dive resort, Mabul Island."],
+      ["Sipadan Mabul Resort",        "Mabul, Sabah, Malaysia",        4.25, 118.63, "Mabul Island dive resort."],
+      ["Borneo Divers Mabul Resort",  "Mabul, Sabah, Malaysia",        4.25, 118.62, "Mabul Island dive resort, original Sipadan operator."],
+      ["Sipadan-Kapalai Dive Resort", "Kapalai, Sabah, Malaysia",      4.21, 118.66, "Stilted resort on Kapalai sand bar."],
+      ["Sipadan Water Village",       "Mabul, Sabah, Malaysia",        4.25, 118.62, "Stilted village resort, Mabul."],
+      ["Reef Dive Resort Mataking",   "Mataking, Sabah, Malaysia",     4.55, 118.96, "Private island dive resort, Mataking."],
+      ["Layang Layang Island Resort", "Layang Layang, Sabah",          7.37, 113.85, "Atoll resort, deep South China Sea."],
+      ["Berjaya Tioman Resort",       "Tioman Marine Park, Pahang",    2.78, 104.18, "Beachfront resort on Tioman."],
+      ["Berjaya Redang Resort",       "Redang Marine Park, Terengganu",5.78, 103.00, "Beachfront resort on Redang."],
+      ["The Taaras Beach and Spa Resort","Redang, Terengganu",         5.79, 103.00, "5-star resort, Redang island."],
+      ["Bubu Long Beach Resort",      "Perhentian Kecil, Terengganu",  5.92, 102.74, "Beachfront resort, Long Beach."],
+      ["Perhentian Tuna Bay Resort",  "Perhentian Besar, Terengganu",  5.91, 102.74, "Beachfront resort, Perhentian Besar."],
+      // Indonesia (more)
+      ["Murex Bunaken Dive Resort",   "Manado, North Sulawesi",        1.50, 124.85, "Beachfront dive resort, Bunaken NP edge."],
+      ["Cocotinos Manado",            "North Sulawesi, Indonesia",     1.45, 124.78, "Beachfront dive resort, Bunaken NP."],
+      ["Lembeh Resort",               "Lembeh Strait, N Sulawesi",     1.45, 125.20, "Lembeh Strait dive resort."],
+      ["NAD-Lembeh Resort",           "Lembeh Strait, N Sulawesi",     1.43, 125.22, "Lembeh Strait dive resort."],
+      ["Papua Paradise Eco Resort",   "Birie Island, Raja Ampat",      0.42, 130.45, "Eco-resort on Birie Island, north Raja Ampat."],
+      ["Triton Bay Divers",           "Triton Bay, West Papua",       -3.85, 134.10, "Liveaboard + lodge access, Triton Bay."],
+      ["Halmahera Resort",            "North Maluku, Indonesia",       0.95, 127.55, "Boutique dive resort, Halmahera."],
+      // Philippines (more)
+      ["Atlantis Dumaguete Beach Resort","Dauin, Negros, Philippines", 9.16, 123.27, "Long-running dive resort, Dauin."],
+      ["Atlantis Puerto Galera Resort","Puerto Galera, Mindoro",      13.51, 120.95, "Long-running dive resort, Puerto Galera."],
+      ["Pearl Farm Beach Resort",     "Samal Island, Davao",           7.10, 125.74, "Beachfront resort on Samal Island."],
+      ["Discovery Shores Boracay",    "Boracay, Philippines",         11.97, 121.92, "5-star, Station 2, White Beach."],
+      ["Sangat Island Reserve",       "Coron, Palawan",               11.99, 120.20, "Eco-luxury private island, Coron."],
+      ["Funny Lion Coron",            "Coron Town, Palawan",          12.00, 120.20, "Boutique hotel, Coron town."],
+      ["Punta Bulata Resort",         "Negros Occidental",             9.83, 122.50, "Beachfront resort, Cauayan, Negros."],
+      ["Camayan Beach Resort",        "Subic, Zambales",              14.83, 120.27, "Beachfront resort, Subic Bay."]
     ];
 
     var MPAS = [
@@ -1299,22 +1358,147 @@
       ["Coral Triangle Initiative (CTI-CFF)",       "CT6 partnership (Manado)", 1.50, 124.85, "Multi-government partnership since 2009."],
       ["LMMA Network Pacific HQ",                   "Fiji (Suva)",             -18.14, 178.44, "Regional network of community managed marine areas."],
       ["SPC Coastal Fisheries Programme",           "New Caledonia (Noumea)",  -22.30, 166.45, "SPC Noumea-based regional programme."],
-      ["SPREP",                                     "Samoa (Apia)",            -13.83, -171.78, "Pacific regional environment programme."]
+      ["SPREP",                                     "Samoa (Apia)",            -13.83, -171.78, "Pacific regional environment programme."],
+      // Solomon additions
+      ["WCS Solomon Islands programme",             "Solomon Islands (Western)", -8.10, 156.85, "WCS country marine programme. <a href='https://solomons.wcs.org' target='_blank' rel='noopener'>WCS Solomons</a>"],
+      ["Solomon Islands National University Marine Lab","Solomon Islands (Honiara)", -9.42, 159.95, "SINU School of Natural Resources and Applied Sciences."],
+      ["Nia Tero Pacific",                          "Solomon Islands (multi)", -8.50, 159.50, "Indigenous-led ocean stewardship support. <a href='https://www.niatero.org' target='_blank' rel='noopener'>Nia Tero</a>"],
+      ["SI Government CTI National Coordinating Committee","Solomon Islands (Honiara)", -9.43, 159.96, "National coordination of Coral Triangle Initiative."],
+      // PNG additions
+      ["WCS Papua New Guinea",                      "PNG (Manus / multi)",      -2.10, 147.20, "WCS country marine programme."],
+      ["Bismarck-Solomon Seas Ecoregion programme", "PNG / Solomons",           -4.50, 152.00, "Cross-border WWF-led ecoregion programme."],
+      // Vanuatu additions
+      ["Vanuatu Cetacean Research and Conservation Initiative","Vanuatu (multi)", -16.30, 167.50, "Cetacean research and community programmes."],
+      // Fiji additions
+      ["Conservation International Fiji",           "Fiji (Suva)",             -18.14, 178.44, "CI country marine programme."],
+      ["Fiji Locally Managed Marine Area Network (FLMMA)","Fiji (Suva)",       -18.14, 178.44, "National LMMA network coordination. <a href='https://lmmanetwork.org' target='_blank' rel='noopener'>LMMA</a>"],
+      ["Coral Reef Alliance Fiji",                  "Fiji (Suva)",             -18.14, 178.44, "CORAL country programme."],
+      // Australia additions
+      ["AIMS Long Term Monitoring Program",         "Australia (GBR-wide)",    -18.50, 147.00, "Annual GBR reef monitoring since 1985."],
+      ["Reef Check Australia",                      "Australia (GBR + east coast)", -27.00, 153.00, "Citizen science reef monitoring."],
+      ["Earthwatch Australia",                      "Australia (GBR + Heron)", -23.45, 151.92, "Citizen science research expeditions."],
+      ["Indigenous Sea Country / Sea Rangers programme","Australia (Northern)", -12.50, 132.00, "Indigenous Protected Area sea rangers."],
+      ["Reef Trust Partnership",                    "Australia (GBR-wide)",    -18.00, 147.00, "Federal + Reef Foundation co-funded restoration partnership."],
+      // Indonesia additions
+      ["LINI Foundation",                           "Indonesia (Bali, Les Village)", -8.16, 115.40, "Coral restoration since 1990s, north Bali."],
+      ["Marine Megafauna Foundation Indonesia",     "Indonesia (Komodo + RA)",  -8.55, 119.45, "Manta + reef shark research."],
+      ["WWF Indonesia marine programme",            "Indonesia (national)",     -6.20, 106.85, "Coral Triangle marine programme."],
+      ["Reef Renewal Indonesia",                    "Indonesia (Lombok / Bali)", -8.36, 116.05, "Coral restoration network, Indonesia."],
+      ["Coral Reef Alliance Indonesia",             "Indonesia (Bali)",         -8.50, 115.20, "CORAL country programme."],
+      // Malaysia additions
+      ["Marine Research Foundation",                "Malaysia (Sabah)",          5.95, 116.05, "Sea turtle research, Sabah."],
+      ["WWF-Malaysia marine programme",             "Malaysia (Sabah + Pen)",    3.10, 101.65, "WWF country marine programme."],
+      ["Department of Marine Park Malaysia (DMPM)", "Malaysia (Putrajaya HQ)",   2.95, 101.69, "Federal manager of all peninsular marine parks."],
+      ["Sabah Parks",                               "Malaysia (Sabah)",          5.97, 116.07, "State manager of Sabah marine parks."],
+      ["Coral Reef Alliance Malaysia",              "Malaysia (Sabah, Tioman)",  4.20, 118.60, "CORAL country programme."],
+      // Philippines additions
+      ["People and the Sea",                        "Philippines (Bantayan)",   11.27, 123.83, "Community-based reef and turtle, Cebu north."],
+      ["Coral Triangle Center Philippines outpost", "Philippines (Bohol)",       9.80, 123.85, "CTC field office, central Visayas."],
+      ["Project Seahorse",                          "Philippines (Bohol + Visayas)", 9.85, 124.05, "Seahorse + small-scale fisheries since 1996."],
+      ["Marine Conservation Trust Philippines",     "Philippines (multi)",      14.55, 121.05, "Marine NGO supporting community LMMAs."],
+      // Cook Is + Tuvalu + others
+      ["Te Ipukarea Society",                       "Cook Islands (Rarotonga)", -21.21, -159.80, "National environment NGO, Cook Is."],
+      ["Marae Moana Coordination Office",           "Cook Islands (Rarotonga)", -21.20, -159.78, "Cook Is marine park coordination office."],
+      ["Vava'u Environmental Protection Association","Tonga (Vava'u)",         -18.65, -174.00, "Local environment NGO, Vava'u."],
+      ["Marshall Islands Conservation Society",     "Marshall Islands (Majuro)", 7.10, 171.40, "National conservation NGO."],
+      ["Funafuti Conservation Area",                "Tuvalu",                   -8.50, 179.20, "33 km² MPA, central western Pacific."],
+      // Resort-led + other
+      ["Six Senses Earth Lab, Yao Noi",             "Thailand (Phang Nga)",      8.13, 98.61, "Mangrove + waste programmes at Six Senses Yao Noi."],
+      ["Six Senses Earth Lab, Krabey",              "Cambodia",                 10.55, 103.50, "Resort-led restoration, Six Senses Krabey."],
+      ["Soneva Foundation Make Waves",              "Maldives + Thailand (Koh Kood)", 11.66, 102.56, "Coral and waste programmes (Soneva Kiri)."],
+      ["Misool Foundation",                         "Indonesia (Raja Ampat)",   -2.20, 130.61, "Coral nursery + ranger patrols at Misool Eco Resort."],
+      ["Wakatobi Collaborative Reef Programme",     "Indonesia (Wakatobi)",     -5.79, 124.01, "Resort-funded house-reef protection."]
     ];
 
-    function addMarkers(arr, icon){
+    var ALL_MARKERS = [];
+
+    function deriveTags(name, note, primaryType) {
+      var hay = (name + ' ' + note).toLowerCase();
+      var tags = [primaryType];
+      if (/coral|reef star|nursery|outplant|marrs|biorock|coral guardian|coral garden/.test(hay)) tags.push('coral');
+      if (/turtle|hawksbill|leatherback|nesting/.test(hay)) tags.push('turtle');
+      if (/shark|manta|ray|whale shark/.test(hay)) tags.push('sharks');
+      if (/whale|cetacean|dolphin|humpback|dugong/.test(hay)) tags.push('whale');
+      if (/mangrove|seagrass/.test(hay)) tags.push('mangrove');
+      if (/community|lmma|locally managed|village|indigenous|tribal/.test(hay)) tags.push('community');
+      if (/research|laboratory|station|university|institute|criobe|aims|mahonia/.test(hay)) tags.push('research');
+      if (/citizen|monitoring|census|survey|reef check/.test(hay)) tags.push('citizen');
+      if (/resort|lodge|eco resort|hotel|villas|bungalow|residences|club|retreat|bures/.test(hay) && primaryType !== 'lodge') tags.push('resort');
+      if (/unesco|world heritage|biosphere/.test(hay)) tags.push('unesco');
+      if (/mpa|marine park|marine reserve|sanctuary|national park|protected area|conservation area|conservation park/.test(hay) && primaryType !== 'mpa') tags.push('mpa');
+      if (/foundation|society|trust|ngo|programme|program|initiative|conservation|restoration|monitoring/.test(hay) && primaryType !== 'restoration') tags.push('restoration');
+      return tags;
+    }
+
+    function addMarkers(arr, icon, primaryType){
       arr.forEach(function(r){
         var name=r[0], country=r[1], lat=r[2], lng=r[3], note=r[4];
         var html = '<strong>'+name+'</strong><br><span style="color:#666;font-size:12px">'+country+'</span><br><span style="font-size:13px">'+note+'</span>';
-        L.marker([lat,lng],{icon:icon,title:name}).addTo(map).bindPopup(html);
+        var m = L.marker([lat,lng],{icon:icon,title:name}).bindPopup(html);
+        var tags = deriveTags(name, note, primaryType);
+        ALL_MARKERS.push({marker: m, tags: tags});
+        m.addTo(map);
       });
     }
-    addMarkers(MPAS, GREEN);
-    addMarkers(HOTELS, GOLD);
-    addMarkers(RESTORE, CORAL);
+    addMarkers(MPAS, GREEN, 'mpa');
+    addMarkers(HOTELS, GOLD, 'lodge');
+    addMarkers(RESTORE, CORAL, 'restoration');
 
     var all = MPAS.concat(HOTELS).concat(RESTORE).map(function(r){ return [r[2], r[3]]; });
     map.fitBounds(L.latLngBounds(all), { padding: [40,40] });
+
+    // Filter wiring
+    var ACTIVE = new Set(['lodge','mpa','restoration','coral','turtle','sharks','whale','mangrove','community','research','citizen','resort','unesco']);
+    var countEl = document.getElementById('filter-count');
+
+    function applyFilters() {
+      var visible = 0;
+      ALL_MARKERS.forEach(function(item){
+        var ok = item.tags.some(function(t){ return ACTIVE.has(t); });
+        if (ok) {
+          if (!map.hasLayer(item.marker)) item.marker.addTo(map);
+          visible++;
+        } else {
+          if (map.hasLayer(item.marker)) map.removeLayer(item.marker);
+        }
+      });
+      if (countEl) countEl.textContent = visible + ' of ' + ALL_MARKERS.length + ' pins shown';
+    }
+
+    document.querySelectorAll('.filter-btn[data-tag]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var tag = btn.getAttribute('data-tag');
+        if (ACTIVE.has(tag)) {
+          ACTIVE.delete(tag);
+          btn.classList.remove('active');
+          btn.classList.add('off');
+        } else {
+          ACTIVE.add(tag);
+          btn.classList.add('active');
+          btn.classList.remove('off');
+        }
+        applyFilters();
+      });
+    });
+
+    var allOnBtn = document.getElementById('filter-all-on');
+    var allOffBtn = document.getElementById('filter-all-off');
+    if (allOnBtn) allOnBtn.addEventListener('click', function(){
+      document.querySelectorAll('.filter-btn[data-tag]').forEach(function(b){
+        ACTIVE.add(b.getAttribute('data-tag'));
+        b.classList.add('active'); b.classList.remove('off');
+      });
+      applyFilters();
+    });
+    if (allOffBtn) allOffBtn.addEventListener('click', function(){
+      ACTIVE.clear();
+      document.querySelectorAll('.filter-btn[data-tag]').forEach(function(b){
+        b.classList.remove('active'); b.classList.add('off');
+      });
+      applyFilters();
+    });
+
+    applyFilters();
   })();
 </script>
 </body>
