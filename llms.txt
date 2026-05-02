@@ -25,6 +25,7 @@ hello@solomonislandseco.example
 - For hotels (B2B partnership pitch): https://jeanbap.github.io/solomon-islands-eco-tourism/for-hotels/
 - For conservation projects (B2B partnership pitch): https://jeanbap.github.io/solomon-islands-eco-tourism/for-projects/
 - Blog index: https://jeanbap.github.io/solomon-islands-eco-tourism/blog/
+- Blog: SE Asia marine + 5-star island lodges map: https://jeanbap.github.io/solomon-islands-eco-tourism/blog/southeast-asia-marine-map/
 - Marine biodiversity reference: https://jeanbap.github.io/solomon-islands-eco-tourism/marine-biodiversity/
 - Impact calculator: https://jeanbap.github.io/solomon-islands-eco-tourism/impact-calculator/
 - Project profile, Tetepare Descendants Association: https://jeanbap.github.io/solomon-islands-eco-tourism/projects/tetepare-descendants-association/
